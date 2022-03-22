@@ -1,60 +1,133 @@
 *{
     text-align: center;
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+    }
+
+#root{
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(180deg, #8b42c3 18.48%, #7d3cb6 36.31%, #621ea7 58.39%, #420e86 100%);
+    /* display: flex;
+    flex-direction: column; */
 }
 
-body {
-     background-color:rgb(145, 65, 250);
-    }
-.logo{
-    width:210px;
-    height:auto;
-}    
-#correo{
-    background-color:rgb(20, 20, 20);
-    color:white;
-    font-size: 20px;
-    width: 70%;
-    height: 48px;
-    border-radius:5px;
-    border-color: white;
+/* VISTA DEL LOGIN */
+#divLogo{
+    width: 100%;
+    height: 30%;
 }
+.logo{
+    margin-top: 15%;
+    width:200px;
+    height: 160px;
+    justify-content: end;    
+}    
+
+#divIngresar{
+    position: relative;
+    padding: 20px;
+    height: 70%;
+    
+}
+#correo{
+    margin-top: 20px;
+    background-color:rgba(20, 20, 20, 0.178);
+    color:white;
+    width: 80%;
+    height: 45px;
+    border-radius:5px;
+    border: 1px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255) ;
+    
+    
+}
+#correo::placeholder { color: rgba(255, 255, 255, 0.568); }
+    
+
+
 
 #contraseña{
-    background-color:rgb(20, 20, 20);
+    background-color:rgba(20, 20, 20, 0.178);
     color:white;
-    font-size: 20px;
-    width: 70%;
-    height: 48px;
+    width: 80%;
+    height: 45px;
     border-radius:5px;
-    border-color: white;
+    border: 1px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255) ;
 }
+#contraseña::placeholder { color: rgba(255, 255, 255, 0.568); }
 
 #iniciar{
-    background-color:rgb(220, 59, 252);
+    margin-top: 30px;
+    background-color:rgb(224, 69, 224);
     color:white;
-    font-size: 22px;
-    width: 70%;
-    height: 50px;
+    font-size: medium;
+    width: 65%;
+    height: 40px;
     border-radius:5px;
-    border:0;
+    border: none;
+    
 }
 
 #google{
+    margin: auto;
     background-color:rgb(223, 215, 215);
     color:black;
-    font-size: 18px;
-    width: 55%;
+    font-size: 16px;
+    width: 60%;
     height: 38px;
     border-radius:20px;
     border:0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
-
+.imageGoogle{
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+}
 #o{
     font-size:18px;
     color:white;
 }
-
 #registro{
-    font-size:18px;
     color:white;
 }
+
+/* VISTA DE REGISTRO */
+.Register__input{
+    background-color:rgba(20, 20, 20, 0.178);
+    color:white;
+    width: 80%;
+    height: 45px;
+    border-radius:5px;
+    border: 1px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255) ;
+}
+.Register__input::placeholder { color: rgba(255, 255, 255, 0.568); }
+.Register__button{
+    margin-top: 30px;
+    background-color:rgb(224, 69, 224);
+    color:white;
+    font-size: medium;
+    width: 65%;
+    height: 40px;
+    border-radius:5px;
+    border: none;
+}
+#Register__iconBack{
+    color:rgba(255, 255, 255, 0.493) ;
+    font-size: 50px;
+    margin-top: 90px;
+
+}
+
+
