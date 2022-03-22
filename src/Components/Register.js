@@ -18,8 +18,10 @@
 
 export const Register = () => {
     document.getElementById('root').innerHTML = `
-      <p>Bienvenida al Registro</p>
+    <input type="text" id="name" placeholder="Nombres y apellidos"</input><br><br>
+    <input type="text" id="e-mail" placeholder="Correo electrónico"</input><br><br>
+    <input type="password" id="password" placeholder="contraseña"</input><br><br>
+    <input type="password" id="confirmPassword" placeholder="Confirmar contraseña"</input><br><br>
     <button>Registrarse</button>
-    <button>Registrarse con Google</button>
     `;
   };

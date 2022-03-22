@@ -23,9 +23,13 @@ import { Login } from './Login.js';
 import { Register } from './Register.js';
 
 export const Home = () => {
-  document.getElementById('root').innerHTML = `<h2>hola, bienvenida a fit woman</h2>
-  <button id="iniciar">Iniciar sesión</button>
-  <button id="registro">Registrarse</button>`;
+  document.getElementById('root').innerHTML = `
+  <input type=text id="correo" placeholder="Correo electrónico"></input><br><br>
+  <input type=password id="contraseña" placeholder="contraseña"></input><br><br>
+  <button id="iniciar">Iniciar sesión</button> <br><br><br><br><br>
+  <button id="google">Continuar con Google</button> <br>
+  <p id="o">ó</p>
+  <p id="registro">Registrarse en Fit Women</p> <br>`;
 
   document.getElementById('iniciar').addEventListener('click', () => Login());
   document.getElementById('registro').addEventListener('click', () => Register());
