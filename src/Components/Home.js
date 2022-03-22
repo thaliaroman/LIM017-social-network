@@ -25,7 +25,7 @@ import { Register } from './Register.js';
 export const Home = () => {
   document.getElementById('root').innerHTML = `
   <input type=text id="correo" placeholder="Correo electrónico"></input><br><br>
-  <input type=password id="contraseña" placeholder="contraseña"></input><br><br>
+  <input type=password id="contraseña" placeholder="Contraseña"></input><br><br>
   <button id="iniciar">Iniciar sesión</button> <br><br><br><br><br>
   <button id="google">Continuar con Google</button> <br>
   <p id="o">ó</p>
