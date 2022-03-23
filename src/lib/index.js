@@ -1,8 +1,10 @@
 // // importando las funciones que necesito
-import { Home } from '../Components/Home.js';
-const d = document;
+import { Register } from '../Components/Register.js';
+import { Login } from '../Components/Login.js';
 
-d.addEventListener('DOMContentLoaded', Home);
+// Carga por defecto
+const d = document;
+d.addEventListener('DOMContentLoaded', Login);
 
 // aqui exportaras las funciones que necesites
 export const myFunction = () => {

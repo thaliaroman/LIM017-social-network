@@ -1,0 +1,157 @@
+*{
+    text-align: center;
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+    }
+
+#root{
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(180deg, #8b42c3 18.48%, #7d3cb6 36.31%, #621ea7 58.39%, #420e86 100%);
+    /* display: flex;
+    flex-direction: column; */
+}
+
+/* @media screen and (min-width: 380px) and (max-width: 899px) and (min-height:670px) { */
+
+/* VISTA DEL LOGIN */
+
+#divLogo{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.logo{
+    width:200px;
+    height: 160px;
+    vertical-align: bottom;    
+}
+  
+#divIngresar{
+    
+    padding: 20px;
+    height: 40%;
+    position: relative;
+}
+
+.e-mailIcon {
+    position: absolute;
+    padding: 13px;
+    pointer-events: none;
+    margin-top:20px;
+    margin-left:20px;
+    color:white;
+  }
+  .e-mail {
+    padding-left: 30px;
+    margin-top: 20px;
+    background-color:rgba(20, 20, 20, 0.178);
+    color:white;
+    width: 80%;
+    height: 45px;
+    border-radius:5px;
+    border: 1px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255) ;
+}
+::placeholder{
+     margin-left:auto;
+     color: rgba(255, 255, 255, 0.568);
+    }
+.password{
+    background-color:rgba(20, 20, 20, 0.178);
+    color:white;
+    width: 80%;
+    height: 45px;
+    border-radius:5px;
+    border: 1px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255) ;
+}
+.passwordIcon {
+    position: absolute;
+    padding: 13px;
+    pointer-events: none;
+    margin-top:2px;
+    margin-left:23px;
+    color:white;
+  }
+
+#iniciar{
+    margin-top: 30px;
+    background-color:rgb(224, 69, 224);
+    color:white;
+    font-size: medium;
+    width: 65%;
+    height: 40px;
+    border-radius:5px;
+    border: none;
+    
+}
+
+#google{
+    margin: auto;
+    background-color:rgb(223, 215, 215);
+    color:black;
+    font-size: 16px;
+    width: 60%;
+    height: 38px;
+    border-radius:20px;
+    border:0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.imageGoogle{
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+}
+#o{
+    font-size:18px;
+    color:white;
+}
+#registro{
+    color:white;
+}
+
+/* VISTA DE REGISTRO */
+.Register__input{
+    background-color:rgba(20, 20, 20, 0.178);
+    color:white;
+    width: 80%;
+    height: 45px;
+    border-radius:5px;
+    border: 1px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255) ;
+}
+.Register__input::placeholder { color: rgba(255, 255, 255, 0.568); }
+.Register__button{
+    margin-top: 30px;
+    background-color:rgb(224, 69, 224);
+    color:white;
+    font-size: medium;
+    width: 65%;
+    height: 40px;
+    border-radius:5px;
+    border: none;
+}
+#Register__iconBack{
+    color:rgba(255, 255, 255, 0.493) ;
+    font-size: 50px;
+    margin-top: 90px;
+
+}
+
+
+@media screen and (min-width: 900px){
+    #divLogo, #divIngresar{
+        width: 50%;        
+    }
+}
