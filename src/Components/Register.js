@@ -2,10 +2,25 @@ import { Login } from "./Login.js";
 
 export const Register = () => {
     document.getElementById('divIngresar').innerHTML = `
-  <input type="text" class="Register__input"  id="name" placeholder="Nombres y apellidos"</input><br><br>
-  <input type="text" class="Register__input" id="e-mail" placeholder="Correo electrónico"</input><br><br>
-  <input type="password" class="Register__input" id="password" placeholder="Contraseña"</input><br><br>
-  <input type="password" class="Register__input" id="confirmPassword" placeholder="Confirmar contraseña"</input><br><br>
+    <div id="divLogo">
+  <img src="images/logo-fit-women.png" class="logo"/>
+  </div>
+  <div class="div__Username">
+  <i class="fa-solid fa-circle-info e-mailIcon"></i>
+  <input type="text" class="Register__input"  id="name" placeholder="Nombres y apellidos"></input>
+  </div>
+  <div class="div__Username">
+  <i class="fa-solid fa-envelope e-mailIcon"></i>
+  <input type="text" class="Register__input" id="e-mail" placeholder="Correo electrónico"></input>
+  </div>
+  <div class="div__Username">
+  <i class="fa-solid fa-lock passwordIcon"></i>
+  <input type="password" class="Register__input" id="password" placeholder="Contraseña"></input>
+  </div>
+  <div class="div__Username">
+  <i class="fa-solid fa-lock passwordIcon"></i>
+  <input type="password" class="Register__input" id="confirmPassword" placeholder="Confirmar contraseña"></input>
+  </div>
   <button class="Register__button" id="register">Registrarse</button><br>
   <i class="fa-solid fa-circle-chevron-left" id="Register__iconBack"></i>`;
   
