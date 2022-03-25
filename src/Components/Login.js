@@ -28,6 +28,7 @@ export const Login = () => {
   const scrRegister = document.querySelector('#registro');
   scrRegister.addEventListener('click', () => Register());
 };
+
 // eslint-disable-next-line import/no-cycle
 // import { onNavigate } from '../main.js';
 

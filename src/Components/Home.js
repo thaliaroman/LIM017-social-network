@@ -33,7 +33,7 @@
 
 //   return HomeDiv;
 // };
-import { Login } from './Login.js';
+/*import { Login } from './Login.js';
 import { Register } from './Register.js';
 
 export const Home = () => {
