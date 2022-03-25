@@ -1,6 +1,9 @@
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js';
-import { getFirestore } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore.js";
-import { app } from "./configurationfirebase.js";
+import {
+  getAuth, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup,signInWithRedirect
+} from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js';
+import { getFirestore, addDoc , collection } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore.js';
+import { app } from './configurationfirebase.js';
+
 export const auth = getAuth();
 export const db = getFirestore();
 
@@ -20,8 +23,8 @@ export const registerUser = () => {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log('Code: ' + errorCode);
-      console.log('Message: ' + errorMessage);
+      console.log(`Code: ${errorCode}`);
+      console.log(`Message: ${errorMessage}`);
     });
 };
 
@@ -33,11 +36,52 @@ const loginOutUser = () => {
   console.log('Estoy cerrando sesion del usuario');
 };
 
+// funcion  para otener sesion iniciada del usuario actual (no cerró  sesión)
 export const getCurrentUser = () => {
   const uid = 'Anonimo';
   const user = auth.currentUser;
   if (user) {
     return user;
   }
-  return {displayName: uid };
+  return { displayName: uid };
 };
+
+// datos de usuarios de google
+const googleUsers = async () => {
+  const user = auth.currentUser;
+  if (user !== null) {
+    const docRef = await addDoc(collection(db, 'googleUsers'), {
+      name: user.displayName,
+      email: user.email,
+      uid: user.uid,
+      photo: user.photoURL,
+    });
+  }
+};
+// iniciar sesión con Google
+const startGoogle = () => {
+  const provider = new GoogleAuthProvider();
+
+  signInWithPopup(auth, provider)
+    .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      // ...
+      googleUsers();
+      window.location.hash = '#/home';
+    }).catch((error) => {
+    // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+    });
+};
+export const startGoogleToExport = startGoogle();
+console.log(startGoogleToExport);

@@ -1,10 +1,10 @@
 // eslint-disable-next-line import/no-cycle
 import { Register } from './Register.js';
 import { Home } from './Home.js';
+import { startGoogleToExport } from '../lib/librariesfirebase.js';
 
 export const Login = () => {
   document.getElementById('root').innerHTML = `
-  
   <div id="divIngresar">
   <div id="divLogo">
   <img src="images/logo-fit-women.png" class="logo"/>
@@ -28,8 +28,18 @@ export const Login = () => {
   // Función para carga de registro
   const getRegister = document.querySelector('#registro');
   const starting = document.querySelector('#iniciar');
-  getRegister.addEventListener('click', Register);
-  starting.addEventListener('click', Home);
+  getRegister.addEventListener('click', () => {
+    window.location.hash = '#/register';
+  });
+
+  starting.addEventListener('click', () => {
+    // LLeva al home
+    window.location.hash = '#/home';
+  });
+  const loginGoogle = document.getElementById('google');
+  loginGoogle.addEventListener('click', () => {
+    console.log(startGoogleToExport);
+  });
 };
 
 // eslint-disable-next-line import/no-cycle
