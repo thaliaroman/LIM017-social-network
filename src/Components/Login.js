@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import { Register } from './Register.js';
+import { Home } from './Home.js';
 
 export const Login = () => {
   document.getElementById('root').innerHTML = `
@@ -25,8 +26,10 @@ export const Login = () => {
   <div class="div__imageLogin"><img src="images/fondoInicio3.webp" class="imageLogin"/></div>`;
 
   // Función para carga de registro
-  const scrRegister = document.querySelector('#registro');
-  scrRegister.addEventListener('click', () => Register());
+  const getRegister = document.querySelector('#registro');
+  const starting = document.querySelector('#iniciar');
+  getRegister.addEventListener('click', Register);
+  starting.addEventListener('click', Home);
 };
 // eslint-disable-next-line import/no-cycle
 // import { onNavigate } from '../main.js';
