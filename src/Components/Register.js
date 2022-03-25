@@ -1,4 +1,5 @@
-import { Login } from "./Login.js";
+import { Login } from './Login.js';
+import { registerUser } from '../lib/librariesfirebase.js';
 
 export const Register = () => {
     document.getElementById('divIngresar').innerHTML = `
@@ -39,6 +40,7 @@ export const Register = () => {
     // });
     
     document.getElementById('Register__iconBack').addEventListener('click', () => Login());
+    document.getElementById('register').addEventListener('click', registerUser);
   };
 
 
