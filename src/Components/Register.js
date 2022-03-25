@@ -2,8 +2,9 @@ import { Login } from './Login.js';
 import { registerUser } from '../lib/librariesfirebase.js';
 
 export const Register = () => {
-    document.getElementById('divIngresar').innerHTML = `
-    <div id="divLogo">
+  document.getElementById('root').innerHTML = `
+  <div id="divIngresar">
+  <div id="divLogo">
   <img src="images/logo-fit-women.png" class="logo"/>
   </div>
   <div class="div__Username">
@@ -23,7 +24,15 @@ export const Register = () => {
   <input type="password" class="Register__input" id="confirmPassword" placeholder="Confirmar contraseña"></input>
   </div>
   <button class="Register__button" id="register">Registrarse</button><br>
-  <i class="fa-solid fa-circle-chevron-left" id="Register__iconBack"></i>`;
+  <i class="fa-solid fa-circle-chevron-left" id="Register__iconBack"></i>
+  </div>
+  <div class="div__imageLogin"><img src="images/fondoInicio3.webp" class="imageLogin"/></div>`;
+
+
+
+
+
+
   
     
     // const register = document.getElementById("register");
@@ -39,7 +48,10 @@ export const Register = () => {
     //   });
     // });
     
-    document.getElementById('Register__iconBack').addEventListener('click', () => Login());
+    document.getElementById('Register__iconBack').addEventListener('click', () => {
+      window.location.hash = '#/login';
+    });
+
     document.getElementById('register').addEventListener('click', registerUser);
   };
 
