@@ -13,7 +13,6 @@ export const Home = () => {
   </header>
   <main class="main">
     <div id="post">PUBLICACIONES</div>
-
   </main>`;
   const loginOut = document.getElementById('loginOut');
   loginOut.addEventListener('click', () => loginOutUser());

@@ -14,15 +14,15 @@ export const Login = () => {
   <div class="ingresarE-mail">
   <br>
   <i class="fa-solid fa-envelope e-mailIcon"></i>
-  <input type="email" class="e-mail" id="e-mailLogin" placeholder="Correo electrónico"></input><br><br>
+  <input type="email" class="input__Login" id="e-mailLogin" placeholder="Correo electrónico"></input><br><br>
   </div>
   <div class="writePassword">
   <i class="fa-solid fa-lock passwordIcon"></i>
-  <input type=password class="password" id="passwordLogin" placeholder="Contraseña"></input><br><br>
+  <input type=password class="input__Login" id="passwordLogin" placeholder="Contraseña"></input><br><br>
   </div>
-  <button id="iniciar">Iniciar sesión</button> <br><br>
-  <button id="google"><img src="images/google-img.png" class="imageGoogle"/><p>Continuar con Google</p></button> <br><br>
-  <p id="o">ó</p><br>
+  <button id="iniciar">Iniciar sesión</button>
+  <button id="google"><img src="images/google-img.png" class="imageGoogle"/><p>Continuar con Google</p></button>
+  <p id="oLogin">ó</p><br>
   <p id="registro">Registrate en FitWoman</p><br><br>
   </div>
   <div class="div__imageLogin"><img src="images/fondoInicio3.webp" class="imageLogin"/></div>`;

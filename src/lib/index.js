@@ -4,8 +4,8 @@ import { Login } from '../Components/Login.js';
 import { app } from './configurationfirebase.js';
 
 // Carga por defecto
-const d = document;
-d.addEventListener('DOMContentLoaded', Login);
+// const d = document;
+// d.addEventListener('DOMContentLoaded', Login);
 
 // aqui exportaras las funciones que necesites
 export const myFunction = () => {
