@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 // eslint-disable-next-line import/no-cycle
 import { Register } from './Register.js';
 import { Home } from './Home.js';
@@ -38,8 +39,7 @@ export const Login = () => {
   });
   const loginGoogle = document.getElementById('google');
   loginGoogle.addEventListener('click', () => {
-    console.log('tratando con iniciar con google');
-    startGoogle();
+
   });
 };
 
