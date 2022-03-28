@@ -1,7 +1,7 @@
 import {
   getAuth, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup,signInWithRedirect
 } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js';
-import { getFirestore, addDoc , collection } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore.js';
+import { getFirestore, addDoc, collection } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore.js';
 import { app } from './configurationfirebase.js';
 
 export const auth = getAuth();
@@ -59,7 +59,7 @@ const googleUsers = async () => {
   }
 };
 // iniciar sesión con Google
-const startGoogle = () => {
+export const startGoogle = () => {
   const provider = new GoogleAuthProvider();
 
   signInWithPopup(auth, provider)
@@ -83,5 +83,5 @@ const startGoogle = () => {
     // ...
     });
 };
-export const startGoogleToExport = startGoogle();
-console.log(startGoogleToExport);
+// export const startGoogleToExport = startGoogle();
+// console.log(startGoogleToExport);
