@@ -1,7 +1,7 @@
 import {
-  getAuth, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup} from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js';
+  getAuth, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, signOut
+} from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js';
 import { getFirestore, addDoc , collection } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore.js';
-
 import { app } from './configurationfirebase.js';
 
 export const auth = getAuth();
@@ -28,12 +28,24 @@ export const registerUser = () => {
     });
 };
 
-const loginUser = () => {
-  console.log('Estoy logeando un usuario');
-};
+export const loginUser = () => {
+  const email = document.getElementById('e-mailLogin').value;
+  const password = document.getElementById('passwordLogin').value;
 
-const loginOutUser = () => {
-  console.log('Estoy cerrando sesion del usuario');
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      window.location.hash = '#/home';
+
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode);
+      console.log(errorMessage);
+    });
 };
 
 // funcion  para otener sesion iniciada del usuario actual (no cerró  sesión)
@@ -84,3 +96,12 @@ export const startGoogle = () => {
     });
 };
 
+// cerrar sesión
+export const loginOutUser = () => {
+  signOut(auth).then(() => {
+    window.location.hash = '#/login';
+  // Sign-out successful.
+  }).catch((error) => {
+  // An error happened.
+  });
+};

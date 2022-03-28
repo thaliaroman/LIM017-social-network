@@ -52,7 +52,7 @@ export const Register = () => {
       window.location.hash = '#/login';
     });
 
-    document.getElementById('register').addEventListener('click', registerUser());
+    document.getElementById('register').addEventListener('click', registerUser);
   };
 
 

@@ -3,6 +3,7 @@
 import { Register } from './Register.js';
 import { Home } from './Home.js';
 import { startGoogle } from '../lib/librariesfirebase.js';
+import { loginUser } from '../lib/librariesfirebase.js';
 
 export const Login = () => {
   document.getElementById('root').innerHTML = `
@@ -13,11 +14,11 @@ export const Login = () => {
   <div class="ingresarE-mail">
   <br>
   <i class="fa-solid fa-envelope e-mailIcon"></i>
-  <input type="email" class="e-mail" id="correo" placeholder="Correo electrónico"></input><br><br>
+  <input type="email" class="e-mail" id="e-mailLogin" placeholder="Correo electrónico"></input><br><br>
   </div>
   <div class="writePassword">
   <i class="fa-solid fa-lock passwordIcon"></i>
-  <input type=password class="password" id="contraseña" placeholder="Contraseña"></input><br><br>
+  <input type=password class="password" id="passwordLogin" placeholder="Contraseña"></input><br><br>
   </div>
   <button id="iniciar">Iniciar sesión</button> <br><br>
   <button id="google"><img src="images/google-img.png" class="imageGoogle"/><p>Continuar con Google</p></button> <br><br>
@@ -32,14 +33,14 @@ export const Login = () => {
   getRegister.addEventListener('click', () => {
     window.location.hash = '#/register';
   });
+  //  Iniciar sesiión//
 
   starting.addEventListener('click', () => {
-    // LLeva al home
-    window.location.hash = '#/home';
+    loginUser();
   });
   const loginGoogle = document.getElementById('google');
   loginGoogle.addEventListener('click', () => {
-
+    startGoogle();
   });
 };
 
