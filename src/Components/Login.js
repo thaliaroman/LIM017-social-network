@@ -1,7 +1,8 @@
+/* eslint-disable import/named */
 // eslint-disable-next-line import/no-cycle
 import { Register } from './Register.js';
 import { Home } from './Home.js';
-import { startGoogleToExport } from '../lib/librariesfirebase.js';
+import { startGoogle } from '../lib/librariesfirebase.js';
 
 export const Login = () => {
   document.getElementById('root').innerHTML = `
@@ -38,7 +39,7 @@ export const Login = () => {
   });
   const loginGoogle = document.getElementById('google');
   loginGoogle.addEventListener('click', () => {
-    console.log(startGoogleToExport);
+    console.log(startGoogle());
   });
 };
 
