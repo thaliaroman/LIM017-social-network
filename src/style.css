@@ -3,7 +3,7 @@
     font-family: Helvetica, Arial, sans-serif;
     margin: 0;
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 14px;
     }
 
 #root{
@@ -54,7 +54,7 @@
     color:white;
    
   }
-  .input__Login {
+.input__Login {
     background-color:rgba(20, 20, 20, 0.178);
     color:white;
     width: 100%;
@@ -64,9 +64,9 @@
     border-style: solid;
     border-color: rgb(255, 255, 255) ;
 }
-::placeholder{
+.input__Login::placeholder{
      margin-left:auto;
-     color: rgba(255, 255, 255, 0.568);
+     color: rgba(255, 255, 255, 0.787);
     }
 
 .writePassword{
@@ -184,38 +184,42 @@
 /* header */
 .header{
     width: 100vw;
-    height: 70px;
+    height: 60px;
     background: linear-gradient(180deg, #8b42c3 18.48%, #7d3cb6 36.31%, #621ea7 58.39%, #420e86 100%);
     display: flex;
     flex-direction: row;
     align-items: flex-end;
-    /* position: fixed; */
+    position: fixed;
 }
 .header__logo-div{
     width: 100vw;
-    height: 30px;
+    height: 20px;
     position: absolute;
     top: 0px;
     display: flex;
     align-items: center;
     justify-content: center;
+    
+    /* background-color: red; */
 }
 .header__logo{
-    width: 100px;
-    height: 30px;
-    position: absolute;   
+    width: 70px;
+    height: 20px;
+    position: absolute;  
+    /* margin-left: 8px; */
+    /* background-color: aqua;  */
 }
 #userName{
     width:40px;
-    height: 40px;
+    height: 35px;
     font-size: large;
-    font-weight: 500;
+    font-weight: 600;
     color: white;
     background-color: #f800d7;
     border-radius: 50% 50%;
     border: none;
-    margin-left: 4%;
-    margin-bottom: 1%;
+    margin-left: 27px;
+    margin-bottom: 3px;
     }
 .header__nav{
     width:100vw;
@@ -223,6 +227,8 @@
     display: flex;
     align-items: center;
     justify-content: end; 
+    margin-inline-end: 2%;
+    /* background-color: #f800d7; */
 }
 
 .header__nav-ul-li{
@@ -231,9 +237,9 @@
 }
 
 .icon__header{
-    font-size: 28px;
-    color: rgb(229, 226, 226);
-    margin: 8px;
+    font-size: 22px;
+    color: rgb(238, 237, 237);
+    margin: 10px;
     cursor: pointer;
 }
 /* main */
@@ -243,17 +249,21 @@
     width: 100vw;
 }
 .main__div{
-    margin: auto;
+    margin-top: 70px;
+    /* margin: auto; */
+    margin-left: 5%;
     width: 90%;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
+    /* background-color: #f800d7; */
     
 }
 .post__input{
     margin-top: 20px;
     width: 80%;
-    height: 150px;
+    height: 100px;
+    text-align: left;
     outline: none;
     align-self: center;
 }
@@ -263,18 +273,62 @@
    }
 .post__button{
     width: 90px;
-    height: 30px;
+    height: 25px;
     margin-top: 5px;
-    background-color: #8d07b6;
+    background: linear-gradient(180deg, #8b42c3 18.48%, #7d3cb6 36.31%, #621ea7 58.39%, #420e86 100%);
     border: none;
     align-self: flex-end;
     margin-inline-end: 10%;
     border-radius: 8px;
     color: white;
+    font-weight: 500;
+}
+.main__div-postPeople{
+    width: 90%;
+    height: 100%;
+    margin: auto;
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.main__section-postPeople{
+    width: 85%;
+    height: auto;
+    border-radius: 10px;
+    text-align: left;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.main__section-postPeople>h3{
+    /* background-color: #8d07b6; */
+    display: inline;
+}
+#postHour{
+    background-color: azure;
+    display: inline-flex;
+    color: rgb(100, 100, 100);
+    font-size: 12px;
+}
+.main__section-postPeople>p{
+    /* background-color: #a45bbb; */
+    text-align: left;
+    margin-top: 5px;
+    color: #2f2f2f;
+}
+.main__section-postPeople>figure{
+    width: 100%;
+    height: 350px;
+    /* background-color: red; */
+    display: flex;
+    margin-top: 10px;
 }
 .post2Img{
-    width: 80%;
-    height: 200px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
 }
 @media screen and (max-height: 750px){
     *{
@@ -327,4 +381,12 @@
     #google{
         text-align: center;
         margin-top: 10%;}
+
+        .main__div, .main__div-postPeople{
+            width: 70%;
+        }
+        .main__div{margin-left: 15%;}
+        .main__section-postPeople>figure{
+            height: 500px;
+        }
 }
