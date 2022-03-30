@@ -7,7 +7,7 @@ import {Home} from './Components/Home.js';
 myFunction();
 const init = () => {
     routes(window.location.hash);
-    window.location.hash = '#/home';
+    window.location.hash = '#/login';
     // observador();
   };
   init();
