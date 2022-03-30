@@ -11,6 +11,7 @@
     width: 100vw;
     display: flex;
     flex-direction: column;
+    background: linear-gradient(180deg, #8b42c3 18.48%, #7d3cb6 36.31%, #621ea7 58.39%, #420e86 100%);
 }
 
 /* @media screen and (min-width: 380px) and (max-width: 899px) and (min-height:670px) { */
@@ -20,7 +21,6 @@
 #divIngresar{
     height: 100%;
     width: 100%;
-    background: linear-gradient(180deg, #8b42c3 18.48%, #7d3cb6 36.31%, #621ea7 58.39%, #420e86 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -92,6 +92,7 @@
     height: 45px;
     border-radius:5px;
     border: none;
+    cursor: pointer;
     
 }
 
@@ -106,7 +107,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* justify-content: center; */
+    justify-content: center;
+    cursor: pointer;
 }
 #google>p{
     font-size: 14px;
@@ -126,6 +128,7 @@
 #registro{
     color:white;
     margin-top: 30px;
+    cursor: pointer;
 }
 
 /* VISTA DE REGISTRO */
@@ -161,12 +164,14 @@
     height: 45px;
     border-radius:5px;
     border: none;
+    cursor: pointer;
 }
 #Register__iconBack{
     color:rgba(255, 255, 255, 0.493) ;
     font-size: 35px;
     height: auto;
     margin-top: 50px;
+    cursor: pointer;
 
 }
 .imageLogin{
@@ -186,7 +191,7 @@
     align-items: flex-end;
     /* position: fixed; */
 }
-.header__icon-div{
+.header__logo-div{
     width: 100vw;
     height: 30px;
     position: absolute;
@@ -201,13 +206,19 @@
     position: absolute;   
 }
 #userName{
-    width:40vw;
+    width:40px;
+    height: 40px;
     font-size: large;
     font-weight: 500;
     color: white;
+    background-color: #f800d7;
+    border-radius: 50% 50%;
+    border: none;
+    margin-left: 4%;
+    margin-bottom: 1%;
     }
 .header__nav{
-    width:60vw;
+    width:100vw;
     height: 40px;
     display: flex;
     align-items: center;
@@ -223,10 +234,73 @@
     font-size: 28px;
     color: rgb(229, 226, 226);
     margin: 8px;
+    cursor: pointer;
 }
 /* main */
 .main{
+    background-color: white;
+    height: 100vh;
+    width: 100vw;
+}
+.main__div{
+    margin: auto;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+}
+.post__input{
+    margin-top: 20px;
+    width: 80%;
+    height: 150px;
+    outline: none;
+    align-self: center;
+}
+::placeholder{
+    margin-left:auto;
+    color: rgb(121, 121, 121);
+   }
+.post__button{
+    width: 90px;
+    height: 30px;
+    margin-top: 5px;
+    background-color: #8d07b6;
+    border: none;
+    align-self: flex-end;
+    margin-inline-end: 10%;
+    border-radius: 8px;
+    color: white;
+}
+.post2Img{
+    width: 80%;
+    height: 200px;
+}
+@media screen and (max-height: 750px){
+    *{
+        font-size: 14px;
+    }
+    #root{
+        height: 100%;
+        width: 100vw;}
+    #iniciar{
+        font-size: 14px;
+    }
+    #google{
+        margin-top: 10%;}
+    #google>p{
+            font-size: 12px;
+        }
+        .imageGooglep{
+            width: 18px;
+            height: 18px;
+            margin: 6px;
+        }
+        #registro{
+            margin-top: 5px;
+            margin-bottom: 20px;
 
+        }
 }
 
 @media screen and (min-width: 900px){
@@ -243,9 +317,14 @@
     .imageLogin{
         display: block;
         opacity: 0.94;
-        height: 100%;
-        width: 100%;
+        height: 100vh;
+        width: auto;
+        margin-left: 50px;
+        padding: 10px;
+
         
     }
-    
+    #google{
+        text-align: center;
+        margin-top: 10%;}
 }

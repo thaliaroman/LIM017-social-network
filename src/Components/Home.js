@@ -21,8 +21,8 @@ export const Home = () => {
   document.getElementById('root').innerHTML = `
   
   <header class="header">
-  <div class="header__icon-div"><img class="header__logo" src="../images/icono-header.png"></div>
-    <p id="userName">${shortName(userName)}</p>
+  <div class="header__logo-div"><img class="header__logo" src="../images/icono-header.png"></div>
+    <button id="userName">${shortName(userName)}</button>
     <nav class="header__nav">
       <ul class="header__nav-ul>
         <li class="header__nav-ul-li" id="house"><i class="fa-solid fa-house-chimney icon__header"></i></li>
@@ -32,7 +32,13 @@ export const Home = () => {
     </nav>
   </header>
   <main class="main">
-    <div class="main__div" id="post">PUBLICACIONES</div>
+    <div class="main__div" id="post">
+    <input class="post__input" type="text" placeholder="Cuéntanos lo que estás pensando . . ."></input>
+    <button class="post__button">Publicar</button>
+    </div>
+    <div class="">
+    <img class="post2Img" src="../images/fondoInicio4.jpg"
+    </div>
   </main>`;
   const loginOut = document.getElementById('loginOut');
   loginOut.addEventListener('click', () => loginOutUser());
