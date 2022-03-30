@@ -2,11 +2,12 @@
 
 import { myFunction } from './lib/index.js';
 import { routes } from './lib/routes.js';
+import {Home} from './Components/Home.js';
 
 myFunction();
 const init = () => {
     routes(window.location.hash);
-    window.location.hash = '#/login';
+    window.location.hash = '#/home';
     // observador();
   };
   init();
