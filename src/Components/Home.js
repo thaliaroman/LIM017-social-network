@@ -36,8 +36,15 @@ export const Home = () => {
     <input class="post__input" type="text" placeholder="Cuéntanos lo que estás pensando . . ."></input>
     <button class="post__button">Publicar</button>
     </div>
-    <div class="">
-    <img class="post2Img" src="../images/fondoInicio4.jpg"
+    <div class="main__div-postPeople">
+      <section class="main__section-postPeople" id="">
+        <h3>Usuario.</h3>
+        <p id="postHour">Publicado hace 8 hrs</p>
+        <p>Siempre ejercítate a donde vayas</p>
+        <figure>
+        <img class="post2Img" src="../images/fondoInicio4.jpg">
+        </figure>
+      </section>
     </div>
   </main>`;
   const loginOut = document.getElementById('loginOut');

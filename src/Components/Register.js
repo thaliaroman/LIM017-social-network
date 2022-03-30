@@ -26,7 +26,7 @@ export const Register = () => {
   <button class="Register__button" id="register">Registrarse</button><br>
   <i class="fa-solid fa-circle-chevron-left" id="Register__iconBack"></i>
   </div>
-  <div class="div__imageLogin"><img src="images/fondoInicio3.webp" class="imageLogin"/></div>`;
+  <div class="div__imageLogin"><img src="images/fondoInicio5.png" class="imageLogin"/></div>`;
 
 
 
