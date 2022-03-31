@@ -1,4 +1,31 @@
-import { getCurrentUser, loginOutUser } from '../lib/librariesfirebase.js';
+/* eslint-disable no-restricted-syntax */
+import {
+  getCurrentUser, loginOutUser, toPost, loadPosts,
+} from '../lib/librariesfirebase.js';
+
+const publish = async () => {
+  toPost();
+  const posts = await loadPosts();
+  // console.log(posts);
+  const postsBlock = document.getElementById('publicaciones');
+  let finalPosts = '';
+
+  for (const publi of posts) {
+    const user = publi.user;
+    const content = publi.content;
+    const time = publi.datetime;
+    const postHtml = `
+      <div class="post">
+        <h4>${user}</h4>
+        <p id="content">${content}</p>
+        <p id="time">${new Date(time.seconds * 1000).toTimeString()}</p>
+      </div></br>
+      `;
+    finalPosts += postHtml;
+  }
+
+  postsBlock.innerHTML = finalPosts;
+};
 
 export const Home = () => {
   const user = getCurrentUser();
@@ -33,6 +60,8 @@ export const Home = () => {
     <input class="post__input" type="text" placeholder="Cuéntanos lo que estás pensando . . ."></input>
     <button class="post__button">Publicar</button>
     </div>
+    <div id="publicaciones">
+    </div>
     <div class="main__div-postPeople">
       <section class="main__section-postPeople" id="">
       <img src="${userPhoto}">
@@ -47,4 +76,7 @@ export const Home = () => {
   </main>`;
   const loginOut = document.getElementById('loginOut');
   loginOut.addEventListener('click', () => loginOutUser());
+
+  const userPost = document.querySelector('.post__button');
+  userPost.addEventListener('click', publish);
 };
