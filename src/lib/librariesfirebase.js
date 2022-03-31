@@ -95,6 +95,12 @@ export const startGoogle = () => {
     // ...
     });
 };
+// subir post
+// const docRef = await addDoc(collection(db, "publicaciones"), {
+//   name: "Tokyo",
+//   country: "Japan"
+// });
+// console.log("Document written with ID: ", docRef.id);
 
 // cerrar sesión
 export const loginOutUser = () => {
