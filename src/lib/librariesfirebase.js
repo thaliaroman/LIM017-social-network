@@ -1,12 +1,29 @@
+/* eslint-disable import/no-unresolved */
 import {
-  getAuth, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, signOut
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithEmailAndPassword,
+  signOut,
 } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js';
-import { getFirestore, addDoc, collection, getDocs, Timestamp, query, orderBy, limit } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore.js';
+import {
+  getFirestore,
+  addDoc,
+  collection,
+  getDocs,
+  Timestamp,
+  query,
+  orderBy,
+} from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore.js';
 import { app } from './configurationfirebase.js';
 
+// Inicializando Auth y Firestore
 export const auth = getAuth();
 export const db = getFirestore();
 
+// Función para registrarse con correo y contraseña
 export const registerUser = () => {
   const email = document.getElementById('e-mail').value;
   const password = document.getElementById('password').value;
@@ -18,6 +35,7 @@ export const registerUser = () => {
       updateProfile(user, {
         displayName: fullName,
       });
+      window.location.hash = '/home';
       return user;
     })
     .catch((error) => {
@@ -28,6 +46,7 @@ export const registerUser = () => {
     });
 };
 
+// Función para iniciar sesión - usuarios registrados
 export const loginUser = () => {
   const email = document.getElementById('e-mailLogin').value;
   const password = document.getElementById('passwordLogin').value;
@@ -37,7 +56,6 @@ export const loginUser = () => {
       // Signed in
       const user = userCredential.user;
       window.location.hash = '#/home';
-
       // ...
     })
     .catch((error) => {
@@ -48,29 +66,7 @@ export const loginUser = () => {
     });
 };
 
-// funcion  para otener sesion iniciada del usuario actual (no cerró  sesión)
-export const getCurrentUser = () => {
-  const uid = 'Anonimo';
-  const user = auth.currentUser;
-  if (user) {
-    return user;
-  }
-  return { displayName: uid };
-};
-
-// datos de usuarios de google
-const googleUsers = async () => {
-  const user = auth.currentUser;
-  if (user !== null) {
-    const docRef = await addDoc(collection(db, 'googleUsers'), {
-      name: user.displayName,
-      email: user.email,
-      uid: user.uid,
-      photo: user.photoURL,
-    });
-  }
-};
-// iniciar sesión con Google
+// Iniciar sesión con Google
 export const startGoogle = () => {
   const provider = new GoogleAuthProvider();
 
@@ -82,7 +78,7 @@ export const startGoogle = () => {
       // The signed-in user info.
       const user = result.user;
       // ...
-      googleUsers();
+      // googleUsers();
       window.location.hash = '#/home';
     }).catch((error) => {
     // Handle Errors here.
@@ -95,29 +91,75 @@ export const startGoogle = () => {
     // ...
     });
 };
-// subir post
+
+// Funcion para obtener la información del perfil del usuario logeado
+export const getCurrentUser = () => {
+  const unknow = 'unknow';
+  const user = auth.currentUser;
+  if (user !== null) {
+    return user;
+  }
+  return { displayName: unknow };
+};
+
+// Crear un documento con lo datos de usuarios de google en la collección googleUsers
+export const googleUsers = async () => {
+  const user = auth.currentUser;
+  if (user !== null) {
+    const docRef = await addDoc(collection(db, 'googleUsers'), {
+      name: user.displayName,
+      email: user.email,
+      uid: user.uid,
+      photo: user.photoURL,
+    });
+  }
+};
+
+// Crear un documento con el contenido a publicaren la colección publicaciones
 export const toPost = async () => {
+  const user = auth.currentUser;
   const forPost = document.querySelector('.post__input').value;
-  const docRef = await addDoc(collection(db, "publicaciones"), {
+  const docRef = await addDoc(collection(db, 'publicaciones'), {
     user: getCurrentUser().displayName,
-    datetime: Timestamp.fromDate(new Date()),
+    uid: user.uid,
+    dateTime: Timestamp.fromDate(new Date()),
     content: forPost,
+    photo: user.photoURL,
   });
   console.log("Document written with ID: ", docRef.id);
   return docRef;
 };
 
+// Leer el contenido del documento de la colección publicaciones
 export const loadPosts = async () => {
-  const publishCollection = collection(db, 'publicaciones');
+  const publishCollection = query(collection(db, 'publicaciones'), orderBy('dateTime', 'desc'));
   const publishSnapshot = await getDocs(publishCollection);
-  const publishList = publishSnapshot.docs.map(doc => doc.data());
-  console.log(publishList);
-  // const q = query(db, 'publicaciones'), orderBy("datetime", "desc"));
-  // console.log(q);
-  return publishList;
+  // publishSnapshot.forEach((doc) => {
+  //   console.log(`${doc.id} => ${doc.data()}`);
+  // });
+  let html = '';
+  const containerPost = document.querySelector('.main__div-postPeople');
+
+  publishSnapshot.forEach((doc) => {
+    console.log(doc.data());
+    const dataDoc = doc.data();
+    html += `
+    <section class="main__section-postPeople" id="">
+      <img class="section-postPeople__photoUser" src="${getCurrentUser().photoURL}">
+        <h3>${dataDoc.user}.</h3>
+        <p id="postHour">Publicado a las: ${dataDoc.dateTime}</p>
+        <p>${dataDoc.content}</p>
+        <figure>
+        <img class="post2Img" src="../images/fondoInicio4.jpg">
+        </figure>
+      </section>
+    `;
+    containerPost.innerHTML = html;
+  });
+  // new Date(time.seconds * 1000).toTimeString()
 };
 
-// cerrar sesión
+// Funcion para cerrar sesión
 export const loginOutUser = () => {
   signOut(auth).then(() => {
     window.location.hash = '#/login';
