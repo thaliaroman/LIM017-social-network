@@ -13,6 +13,7 @@ import {
   addDoc,
   collection,
   getDocs,
+  onSnapshot,
   Timestamp,
   query,
   orderBy,
@@ -27,23 +28,29 @@ export const db = getFirestore();
 export const registerUser = () => {
   const email = document.getElementById('e-mail').value;
   const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
   const fullName = document.getElementById('name').value;
 
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((UserCredential) => {
-      const user = UserCredential.user;
-      updateProfile(user, {
-        displayName: fullName,
+  if (password === confirmPassword) {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        updateProfile(user, {
+          displayName: fullName,
+        });
+        window.location.hash = '/home';
+        return user;
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(`Code: ${errorCode}`);
+        console.log(`Message: ${errorMessage}`);
       });
-      window.location.hash = '/home';
-      return user;
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(`Code: ${errorCode}`);
-      console.log(`Message: ${errorMessage}`);
-    });
+  } else {
+    // eslint-disable-next-line no-alert
+    alert('no coincide la contraseña');
+  }
 };
 
 // Función para iniciar sesión - usuarios registrados
@@ -130,33 +137,59 @@ export const toPost = async () => {
   return docRef;
 };
 
-// Leer el contenido del documento de la colección publicaciones
-export const loadPosts = async () => {
-  const publishCollection = query(collection(db, 'publicaciones'), orderBy('dateTime', 'desc'));
-  const publishSnapshot = await getDocs(publishCollection);
-  // publishSnapshot.forEach((doc) => {
-  //   console.log(`${doc.id} => ${doc.data()}`);
-  // });
-  let html = '';
-  const containerPost = document.querySelector('.main__div-postPeople');
+// // Leer el contenido del documento de la colección publicaciones
+// export const loadPosts = async () => {
+//   const publishCollection = query(collection(db, 'publicaciones'), orderBy('dateTime', 'desc'));
+//   const publishSnapshot = await getDocs(publishCollection);
+//   // publishSnapshot.forEach((doc) => {
+//   //   console.log(`${doc.id} => ${doc.data()}`);
+//   // });
+//   let html = '';
+//   const containerPost = document.querySelector('.main__div-postPeople');
 
-  publishSnapshot.forEach((doc) => {
-    console.log(doc.data());
-    const dataDoc = doc.data();
-    html += `
-    <section class="main__section-postPeople" id="">
-      <img class="section-postPeople__photoUser" src="${getCurrentUser().photoURL}">
-        <h3>${dataDoc.user}.</h3>
-        <p id="postHour">Publicado a las: ${dataDoc.dateTime}</p>
-        <p>${dataDoc.content}</p>
-        <figure>
-        <img class="post2Img" src="../images/fondoInicio4.jpg">
-        </figure>
-      </section>
-    `;
-    containerPost.innerHTML = html;
+//   publishSnapshot.forEach((doc) => {
+//     console.log(doc.data());
+//     const dataDoc = doc.data();
+//     html += `
+//     <section class="main__section-postPeople" id="">
+//       <img class="section-postPeople__photoUser" src="${getCurrentUser().photoURL}">
+//         <h3>${dataDoc.user}.</h3>
+//         <p id="postHour">Publicado a las: ${dataDoc.dateTime}</p>
+//         <p>${dataDoc.content}</p>
+//         <figure>
+//         <img class="post2Img" src="../images/fondoInicio4.jpg">
+//         </figure>
+//       </section>
+//     `;
+//     containerPost.innerHTML = html;
+//   });
+//   // new Date(time.seconds * 1000).toTimeString()
+// };
+
+// Leer el contenido de cada documento de la colección publicaciones
+export const loadPosts = async () => {
+  const q = query(collection(db, 'publicaciones'), orderBy('dateTime', 'desc'));
+  // onSnapshot para actualización de datos en timpo real
+  const publishSnapshot = onSnapshot(q, (querySnapshot) => {
+    let html = '';
+    const containerPost = document.querySelector('.main__div-postPeople');
+    querySnapshot.forEach((doc) => {
+      console.log(doc.data());
+      const dataDoc = doc.data();
+      html += `
+      <section class="main__section-postPeople" id="">
+        <img class="section-postPeople__photoUser" src="${getCurrentUser().photoURL}">
+          <h3>${dataDoc.user}.</h3>
+          <p id="postHour">Publicado a las: ${dataDoc.dateTime}</p>
+          <p>${dataDoc.content}</p>
+          <figure>
+          <img class="post2Img" src="../images/fondoInicio4.jpg">
+          </figure>
+        </section>
+      `;
+      containerPost.innerHTML = html;
+    });
   });
-  // new Date(time.seconds * 1000).toTimeString()
 };
 
 // Funcion para cerrar sesión

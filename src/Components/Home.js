@@ -3,35 +3,10 @@ import {
   getCurrentUser, loginOutUser, toPost, loadPosts,
 } from '../lib/librariesfirebase.js';
 
-// const publish = async () => {
-//   toPost();
-//   const posts = await loadPosts();
-  // console.log(posts);
-  // const postsBlock = document.getElementById('publicaciones');
-  // let finalPosts = '';
-
-  // for (const publi of posts) {
-  //   const user = publi.user;
-  //   const content = publi.content;
-  //   const time = publi.datetime;
-  //   const postHtml = `
-  //     <div class="post">
-  //       <h4>${user}</h4>
-  //       <p id="content">${content}</p>
-  //       <p id="time">${new Date(time.seconds * 1000).toTimeString()}</p>
-  //     </div></br>
-  //     `;
-  //   finalPosts += postHtml;
-  // }
-
-  // postsBlock.innerHTML = loadPosts;
-// };
-
 export const Home = () => {
   const user = getCurrentUser();
   console.log('del home', getCurrentUser().email);
   const userName = user.displayName.charAt(0).toUpperCase();
-  // const userPhoto = user.photoURL;
   loadPosts();
 
   document.getElementById('root').innerHTML = `
@@ -80,3 +55,31 @@ export const Home = () => {
   //   }
   //   return resultado;
   // }
+
+
+// const publish = async () => {
+//   toPost();
+//   const posts = await loadPosts();
+  // console.log(posts);
+  // const postsBlock = document.getElementById('publicaciones');
+  // let finalPosts = '';
+
+  // for (const publi of posts) {
+  //   const user = publi.user;
+  //   const content = publi.content;
+  //   const time = publi.datetime;
+  //   const postHtml = `
+  //     <div class="post">
+  //       <h4>${user}</h4>
+  //       <p id="content">${content}</p>
+  //       <p id="time">${new Date(time.seconds * 1000).toTimeString()}</p>
+  //     </div></br>
+  //     `;
+  //   finalPosts += postHtml;
+  // }
+
+  // postsBlock.innerHTML = loadPosts;
+// };
+
+
+// const userPhoto = user.photoURL;
