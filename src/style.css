@@ -220,6 +220,7 @@
     border: none;
     margin-left: 27px;
     margin-bottom: 3px;
+    cursor: pointer;
     }
 .header__nav{
     width:100vw;

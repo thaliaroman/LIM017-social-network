@@ -2,8 +2,8 @@
 // eslint-disable-next-line import/no-cycle
 import { Register } from './Register.js';
 import { Home } from './Home.js';
-import { startGoogle } from '../lib/librariesfirebase.js';
-import { loginUser } from '../lib/librariesfirebase.js';
+import { startGoogle } from '../lib/libraries-Firebae.js';
+import { loginUser } from '../lib/libraries-Firebae.js';
 
 export const Login = () => {
   document.getElementById('root').innerHTML = `

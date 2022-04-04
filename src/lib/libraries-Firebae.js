@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
   GoogleAuthProvider,
+  sendEmailVerification,
   signInWithPopup,
   signInWithEmailAndPassword,
   signOut,
@@ -12,17 +13,19 @@ import {
   getFirestore,
   addDoc,
   collection,
-  getDocs,
   onSnapshot,
   Timestamp,
   query,
   orderBy,
 } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore.js';
+
+// eslint-disable-next-line no-unused-vars
 import { app } from './configurationfirebase.js';
 
 // Inicializando Auth y Firestore
 export const auth = getAuth();
 export const db = getFirestore();
+auth.languageCode = 'es';
 
 // Función para registrarse con correo y contraseña
 export const registerUser = () => {
@@ -38,7 +41,12 @@ export const registerUser = () => {
         updateProfile(user, {
           displayName: fullName,
         });
-        window.location.hash = '/home';
+        sendEmailVerification(auth.currentUser)
+          .then(() => {
+          // Email verification sent!
+          // ...
+          });
+        window.location.hash = '/login';
         return user;
       })
       .catch((error) => {
@@ -109,20 +117,7 @@ export const getCurrentUser = () => {
   return { displayName: unknow };
 };
 
-// Crear un documento con lo datos de usuarios de google en la collección googleUsers
-export const googleUsers = async () => {
-  const user = auth.currentUser;
-  if (user !== null) {
-    const docRef = await addDoc(collection(db, 'googleUsers'), {
-      name: user.displayName,
-      email: user.email,
-      uid: user.uid,
-      photo: user.photoURL,
-    });
-  }
-};
-
-// Crear un documento con el contenido a publicaren la colección publicaciones
+// Crear un documento con el contenido a publicar en la colección publicaciones
 export const toPost = async () => {
   const user = auth.currentUser;
   const forPost = document.querySelector('.post__input').value;
@@ -137,35 +132,6 @@ export const toPost = async () => {
   return docRef;
 };
 
-// // Leer el contenido del documento de la colección publicaciones
-// export const loadPosts = async () => {
-//   const publishCollection = query(collection(db, 'publicaciones'), orderBy('dateTime', 'desc'));
-//   const publishSnapshot = await getDocs(publishCollection);
-//   // publishSnapshot.forEach((doc) => {
-//   //   console.log(`${doc.id} => ${doc.data()}`);
-//   // });
-//   let html = '';
-//   const containerPost = document.querySelector('.main__div-postPeople');
-
-//   publishSnapshot.forEach((doc) => {
-//     console.log(doc.data());
-//     const dataDoc = doc.data();
-//     html += `
-//     <section class="main__section-postPeople" id="">
-//       <img class="section-postPeople__photoUser" src="${getCurrentUser().photoURL}">
-//         <h3>${dataDoc.user}.</h3>
-//         <p id="postHour">Publicado a las: ${dataDoc.dateTime}</p>
-//         <p>${dataDoc.content}</p>
-//         <figure>
-//         <img class="post2Img" src="../images/fondoInicio4.jpg">
-//         </figure>
-//       </section>
-//     `;
-//     containerPost.innerHTML = html;
-//   });
-//   // new Date(time.seconds * 1000).toTimeString()
-// };
-
 // Leer el contenido de cada documento de la colección publicaciones
 export const loadPosts = async () => {
   const q = query(collection(db, 'publicaciones'), orderBy('dateTime', 'desc'));
@@ -178,17 +144,16 @@ export const loadPosts = async () => {
       const dataDoc = doc.data();
       html += `
       <section class="main__section-postPeople" id="">
-        <img class="section-postPeople__photoUser" src="${getCurrentUser().photoURL}">
+        <img class="section-postPeople__photoUser" src="${dataDoc.photo}">
           <h3>${dataDoc.user}.</h3>
-          <p id="postHour">Publicado a las: ${dataDoc.dateTime}</p>
+          <p id="postHour">Publicado a las: ${dataDoc.dateTime.toDate()}</p>
           <p>${dataDoc.content}</p>
           <figure>
           <img class="post2Img" src="../images/fondoInicio4.jpg">
           </figure>
-        </section>
-      `;
-      containerPost.innerHTML = html;
+        </section>`;
     });
+    containerPost.innerHTML = html;
   });
 };
 

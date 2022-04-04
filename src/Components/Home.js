@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 import {
   getCurrentUser, loginOutUser, toPost, loadPosts,
-} from '../lib/librariesfirebase.js';
+} from '../lib/libraries-Firebae.js';
 
 export const Home = () => {
   const user = getCurrentUser();
@@ -12,7 +12,7 @@ export const Home = () => {
   document.getElementById('root').innerHTML = `
   <header class="header">
   <div class="header__logo-div"><img class="header__logo" src="../images/icono-header.png"></div>
-    <button id="userName">${userName}</button>
+    <button id="userName" title="${user.displayName}">${userName}</button>
     <nav class="header__nav">
       <ul class="header__nav-ul>
         <li class="header__nav-ul-li" id="house"><i class="fa-solid fa-house-chimney icon__header"></i></li>
@@ -23,63 +23,29 @@ export const Home = () => {
   </header>
   <main class="main">
     <div class="main__div" id="post">
-    <input class="post__input" type="text" placeholder="Cuéntanos lo que estás pensando . . ."></input>
-    <button class="post__button">Publicar</button>
-    </div>
-    <div id="publicaciones">
-    </div>
+      <input class="post__input" type="text" placeholder="Cuéntanos lo que estás pensando . . ."></input>
+      <div class="post__div-upPhoto">
+        <label class="elements__div-upPhoto" for="upPhoto"><i class="fa-solid fa-images"></i></label>
+        <input class="elements__div-upPhoto" type="file" hidden="" id="upPhoto"></input>
+      </div>
+      <button class="post__button">Publicar</button>
+    </div>    
     <div class="main__div-postPeople">
-     
     </div>
   </main>`;
 
   const loginOut = document.getElementById('loginOut');
   loginOut.addEventListener('click', () => loginOutUser());
 
+  // const upPhoto = document.getElementById('upPhoto');
+
   const userPost = document.querySelector('.post__button');
   userPost.addEventListener('click', () => {
-    toPost();
+    if (document.querySelector('.post__input').value !== '') {
+      toPost();
+    }
   });
 };
 
-// -----------------------------//
-// COSAS QUE NO ESTAMOS USANDO //
-// ---------------------------//
-  // function shortName(string) {
-  //   const palabras = string;
-  //   const array = palabras.split(' ');
-  //   let resultado = '';
-  //   // eslint-disable-next-line no-plusplus
-  //   for (let i = 0; i < array.length; i++) {
-  //     resultado += array[i][0];
-  //   }
-  //   return resultado;
-  // }
-
-
-// const publish = async () => {
-//   toPost();
-//   const posts = await loadPosts();
-  // console.log(posts);
-  // const postsBlock = document.getElementById('publicaciones');
-  // let finalPosts = '';
-
-  // for (const publi of posts) {
-  //   const user = publi.user;
-  //   const content = publi.content;
-  //   const time = publi.datetime;
-  //   const postHtml = `
-  //     <div class="post">
-  //       <h4>${user}</h4>
-  //       <p id="content">${content}</p>
-  //       <p id="time">${new Date(time.seconds * 1000).toTimeString()}</p>
-  //     </div></br>
-  //     `;
-  //   finalPosts += postHtml;
-  // }
-
-  // postsBlock.innerHTML = loadPosts;
-// };
-
-
-// const userPhoto = user.photoURL;
+// <label for="upPhoto"><i class="fa-solid fa-images"></i></label>
+// <input type="file" hidden="" id="upPhoto"></input>
