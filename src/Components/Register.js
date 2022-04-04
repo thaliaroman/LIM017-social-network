@@ -1,5 +1,5 @@
 import { Login } from './Login.js';
-import { registerUser } from '../lib/librariesfirebase.js';
+import { registerUser } from '../lib/libraries-Firebae.js';
 
 export const Register = () => {
   document.getElementById('root').innerHTML = `
@@ -13,7 +13,7 @@ export const Register = () => {
   </div>
   <div class="div__Username">
   <i class="fa-solid fa-envelope e-mailIcon"></i>
-  <input type="text" class="Register__input" id="e-mail" placeholder="Correo electrónico"></input>
+  <input type="email" class="Register__input" id="e-mail" placeholder="Correo electrónico"></input>
   </div>
   <div class="div__Username">
   <i class="fa-solid fa-lock passwordIcon"></i>
@@ -46,7 +46,7 @@ export const Register = () => {
 
 
 
-
+// <span data-error="correo incorrecto" data-success="right"></span>
 
 // eslint-disable-next-line import/no-cycle
 // import { onNavigate } from '../main.js';
