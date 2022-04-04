@@ -28,32 +28,15 @@ export const Register = () => {
   </div>
   <div class="div__imageLogin"><img src="images/fondoInicio5.png" class="imageLogin"/></div>`;
 
+  // const valueOfPassword = document.getElementById('password').value;
+  // const valueOfconfirmPassword = document.getElementById('confirmPassword').value;
+  // console.log(valueOfPassword, valueOfconfirmPassword);
+  document.getElementById('Register__iconBack').addEventListener('click', () => {
+    window.location.hash = '#/login';
+  });
 
-
-
-
-
-  
-    
-    // const register = document.getElementById("register");
-    // register.addEventListener('click', () => {
-    //   const valueOfEmail= document.getElementById("e-mail").value;
-    //   const valueOfconfirmPassword= document.getElementById("confirmPassword").value;
-    //   console.log(valueOfEmail, valueOfconfirmPassword)
-
-    //   auth
-    //   .createUserWithEmailAndPassword(valueOfEmail, valueOfconfirmPassword)
-    //   .then( userCredential => {
-    //     console.log('Sign up')
-    //   });
-    // });
-    
-    document.getElementById('Register__iconBack').addEventListener('click', () => {
-      window.location.hash = '#/login';
-    });
-
-    document.getElementById('register').addEventListener('click', registerUser);
-  };
+  document.getElementById('register').addEventListener('click', registerUser);
+};
 
 
 
