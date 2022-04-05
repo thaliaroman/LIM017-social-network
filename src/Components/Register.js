@@ -1,8 +1,8 @@
-import { Login } from './Login.js';
-import { registerUser } from '../lib/libraries-Firebae.js';
+import { register } from '../lib/controllers.js';
 
 export const Register = () => {
   document.getElementById('root').innerHTML = `
+  <div class="div__imageLogin"><img src="images/fondoInicio5.png" class="imageLogin"/></div>
   <div id="divIngresar">
   <div id="divLogo">
   <img src="images/logo-fit-women.png" class="logo"/>
@@ -26,7 +26,7 @@ export const Register = () => {
   <button class="Register__button" id="register">Registrarse</button><br>
   <i class="fa-solid fa-circle-chevron-left" id="Register__iconBack"></i>
   </div>
-  <div class="div__imageLogin"><img src="images/fondoInicio5.png" class="imageLogin"/></div>`;
+  `;
 
   // const valueOfPassword = document.getElementById('password').value;
   // const valueOfconfirmPassword = document.getElementById('confirmPassword').value;
@@ -35,7 +35,7 @@ export const Register = () => {
     window.location.hash = '#/login';
   });
 
-  document.getElementById('register').addEventListener('click', registerUser);
+  document.getElementById('register').addEventListener('click', register);
 };
 
 

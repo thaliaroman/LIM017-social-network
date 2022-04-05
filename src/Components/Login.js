@@ -1,12 +1,14 @@
 /* eslint-disable import/named */
 // eslint-disable-next-line import/no-cycle
-import { Register } from './Register.js';
-import { Home } from './Home.js';
+
 import { startGoogle } from '../lib/libraries-Firebae.js';
-import { loginUser } from '../lib/libraries-Firebae.js';
+import { login } from '../lib/controllers.js';
 
 export const Login = () => {
   document.getElementById('root').innerHTML = `
+  <div class="div__imageLogin">
+  <img src="images/fondoInicio5.png" class="imageLogin"/>
+  </div>
   <div id="divIngresar">
     <div id="divLogo">
     <img src="images/logo-fit-women.png" class="logo"/>
@@ -25,9 +27,7 @@ export const Login = () => {
     <p id="oLogin">ó</p><br>
     <p id="registro">Registrate en FitWoman</p><br><br>
   </div>
-  <div class="div__imageLogin">
-  <img src="images/fondoInicio5.png" class="imageLogin"/>
-  </div>`;
+  `;
 
   // Función para carga de registro
   const getRegister = document.querySelector('#registro');
@@ -38,10 +38,10 @@ export const Login = () => {
   //  Iniciar sesiión//
 
   starting.addEventListener('click', () => {
-    loginUser();
+    login();
   });
-  const loginGoogle = document.getElementById('google');
-  loginGoogle.addEventListener('click', () => {
+  const loginGoogleButton = document.getElementById('google');
+  loginGoogleButton.addEventListener('click', () => {
     startGoogle();
   });
 };

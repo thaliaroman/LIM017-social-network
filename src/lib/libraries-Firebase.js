@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 /* eslint-disable import/no-unresolved */
 import {
   getAuth,
@@ -19,72 +20,45 @@ import {
   orderBy,
 } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore.js';
 
-// eslint-disable-next-line no-unused-vars
 import { app } from './configurationfirebase.js';
 
 // Inicializando Auth y Firestore
-export const auth = getAuth();
-export const db = getFirestore();
-auth.languageCode = 'es';
+const db = getFirestore();
+const auth = getAuth();
 
 // Función para registrarse con correo y contraseña
-export const registerUser = () => {
-  const email = document.getElementById('e-mail').value;
-  const password = document.getElementById('password').value;
-  const confirmPassword = document.getElementById('confirmPassword').value;
-  const fullName = document.getElementById('name').value;
-
-  if (password === confirmPassword) {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        updateProfile(user, {
-          displayName: fullName,
-        });
-        sendEmailVerification(auth.currentUser)
-          .then(() => {
+export const registerUser = (email, password, fullName) => {
+  auth.languageCode = 'es';
+  return createUserWithEmailAndPassword(auth, email, password, fullName)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      updateProfile(user, {
+        displayName: fullName,
+      });
+      sendEmailVerification(auth.currentUser)
+        .then(() => {
           // Email verification sent!
           // ...
-          });
-        window.location.hash = '/login';
-        return user;
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(`Code: ${errorCode}`);
-        console.log(`Message: ${errorMessage}`);
-      });
-  } else {
-    // eslint-disable-next-line no-alert
-    alert('no coincide la contraseña');
-  }
+        });
+      console.log(userCredential);
+      return userCredential;
+    });
 };
 
 // Función para iniciar sesión - usuarios registrados
-export const loginUser = () => {
-  const email = document.getElementById('e-mailLogin').value;
-  const password = document.getElementById('passwordLogin').value;
-
-  signInWithEmailAndPassword(auth, email, password)
+export const loginUser = (email, password) => {
+  return signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      window.location.hash = '#/home';
       // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
+      return user;
     });
 };
 
 // Iniciar sesión con Google
 export const startGoogle = () => {
   const provider = new GoogleAuthProvider();
-
   signInWithPopup(auth, provider)
     .then((result) => {
     // This gives you a Google Access Token. You can use it to access the Google API.
@@ -108,29 +82,20 @@ export const startGoogle = () => {
 };
 
 // Funcion para obtener la información del perfil del usuario logeado
-export const getCurrentUser = () => {
-  const unknow = 'unknow';
+export const getCurrentUser = (unknow) => {
   const user = auth.currentUser;
   if (user !== null) {
+    console.log(`estoy mostrando el usurario: ${user.displayName}`);
     return user;
   }
   return { displayName: unknow };
 };
 
 // Crear un documento con el contenido a publicar en la colección publicaciones
-export const toPost = async () => {
-  const user = auth.currentUser;
-  const forPost = document.querySelector('.post__input').value;
-  const docRef = await addDoc(collection(db, 'publicaciones'), {
-    user: getCurrentUser().displayName,
-    uid: user.uid,
-    dateTime: Timestamp.fromDate(new Date()),
-    content: forPost,
-    photo: user.photoURL,
-  });
-  console.log("Document written with ID: ", docRef.id);
-  return docRef;
-};
+export const toPost = (user1, uid1, dateTime1, content1, photo1) => addDoc(collection(db, 'publicaciones'), {
+  user: user1, uid: uid1, dateTime: dateTime1, content: content1, photo: photo1,
+});
+export const toTheTime = () => Timestamp.fromDate(new Date());
 
 // Leer el contenido de cada documento de la colección publicaciones
 export const loadPosts = async () => {
@@ -144,7 +109,6 @@ export const loadPosts = async () => {
       const dataDoc = doc.data();
       html += `
       <section class="main__section-postPeople" id="">
-        <img class="section-postPeople__photoUser" src="${dataDoc.photo}">
           <h3>${dataDoc.user}.</h3>
           <p id="postHour">Publicado a las: ${dataDoc.dateTime.toDate()}</p>
           <p>${dataDoc.content}</p>
@@ -159,6 +123,7 @@ export const loadPosts = async () => {
 
 // Funcion para cerrar sesión
 export const loginOutUser = () => {
+  const auth = getAuth();
   signOut(auth).then(() => {
     window.location.hash = '#/login';
   // Sign-out successful.
