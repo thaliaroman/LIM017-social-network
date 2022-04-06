@@ -1,7 +1,7 @@
 /* eslint-disable import/named */
 // eslint-disable-next-line import/no-cycle
 
-import { startGoogle } from '../lib/libraries-Firebae.js';
+import { startGoogle } from '../lib/libraries-Firebase.js';
 import { login } from '../lib/controllers.js';
 
 export const Login = () => {

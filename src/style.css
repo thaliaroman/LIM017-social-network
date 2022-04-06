@@ -3,7 +3,7 @@
     font-family: Helvetica, Arial, sans-serif;
     margin: 0;
     box-sizing: border-box;
-    font-size: 14px;
+    font-size: 16px;
     }
 
 #root{
@@ -19,11 +19,13 @@
 /* VISTA DEL LOGIN */
 
 #divIngresar{
-    height: 100%;
+    height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 20px;
+    /* background-color: red; */
     /* justify-content: center; */  
 }
 
@@ -32,7 +34,8 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    margin-top: 0px;    
+    /* margin-top: 0px; */
+    /* background-color: #9f0097;     */
 }
 .logo{
     margin-top: 15px;
@@ -42,9 +45,11 @@
 
 .ingresarE-mail{
     width: 70%;
+    height: 45px;
     display: flex;
     flex-direction: row;
-    margin-top: 20px;
+    margin-top: 50px;
+    /* background-color: #1e73a7; */
 }
 .e-mailIcon {
     position: absolute;
@@ -71,9 +76,11 @@
 
 .writePassword{
     width: 70%;
+    height: 45px;
     display: flex;
     flex-direction: row;
     margin-top: 20px;
+    /* background-color: #00259f; */
 }
 .passwordIcon {
     position: absolute;
@@ -84,7 +91,7 @@
   }
 
 #iniciar{
-    margin-top: 30px;
+    margin-top: 20px;
     background-color:rgb(224, 69, 224);
     color:white;
     font-size: medium;
@@ -97,7 +104,7 @@
 }
 
 #google{
-    margin-top: 60%;
+    margin-top: 35%;
     background-color:rgb(223, 215, 215);
     color:black;
     width: 48%;
@@ -122,12 +129,12 @@
     color:white;
     height: auto;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 15px;
     
 }
 #registro{
     color:white;
-    margin-top: 30px;
+    margin-top: 10px;
     cursor: pointer;
 }
 
@@ -197,20 +204,20 @@
     display: flex;
     align-items: center;
     /* justify-content: center;     */
-    background-color: red;
-    padding: 3%;
+    /* background-color: red; */
+    /* padding: 3%; */
     
 }
 .header__logo{
     width: 150px;
     height: 40px; 
-    /* margin-left: 5%; */
-    background-color: aqua; 
+    margin-left: 5%;
+    /* background-color: aqua;  */
 }
 .header__nav-div{
     width: 50%;
     height: 60px;
-    background-color: #f800d7;
+    /* background-color: #f800d7; */
     display: flex;
     align-items: flex-end;
 }
@@ -223,7 +230,7 @@
     align-items: center;
     justify-content: end; 
     /* margin-inline-end: 2%; */
-    background-color: #482744;
+    /* background-color: #482744; */
 }
 .header__nav-ul-li{
     list-style: none;
@@ -238,7 +245,7 @@
 .header__user-div{
     width: 10%;
     height: 60px;
-    background-color: #dadada;
+    /* background-color: #dadada; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -270,11 +277,16 @@
     background-color: white;
     height: 100vh;
     width: 100vw;
+    display: flex;
+    flex-direction: column;
+    /* position: inherit; */
+    align-items: center;
+    /* justify-content: center; */
 }
 .main__div{
     margin-top: 70px;
     /* margin: auto; */
-    margin-left: 5%;
+    /* margin-left: 5%; */
     width: 90%;
     height: auto;
     display: flex;
@@ -289,6 +301,10 @@
     text-align: left;
     outline: none;
     align-self: center;
+    border-radius: 6px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #7a4a86;
 }
 ::placeholder{
     margin-left:auto;
@@ -305,6 +321,7 @@
     color: white;
     font-weight: 500;
     margin-top: -24px;
+    cursor: pointer;
 }
 .post__div-upPhoto{
     width: 90px;
@@ -323,6 +340,7 @@
 .elements__div-upPhoto>i{
     color: #9f0097;
     font-size: medium;
+    cursor: pointer;
 }
 .post__div-upPhoto>p{
     display: inline-flex;
@@ -390,8 +408,8 @@
     #iniciar{
         font-size: 14px;
     }
-    #google{
-        margin-top: 10%;}
+    /* #google{
+        margin-top: 10%;} */
     #google>p{
             font-size: 12px;
         }
@@ -406,48 +424,107 @@
 
         }
 }
-
+@media screen and (min-width: 540px){
+    #google{
+        text-align: center;
+        margin-top: 10%;
+    }
+}
 @media screen and (min-width: 900px){
     #root{
         flex-direction: row;
+        height: 100vh;
+        /* background: linear-gradient(180deg, #ffffff 18.48%, #ffffff 36.31%, #ffffff 58.39%, #ffffff 100%); */
     }
     #divIngresar{
         width: 50%;      
     }
     .div__imageLogin{
         width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         
     }
     .imageLogin{
         display: block;
         opacity: 0.94;
-        height: 100vh;
+        height: 80vh;
         width: auto;
         margin-left: 50px;
-        padding: 10px;
-
-        
+        /* padding: 10px; */
     }
     #google{
         text-align: center;
-        margin-top: 10%;}
-
-        .main__div, .main__div-postPeople{
-            width: 70%;
+        margin-top: 10%;
+    }
+    #Register__iconBack{
+        margin-top: 30px;
+    }
+    .header__nav-div{
+        width: 60%;
+    }
+    .header__nav{
+        margin-inline-end: 5%; 
+    }
+    .mainandaside{
+        width: 100vw;
+        height: 100vh;
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .aside_d{
+        display: flex;
+        background: linear-gradient(180deg, #ffffff 18.48%, #d7bde9ac 36.31%, #b67cf0ac 58.39%, #632ea7c6 100%);
+        width: 15%;
+        height: 300px;
+        /* margin-left: 2.5%; */
+        margin-top: 85px;
+        border-radius: 10px;
+        text-align: left;
+        padding: 20px;
+        box-shadow: rgba(0, 0, 0, 0.24) 3px 3px 8px;
+        flex-direction: column;
+        align-items: center;
+        /* justify-content: center; */
+    }
+    .aside_d>p{
+        /* display: inline-flex; */
+        
+        margin-top: 20px;
+        font-size: 22px;
+        color: #626262;
+    }
+    #userName{
+        width:90px;
+        height: 90px;
+        font-size: 50px;
+        background-color: #c503bb;
         }
-        .main__div{margin-left: 15%;}
-        .main__section-postPeople>figure{
-            height: 500px;
-        }
-        .aside_d{
-            display: flex;
+    .main{
+        /* background-color: rgb(195, 28, 28); */
+        height: 100vh;
+        width: 65%;
+        margin-left: 1%;
+        
+    }
+    .main__div, .main__div-postPeople{
+        width: 85%;
+    }
+    
+    .main__section-postPeople>figure{
+        height: 500px;
+    }
+        
+    .header__user-div{
+        display: none;
+    }
             
-            /* margin-right: 40px; */
-            background-color: #860e0e;
-            width: 800px;
-            height: 300px;
-        }
 }
+        
+
 
 
 @media screen and (max-width: 413px){

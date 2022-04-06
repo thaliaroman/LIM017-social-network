@@ -32,6 +32,7 @@ export const registerUser = (email, password, fullName) => {
   return createUserWithEmailAndPassword(auth, email, password, fullName)
     .then((userCredential) => {
       const user = userCredential.user;
+      console.log(user);
       updateProfile(user, {
         displayName: fullName,
       });
@@ -92,10 +93,24 @@ export const getCurrentUser = (unknow) => {
 };
 
 // Crear un documento con el contenido a publicar en la colección publicaciones
-export const toPost = (user1, uid1, dateTime1, content1, photo1) => addDoc(collection(db, 'publicaciones'), {
-  user: user1, uid: uid1, dateTime: dateTime1, content: content1, photo: photo1,
-});
-export const toTheTime = () => Timestamp.fromDate(new Date());
+// export const toPost = (user1, uid1, dateTime1, content1, photo1) => addDoc(collection(db, 'publicaciones'), {
+//   user: user1, uid: uid1, dateTime: dateTime1, content: content1, photo: photo1,
+// });
+// export const toTheTime = () => Timestamp.fromDate(new Date());
+// Crear un documento con el contenido a publicar en la colección publicaciones
+export const toPost = async () => {
+  const user = auth.currentUser;
+  const forPost = document.querySelector('.post__input').value;
+  const docRef = await addDoc(collection(db, 'publicaciones'), {
+    user: getCurrentUser().displayName,
+    uid: user.uid,
+    dateTime: Timestamp.fromDate(new Date()),
+    content: forPost,
+    photo: user.photoURL,
+  });
+  console.log("Document written with ID: ", docRef.id);
+  return docRef;
+};
 
 // Leer el contenido de cada documento de la colección publicaciones
 export const loadPosts = async () => {
@@ -105,7 +120,7 @@ export const loadPosts = async () => {
     let html = '';
     const containerPost = document.querySelector('.main__div-postPeople');
     querySnapshot.forEach((doc) => {
-      console.log(doc.data());
+      // console.log(doc.data());
       const dataDoc = doc.data();
       html += `
       <section class="main__section-postPeople" id="">
@@ -113,7 +128,7 @@ export const loadPosts = async () => {
           <p id="postHour">Publicado a las: ${dataDoc.dateTime.toDate()}</p>
           <p>${dataDoc.content}</p>
           <figure>
-          <img class="post2Img" src="../images/fondoInicio4.jpg">
+            <img class="post2Img" src="../images/foto-post.jpg">
           </figure>
         </section>`;
     });
@@ -131,3 +146,5 @@ export const loginOutUser = () => {
   // An error happened.
   });
 };
+
+

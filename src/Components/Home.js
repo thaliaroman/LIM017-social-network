@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import {
-  loginOutUser, toPost, loadPosts,
+  loginOutUser, loadPosts, toPost,
 } from '../lib/libraries-Firebase.js';
 import {
   getCurrent,
@@ -30,8 +30,13 @@ export const Home = () => {
       <button id="userName" title="${user.displayName}">${userName}</button>
     </div>
   </header>
-  <aside class="aside_d"></aside>
+  <div class="mainandaside">
+  <aside class="aside_d">
+    <button id="userName" title="${user.displayName}">${userName}</button>
+    <p>${user.displayName}</p>
+  </aside>
   <main class="main">
+    
     <div class="main__div" id="post">
       <input class="post__input" type="text" placeholder="Cuéntanos lo que estás pensando . . ."></input>
       <div class="post__div-upPhoto">
@@ -43,7 +48,8 @@ export const Home = () => {
     </div>    
     <div class="main__div-postPeople">
     </div>
-  </main>`;
+  </main>
+  </div>`;
 
   const loginOut = document.getElementById('loginOut');
   loginOut.addEventListener('click', () => loginOutUser());
@@ -54,6 +60,7 @@ export const Home = () => {
   userPost.addEventListener('click', () => {
     if (document.querySelector('.post__input').value !== '') {
       toPost();
+      document.querySelector('.post__input').value = '';
     }
   });
 };
