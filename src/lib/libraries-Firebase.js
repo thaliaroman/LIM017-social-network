@@ -18,6 +18,8 @@ import {
   Timestamp,
   query,
   orderBy,
+  deleteDoc,
+  doc,
 } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore.js';
 
 import { app } from './configurationfirebase.js';
@@ -60,12 +62,12 @@ export const getCurrentUser = () => {
 };
 
 // Crear un documento con el contenido a publicar en la colección publicaciones
-export const toPost = (forPost) => {
-  const docRef = addDoc(collection(db, 'publicaciones'), {
+export const toPost = async (contentPost) => {
+  const docRef = await addDoc(collection(db, 'publicaciones'), {
     user: getCurrentUser().displayName,
     uid: getCurrentUser().uid,
     dateTime: Timestamp.fromDate(new Date()),
-    content: forPost,
+    content: contentPost,
     photo: getCurrentUser().photoURL,
   });
   return docRef;
@@ -76,6 +78,11 @@ export const loadPosts = async (idk) => {
   const q = query(collection(db, 'publicaciones'), orderBy('dateTime', 'desc'));
   // onSnapshot para actualización de datos en timpo real
   await onSnapshot(q, idk);
+};
+
+// Borrar documento que contiene la publicación
+export const deletePost = async (id) => {
+  await deleteDoc(doc(db, 'publicaciones', id));
 };
 
 // Funcion para cerrar sesión
