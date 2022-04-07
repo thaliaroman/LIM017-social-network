@@ -3,14 +3,14 @@ import {
   getCurrentUser,
 } from '../lib/libraries-Firebase.js';
 import {
-  loginOut, toPostDocument, publica,
+  loginOut, toPostDocument, printPost,
 } from '../lib/controllers.js';
 
 export const Home = () => {
   const user = getCurrentUser();
   console.log('del home', getCurrentUser().email);
   const userName = user.displayName.charAt(0).toUpperCase();
-  publica();
+  printPost();
 
   document.getElementById('root').innerHTML = `
   <header class="header">

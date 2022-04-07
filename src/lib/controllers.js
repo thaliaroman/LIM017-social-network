@@ -3,7 +3,7 @@ import {
   // eslint-disable-next-line import/named
   registerUser,
   loginUser,
-  updater, sendMail, startGoogle, Provider, loginOutUser, toPost, loadPosts,
+  updater, sendMail, startGoogle, Provider, loginOutUser, toPost, loadPosts, deletePost,
 } from './libraries-Firebase.js';
 
 // Registra nuevos usuarios
@@ -81,12 +81,14 @@ export const loginOut = () => {
 // Crea un documento en la coleccion de firestore
 export const toPostDocument = () => {
   // const user = auth.currentUser;
-  const forPost = document.querySelector('.post__input').value;
-  return toPost(forPost);
+  const contentPost = document.querySelector('.post__input').value;
+  return toPost(contentPost).then((docRef) => {
+    console.log(docRef.id);
+  });
 };
 
 // publica el post
-export const publica = () => {
+export const printPost = () => {
   function idk(querySnapshot) {
     const containerPost = document.querySelector('.main__div-postPeople');
     let html = '';
@@ -101,9 +103,17 @@ export const publica = () => {
         <figure>
           <img class="post2Img" src="../images/foto-post.jpg">
         </figure>
+        <button class="deletePost" data-id='${doc.id}'>Eliminar</button>
       </section>`;
     });
     containerPost.innerHTML = html;
+    // borra documento del post
+    const buttonDelete = containerPost.querySelectorAll('.deletePost');
+    buttonDelete.forEach((btn) => {
+      btn.addEventListener('click', ({ target: { dataset } }) => {
+        deletePost(dataset.id);
+      });
+    });
   }
   loadPosts(idk);
 };
