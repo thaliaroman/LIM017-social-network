@@ -9,6 +9,7 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js';
 import {
   getFirestore,
@@ -59,6 +60,19 @@ export const getCurrentUser = () => {
     return user;
   }
   return { displayName: unknow };
+};
+export const onAuthUser = () => {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
 };
 
 // Crear un documento con el contenido a publicar en la colección publicaciones

@@ -3,7 +3,7 @@ import {
   // eslint-disable-next-line import/named
   registerUser,
   loginUser,
-  updater, sendMail, startGoogle, Provider, loginOutUser, toPost, loadPosts, deletePost,
+  updater, sendMail, startGoogle, Provider, loginOutUser, toPost, loadPosts, deletePost, getCurrentUser,
 } from './libraries-Firebase.js';
 
 // Registra nuevos usuarios
@@ -83,7 +83,7 @@ export const toPostDocument = () => {
   // const user = auth.currentUser;
   const contentPost = document.querySelector('.post__input').value;
   return toPost(contentPost).then((docRef) => {
-    console.log(docRef.id);
+    console.log(docRef.id.uid);
   });
 };
 
@@ -109,11 +109,16 @@ export const printPost = () => {
     containerPost.innerHTML = html;
     // borra documento del post
     const buttonDelete = containerPost.querySelectorAll('.deletePost');
-    buttonDelete.forEach((btn) => {
-      btn.addEventListener('click', ({ target: { dataset } }) => {
-        deletePost(dataset.id);
+    if (dataDoc.uid === getCurrentUser().uid) {
+      // buttonDelete.style.display = 'flex';
+      buttonDelete.forEach((btn) => {
+        btn.addEventListener('click', ({ target: { dataset } }) => {
+          deletePost(dataset.id);
+        });
       });
-    });
+    } else {
+      console.log('funciona');
+    }
   }
   loadPosts(idk);
 };
