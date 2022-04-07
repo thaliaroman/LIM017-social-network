@@ -1,16 +1,16 @@
 /* eslint-disable no-restricted-syntax */
 import {
-  loginOutUser, loadPosts, toPost,
+  getCurrentUser,
 } from '../lib/libraries-Firebase.js';
 import {
-  getCurrent,
+  loginOut, toPostDocument, publica,
 } from '../lib/controllers.js';
 
 export const Home = () => {
-  const user = getCurrent();
-  console.log('del home', getCurrent().email);
+  const user = getCurrentUser();
+  console.log('del home', getCurrentUser().email);
   const userName = user.displayName.charAt(0).toUpperCase();
-  loadPosts();
+  publica();
 
   document.getElementById('root').innerHTML = `
   <header class="header">
@@ -51,15 +51,15 @@ export const Home = () => {
   </main>
   </div>`;
 
-  const loginOut = document.getElementById('loginOut');
-  loginOut.addEventListener('click', () => loginOutUser());
+  const loginOutButton = document.getElementById('loginOut');
+  loginOutButton.addEventListener('click', () => loginOut());
 
   // const upPhoto = document.getElementById('upPhoto');
 
   const userPost = document.querySelector('.post__button');
   userPost.addEventListener('click', () => {
     if (document.querySelector('.post__input').value !== '') {
-      toPost();
+      toPostDocument();
       document.querySelector('.post__input').value = '';
     }
   });

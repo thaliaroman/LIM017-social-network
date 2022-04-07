@@ -1,8 +1,8 @@
 /* eslint-disable import/named */
 // eslint-disable-next-line import/no-cycle
 
-import { startGoogle } from '../lib/libraries-Firebase.js';
-import { login } from '../lib/controllers.js';
+// import { startGoogle } from '../lib/libraries-Firebase.js';
+import { login, loginGoogle } from '../lib/controllers.js';
 
 export const Login = () => {
   document.getElementById('root').innerHTML = `
@@ -42,7 +42,7 @@ export const Login = () => {
   });
   const loginGoogleButton = document.getElementById('google');
   loginGoogleButton.addEventListener('click', () => {
-    startGoogle();
+    loginGoogle();
   });
 };
 

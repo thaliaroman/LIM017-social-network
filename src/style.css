@@ -493,13 +493,13 @@
     .aside_d>p{
         /* display: inline-flex; */
         
-        margin-top: 20px;
+        margin-top: 30px;
         font-size: 22px;
         color: #626262;
     }
     #userName{
-        width:90px;
-        height: 90px;
+        width:110px;
+        height: 110px;
         font-size: 50px;
         background-color: #c503bb;
         }
