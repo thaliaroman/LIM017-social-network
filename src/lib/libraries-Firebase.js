@@ -21,6 +21,8 @@ import {
   orderBy,
   deleteDoc,
   doc,
+  getDoc,
+  updateDoc,
 } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore.js';
 
 import { app } from './configurationfirebase.js';
@@ -61,19 +63,6 @@ export const getCurrentUser = () => {
   }
   return { displayName: unknow };
 };
-export const onAuthUser = () => {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      const uid = user.uid;
-      // ...
-    } else {
-      // User is signed out
-      // ...
-    }
-  });
-};
 
 // Crear un documento con el contenido a publicar en la colección publicaciones
 export const toPost = async (contentPost) => {
@@ -99,7 +88,20 @@ export const deletePost = async (id) => {
   await deleteDoc(doc(db, 'publicaciones', id));
 };
 
+// Editar Post
+export const editPost = (id) => {
+  return getDoc(doc(db, 'publicaciones', id));
+};
+
+// Actualizar post (documento en firestore)
+export const updatePost = (id, newContent) => updateDoc(doc(db, 'publicaciones', id), newContent);
+
 // Funcion para cerrar sesión
 export const loginOutUser = () => {
   return signOut(auth);
+};
+
+// OBSERVADOR
+export const observator = (userftn) => {
+  onAuthStateChanged(auth, userftn);
 };

@@ -8,6 +8,7 @@ import {
 
 export const Home = () => {
   const user = getCurrentUser();
+  console.log(getCurrentUser());
   console.log('del home', getCurrentUser().email);
   const userName = user.displayName.charAt(0).toUpperCase();
   printPost();
@@ -38,7 +39,7 @@ export const Home = () => {
   <main class="main">
     
     <div class="main__div" id="post">
-      <input class="post__input" type="text" placeholder="Cuéntanos lo que estás pensando . . ."></input>
+      <input class="post__input" id="inputPost__edit" type="text" placeholder="Cuéntanos lo que estás pensando . . ."></input>
       <div class="post__div-upPhoto">
         <label class="elements__div-upPhoto" for="upPhoto"><i class="fa-solid fa-images"></i></label>
         <input class="elements__div-upPhoto" type="file" hidden="" id="upPhoto"></input>

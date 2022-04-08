@@ -4,6 +4,7 @@
 // import { startGoogle } from '../lib/libraries-Firebase.js';
 import { login, loginGoogle } from '../lib/controllers.js';
 
+// document.addEventListener('DOMContentLoaded', observatorIt());
 export const Login = () => {
   document.getElementById('root').innerHTML = `
   <div class="div__imageLogin">
