@@ -29,14 +29,10 @@ export const Register = () => {
     <i class="fa-solid fa-circle-chevron-left" id="Register__iconBack"></i>
   </div>
   `;
-
-  // const valueOfPassword = document.getElementById('password').value;
-  // const valueOfconfirmPassword = document.getElementById('confirmPassword').value;
-  // console.log(valueOfPassword, valueOfconfirmPassword);
+  // Botón de volver a login
   document.getElementById('Register__iconBack').addEventListener('click', () => {
     window.location.hash = '#/login';
   });
-
+  // Boton de registrar usuario
   document.getElementById('register').addEventListener('click', register);
 };
-console.log('nuevo commit');
