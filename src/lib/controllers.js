@@ -27,10 +27,16 @@ export const register = () => {
         const errorMessage = error.message;
         console.log(`Code: ${errorCode}`);
         console.log(`Message: ${errorMessage}`);
+        if (errorCode === 'auth/weak-password') {
+          document.getElementById('alertErrorPassword-Register').innerHTML = 'La contraseña debe tener mínimo 6 caracteres';
+        }
+        if (errorCode === 'auth/email-already-in-use') {
+          document.getElementById('alertErrorEmail-Register').innerHTML = 'Cuenta de usuario en uso';
+        }
       });
   } else {
     // eslint-disable-next-line no-alert
-    alert('No coincide la contraseña');
+    document.getElementById('alertErrorPassword-Register').innerHTML = 'La contraseña no coincide';
   }
 };
 
@@ -50,6 +56,13 @@ export const login = () => {
       const errorMessage = error.message;
       console.log(errorCode);
       console.log(errorMessage);
+      if (errorCode === 'auth/user-not-found') {
+        document.getElementById('alertErrorEmail-Login').innerHTML = 'El usuario no ha sido encontrado';
+      }
+      if (errorCode === 'auth/wrong-password') {
+        document.getElementById('alertErrorEmail-Login').innerHTML = '';
+        document.getElementById('alertErrorPassword-Login').innerHTML = 'Contraseña incorrecta';
+      }
     });
 };
 
@@ -153,12 +166,13 @@ export const toPostDocument = async () => {
 export const observatorIt = () => {
   function userftn(user) {
     if (user) {
-      console.log(user.uid, user.displayName);
+      console.log(user.uid, user.displayName, user.emailVerified);
       window.location.hash = '#/home';
     } else {
       console.log('no');
       window.location.hash = '#/login';
     }
+    return user;
   }
   observator(userftn);
 };

@@ -102,6 +102,6 @@ export const loginOutUser = () => {
 };
 
 // OBSERVADOR
-export const observator = (userftn) => {
-  onAuthStateChanged(auth, userftn);
+export const observator = async (userftn) => {
+  await onAuthStateChanged(auth, userftn);
 };
