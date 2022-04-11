@@ -1,10 +1,8 @@
-/* eslint-disable arrow-body-style */
 import {
   // eslint-disable-next-line import/named
   registerUser,
   loginUser,
-  updater, sendMail, startGoogle,
-  Provider, loginOutUser, toPost, loadPosts, deletePost, getCurrentUser, observator, editPost,
+  updater, sendMail, toPost, loadPosts, deletePost, getCurrentUser, observator, editPost,
   updatePost,
 } from './libraries-Firebase.js';
 
@@ -23,74 +21,33 @@ export const register = () => {
         return userCredential.user;
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(`Code: ${errorCode}`);
-        console.log(`Message: ${errorMessage}`);
-        if (errorCode === 'auth/weak-password') {
+        if (error.code === 'auth/weak-password') {
           document.getElementById('alertErrorPassword-Register').innerHTML = 'La contraseña debe tener mínimo 6 caracteres';
         }
-        if (errorCode === 'auth/email-already-in-use') {
+        if (error.code === 'auth/email-already-in-use') {
           document.getElementById('alertErrorEmail-Register').innerHTML = 'Cuenta de usuario en uso';
         }
       });
   } else {
-    // eslint-disable-next-line no-alert
     document.getElementById('alertErrorPassword-Register').innerHTML = 'La contraseña no coincide';
   }
 };
 
-// Logea usuarios registrados
+// Iniciar sesión: usuarios registrados
 export const login = () => {
   const email = document.getElementById('e-mailLogin').value;
   const password = document.getElementById('passwordLogin').value;
   loginUser(email, password)
-    .then((userCredential) => {
-      // Signed in
-      // window.location.hash = '#/home';
-      // ...
-      return userCredential.user;
-    })
+    .then((userCredential) => userCredential.user)
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
-      if (errorCode === 'auth/user-not-found') {
+      if (error.code === 'auth/user-not-found') {
         document.getElementById('alertErrorEmail-Login').innerHTML = 'El usuario no ha sido encontrado';
       }
-      if (errorCode === 'auth/wrong-password') {
+      if (error.code === 'auth/wrong-password') {
         document.getElementById('alertErrorEmail-Login').innerHTML = '';
         document.getElementById('alertErrorPassword-Login').innerHTML = 'Contraseña incorrecta';
       }
     });
-};
-
-// Inicia sesión con Google
-export const loginGoogle = () => {
-  startGoogle(new Provider())
-    .then(() => {
-      // window.location.hash = '#/home';
-    }).catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.email;
-      // The AuthCredential type that was used.
-      const credential = Provider.credentialFromError(error);
-      // ...
-    });
-};
-
-// Cierra sesión
-export const loginOut = () => {
-  loginOutUser().then(() => {
-    // window.location.hash = '#/login';
-  // Sign-out successful.
-  }).catch((error) => {
-  // An error happened.
-  });
 };
 
 // publica el post
@@ -115,7 +72,12 @@ export const printPost = () => {
         </section>`;
       if (dataDoc.uid === getCurrentUser().uid) {
         html += `
-        <button class="deletePost" data-id='${doc.id}'>Eliminar</button>
+        <button class="deletePost">Eliminar</button>
+        <div hidden="" id="divConfirm">
+          <p>Seguro deseas eliminar el post</p>
+          <button id="confirmar" data-id='${doc.id}'>Eliminar</button>
+          <button id="cancelar">Cancelar</button>
+        </div>
         <button class="editPost" data-id='${doc.id}'>Editar</button>`;
       } else {
         html += `
@@ -123,13 +85,35 @@ export const printPost = () => {
       }
     });
     containerPost.innerHTML = html;
-    // borra documento del post
+
+    // Borra documento del post
+    // const buttonDelete = containerPost.querySelectorAll('.deletePost');
+    // const divConfirm = containerPost.querySelectorAll('#divConfirm');
+    // // const buttonDeleteConfirm = containerPost.querySelector('#confirmar');
+    // const cancelar = containerPost.querySelector('#cancelar');
+    // buttonDelete.addEventListener('click', () => {
+    //   divConfirm.removeAttribute('hidden');
+    //   buttonDeleteConfirm.addEventListener('click', ({ target: { dataset } }) => {
+    //     deletePost(dataset.id);
+    //   });
+    //   cancelar.addEventListener('click', () => {
+    //     divConfirm.setAttribute('hidden');
+    //   });
+    // });
     const buttonDelete = containerPost.querySelectorAll('.deletePost');
+    const divConfirm = containerPost.querySelector('#divConfirm');
+    const buttonDeleteConfirm = containerPost.querySelectorAll('#confirmar');
     buttonDelete.forEach((btn) => {
-      btn.addEventListener('click', ({ target: { dataset } }) => {
-        deletePost(dataset.id);
+      btn.addEventListener('click', () => {
+        divConfirm.removeAttribute('hidden');
+        buttonDeleteConfirm.forEach((abc) => {
+          abc.addEventListener('click', ({ target: { dataset } }) => {
+            deletePost(dataset.id);
+          });
+        });
       });
     });
+
     // editar post
     const buttonEdit = containerPost.querySelectorAll('.editPost');
     buttonEdit.forEach((btn) => {

@@ -25,20 +25,23 @@ import {
   updateDoc,
 } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore.js';
 
+// eslint-disable-next-line no-unused-vars
 import { app } from './configurationfirebase.js';
 
 // Inicializando Auth y Firestore
 const db = getFirestore();
 const auth = getAuth();
 
+// Actualiza la información del usuario
 export const updater = (fullName) => updateProfile(auth.currentUser, {
   displayName: fullName,
 });
 
+// Enviar email de verificación
 export const sendMail = () => sendEmailVerification(auth.currentUser);
 
 // Función para registrarse con correo y contraseña
-export const registerUser = (email, password, fullName) => {
+export const registerUser = (email, password) => {
   auth.languageCode = 'es';
   return createUserWithEmailAndPassword(auth, email, password);
 };
@@ -49,20 +52,13 @@ export const loginUser = (email, password) => {
 };
 
 // Iniciar sesión con Google
-export const Provider = GoogleAuthProvider;
-export const startGoogle = (prov) => {
-  return signInWithPopup(auth, prov);
+const Provider = new GoogleAuthProvider();
+export const startGoogle = () => {
+  return signInWithPopup(auth, Provider);
 };
 
 // Funcion para obtener la información del perfil del usuario logeado
-export const getCurrentUser = () => {
-  const unknow = 'unknow';
-  const user = auth.currentUser;
-  if (user !== null) {
-    return user;
-  }
-  return { displayName: unknow };
-};
+export const getCurrentUser = () => auth.currentUser;
 
 // Crear un documento con el contenido a publicar en la colección publicaciones
 export const toPost = async (contentPost) => {
@@ -101,7 +97,7 @@ export const loginOutUser = () => {
   return signOut(auth);
 };
 
-// OBSERVADOR
+// Observador
 export const observator = async (userftn) => {
   await onAuthStateChanged(auth, userftn);
 };

@@ -1,15 +1,13 @@
 /* eslint-disable no-restricted-syntax */
 import {
-  getCurrentUser,
+  getCurrentUser, loginOutUser,
 } from '../lib/libraries-Firebase.js';
 import {
-  loginOut, toPostDocument, printPost,
+  toPostDocument, printPost,
 } from '../lib/controllers.js';
 
 export const Home = () => {
   const user = getCurrentUser();
-  console.log(getCurrentUser());
-  console.log('del home', getCurrentUser().email);
   const userName = user.displayName.charAt(0).toUpperCase();
   printPost();
 
@@ -37,7 +35,6 @@ export const Home = () => {
     <p>${user.displayName}</p>
   </aside>
   <main class="main">
-    
     <div class="main__div" id="post">
       <input class="post__input" id="inputPost__edit" type="text" placeholder="Cuéntanos lo que estás pensando . . ."></input>
       <div class="post__div-upPhoto">
@@ -52,11 +49,11 @@ export const Home = () => {
   </main>
   </div>`;
 
+  // Boton para cerrar sesión
   const loginOutButton = document.getElementById('loginOut');
-  loginOutButton.addEventListener('click', () => loginOut());
+  loginOutButton.addEventListener('click', () => loginOutUser());
 
-  // const upPhoto = document.getElementById('upPhoto');
-
+  // Botón para publicar post
   const userPost = document.querySelector('.post__button');
   userPost.addEventListener('click', () => {
     if (document.querySelector('.post__input').value !== '') {
@@ -65,6 +62,3 @@ export const Home = () => {
     }
   });
 };
-
-// <label for="upPhoto"><i class="fa-solid fa-images"></i></label>
-// <input type="file" hidden="" id="upPhoto"></input>
