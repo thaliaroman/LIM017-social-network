@@ -2,7 +2,7 @@ import {
   // eslint-disable-next-line import/named
   registerUser,
   loginUser,
-  updater, sendMail, toPost, loadPosts, deletePost, getCurrentUser, observator, editPost,
+  updater, sendMail, toPost, loadPosts, deletePost, getCurrentUser, editPost, observator,
   updatePost,
 } from './libraries-Firebase.js';
 
@@ -69,50 +69,47 @@ export const printPost = () => {
         <figure>
           <img class="post2Img" src="../images/foto-post.jpg">
         </figure>
+        <button class="likePost" data-id='${doc.id}'><i class="fa-solid fa-thumbs-up"></i></i></button>
         </section>`;
       if (dataDoc.uid === getCurrentUser().uid) {
         html += `
-        <button class="deletePost">Eliminar</button>
+        <button class="deletePost" data-id='${doc.id}'>Eliminar</button>
         <div hidden="" id="divConfirm">
           <p>Seguro deseas eliminar el post</p>
-          <button id="confirmar" data-id='${doc.id}'>Eliminar</button>
+          <button id="confirmar">Eliminar</button>
           <button id="cancelar">Cancelar</button>
         </div>
         <button class="editPost" data-id='${doc.id}'>Editar</button>`;
-      } else {
-        html += `
-        <button class="deletePost" data-id=''>Dame like pe' ;v</button>`;
       }
     });
     containerPost.innerHTML = html;
 
     // Borra documento del post
-    // const buttonDelete = containerPost.querySelectorAll('.deletePost');
-    // const divConfirm = containerPost.querySelectorAll('#divConfirm');
-    // // const buttonDeleteConfirm = containerPost.querySelector('#confirmar');
-    // const cancelar = containerPost.querySelector('#cancelar');
-    // buttonDelete.addEventListener('click', () => {
-    //   divConfirm.removeAttribute('hidden');
-    //   buttonDeleteConfirm.addEventListener('click', ({ target: { dataset } }) => {
-    //     deletePost(dataset.id);
-    //   });
-    //   cancelar.addEventListener('click', () => {
-    //     divConfirm.setAttribute('hidden');
-    //   });
-    // });
     const buttonDelete = containerPost.querySelectorAll('.deletePost');
-    const divConfirm = containerPost.querySelector('#divConfirm');
-    const buttonDeleteConfirm = containerPost.querySelectorAll('#confirmar');
-    buttonDelete.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        divConfirm.removeAttribute('hidden');
-        buttonDeleteConfirm.forEach((abc) => {
-          abc.addEventListener('click', ({ target: { dataset } }) => {
-            deletePost(dataset.id);
-          });
-        });
+    buttonDelete.forEach((abc) => {
+      abc.addEventListener('click', ({ target: { dataset } }) => {
+        // podemos usar un modal aquí :3
+        if (window.confirm('¿Seguro deseas eliminar tu publicación?')) {
+          deletePost(dataset.id);
+        }
       });
     });
+
+    // const buttonDelete = containerPost.querySelectorAll('.deletePost');
+    // const divConfirm = containerPost.querySelectorAll('#divConfirm');
+    // const buttonDeleteConfirm = containerPost.querySelectorAll('#confirmar');
+    // buttonDelete.forEach((btn) => {
+    //   btn.addEventListener('click', () => {
+    //     divConfirm.forEach((conf) => {
+    //       conf.removeAttribute('hidden');
+    //       buttonDeleteConfirm.forEach((abc) => {
+    //         abc.addEventListener('click', ({ target: { dataset } }) => {
+    //           deletePost(dataset.id);
+    //         });
+    //       });
+    //     });
+    //   });
+    // });
 
     // editar post
     const buttonEdit = containerPost.querySelectorAll('.editPost');
@@ -127,6 +124,14 @@ export const printPost = () => {
         // cambia el estado de la edición a true
         statusOfEdition = true;
         id = doc.id;
+      });
+    });
+
+    // Dar like a la publicación
+    const buttonLike = containerPost.querySelectorAll('.likePost');
+    buttonLike.forEach((btn) => {
+      btn.addEventListener('click', async (e) => {
+        const doc = await (e.target.dataset.id);
       });
     });
   }
