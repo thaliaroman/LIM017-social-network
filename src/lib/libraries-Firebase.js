@@ -23,6 +23,8 @@ import {
   doc,
   getDoc,
   updateDoc,
+  arrayUnion,
+  arrayRemove,
 } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore.js';
 
 // eslint-disable-next-line no-unused-vars
@@ -68,6 +70,8 @@ export const toPost = async (contentPost) => {
     dateTime: Timestamp.fromDate(new Date()),
     content: contentPost,
     photo: getCurrentUser().photoURL,
+    likes: [],
+    likesNumber: 0,
   });
   return docRef;
 };
@@ -97,7 +101,32 @@ export const loginOutUser = () => {
   return signOut(auth);
 };
 
+// PARA EL ARRAY
+export const arrayU = () => arrayUnion;
+export const arrayR = () => arrayRemove;
+
 // Observador
 export const observator = async (userftn) => {
   await onAuthStateChanged(auth, userftn);
 };
+//
+
+// export const likes = async (id, usuaria) => {
+//   const postRef = doc(db, 'publicaciones', id);
+//   const docSnap = await getDoc(postRef);
+//   const postData = docSnap.data();
+//   const likesCount = postData.likesCounter;
+
+//   if (postData.likes.includes(usuaria)) {
+//     await updateDoc(postRef, {
+//       likes: arrayRemove(usuaria),
+//       likesCounter: likesCount - 1,
+//     });
+//   } else {
+//     await updateDoc(postRef, {
+//       likes: arrayUnion(usuaria),
+//       likesCounter: likesCount + 1,
+//     });
+//   }
+// };
+
