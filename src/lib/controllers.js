@@ -68,11 +68,11 @@ export const printPost = () => {
         <article class="main__section-postPeople" id="">
         <h3>${dataDoc.user}.</h3>
         <p id="postHour">Publicado a las: ${dataDoc.dateTime.toDate()}</p>
-        <p>${dataDoc.content}</p>
+        <p id="content-p">${dataDoc.content}</p><input type="text" hidden="true" id="edit-post">
         <figure>
           <img class="post2Img" src="../images/foto-post.jpg">
         </figure>
-        <button class="likePost" data-id='${doc.id}'><i class="fa-solid fa-thumbs-up"></i></i> Like</button>
+        <button class="likePost" data-id='${doc.id}'><i class="fa-solid fa-thumbs-up"></i></i>${dataDoc.likesNumber} Like</button>
         `;
       if (dataDoc.uid === getCurrentUser().uid) {
         html += `
@@ -129,6 +129,13 @@ export const printPost = () => {
         const contentPost = document.querySelector('.post__input');
         // consigue el valor del input y lo devuelve como dice en el documento de firestore
         contentPost.value = infoDocToEdit.content;
+        //
+        const editInput = document.getElementById('edit-post');
+        editInput.value = infoDocToEdit.content;
+        editInput.hidden = false;
+        document.getElementById('content-p').hidden = true;
+        editInput.focus();
+        editInput.scrollIntoView({ behavior: 'smooth', block: 'end' });
         // cambia el estado de la edición a true
         statusOfEdition = true;
         id = doc.id;
@@ -141,6 +148,7 @@ export const printPost = () => {
       btn.addEventListener('click', async (e) => {
         const user = getCurrentUser().uid;
         const doc = await editPost(e.target.dataset.id);
+        id = doc.id;
         const docData = doc.data();
         const likesN = docData.likesNumber;
         if (docData.likes.includes(user)) {

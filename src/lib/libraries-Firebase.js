@@ -102,8 +102,8 @@ export const loginOutUser = () => {
 };
 
 // PARA EL ARRAY
-export const arrayU = () => arrayUnion;
-export const arrayR = () => arrayRemove;
+export const arrayU = (data) => { return arrayUnion(data); };
+export const arrayR = (data) => { return arrayRemove(data); };
 
 // Observador
 export const observator = async (userftn) => {

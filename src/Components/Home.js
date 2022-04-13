@@ -37,7 +37,7 @@ export const Home = () => {
   </aside>
   <main class="main">
     <div class="main__div" id="post">
-      <input class="post__input" id="inputPost__edit" type="text" placeholder="Cuéntanos lo que estás pensando . . ."></input>
+      <textarea cols="5" rows="5" class="post__input" id="inputPost__edit" type="text" placeholder="Cuéntanos lo que estás pensando . . ."></textarea>
       <div class="post__div-upPhoto">
         <label class="elements__div-upPhoto" for="upPhoto"><i class="fa-solid fa-images"></i></label>
         <input class="elements__div-upPhoto" type="file" hidden="" id="upPhoto"></input>
