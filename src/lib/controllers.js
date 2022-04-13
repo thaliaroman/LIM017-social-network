@@ -3,8 +3,11 @@ import {
   registerUser,
   loginUser,
   updater, sendMail, toPost, loadPosts, deletePost, getCurrentUser, editPost, observator,
-  updatePost,
+  updatePost, arrayR, arrayU,
 } from './libraries-Firebase.js';
+
+// eslint-disable-next-line import/no-cycle
+import { routes } from './routes.js';
 
 // Registra nuevos usuarios
 export const register = () => {
@@ -62,24 +65,29 @@ export const printPost = () => {
       // console.log(doc.data());
       const dataDoc = doc.data();
       html += `
-        <section class="main__section-postPeople" id="">
+        <article class="main__section-postPeople" id="">
         <h3>${dataDoc.user}.</h3>
         <p id="postHour">Publicado a las: ${dataDoc.dateTime.toDate()}</p>
         <p>${dataDoc.content}</p>
         <figure>
           <img class="post2Img" src="../images/foto-post.jpg">
         </figure>
-        <button class="likePost" data-id='${doc.id}'><i class="fa-solid fa-thumbs-up"></i></i></button>
-        </section>`;
+        <button class="likePost" data-id='${doc.id}'><i class="fa-solid fa-thumbs-up"></i></i> Like</button>
+        `;
       if (dataDoc.uid === getCurrentUser().uid) {
         html += `
-        <button class="deletePost" data-id='${doc.id}'>Eliminar</button>
-        <div hidden="" id="divConfirm">
-          <p>Seguro deseas eliminar el post</p>
-          <button id="confirmar">Eliminar</button>
-          <button id="cancelar">Cancelar</button>
-        </div>
-        <button class="editPost" data-id='${doc.id}'>Editar</button>`;
+          <button class="deletePost" data-id='${doc.id}'>Eliminar</button>
+          <div hidden="" id="divConfirm">
+            <p>Seguro deseas eliminar el post</p>
+            <button id="confirmar">Eliminar</button>
+            <button id="cancelar">Cancelar</button>
+          </div>
+          <button class="editPost" data-id='${doc.id}'>Editar</button>
+        </article>
+      </div>`;
+      } else {
+        html += `
+        </article>`;
       }
     });
     containerPost.innerHTML = html;
@@ -131,9 +139,42 @@ export const printPost = () => {
     const buttonLike = containerPost.querySelectorAll('.likePost');
     buttonLike.forEach((btn) => {
       btn.addEventListener('click', async (e) => {
-        const doc = await (e.target.dataset.id);
+        const user = getCurrentUser().uid;
+        const doc = await editPost(e.target.dataset.id);
+        const docData = doc.data();
+        const likesN = docData.likesNumber;
+        if (docData.likes.includes(user)) {
+          await updatePost(id, {
+            likes: arrayR(user),
+            likesNumber: likesN - 1,
+          });
+        } else {
+          await updatePost(id, {
+            likes: arrayU(user),
+            likesNumber: likesN + 1,
+          });
+        }
       });
     });
+
+    // export const likes = async (id, usuaria) => {
+    //   const postRef = doc(db, 'publicaciones', id);
+    //   const docSnap = await getDoc(postRef);
+    //   const postData = docSnap.data();
+    //   const likesCount = postData.likesCounter;
+
+    //   if (postData.likes.includes(usuaria)) {
+    //     await updateDoc(postRef, {
+    //       likes: arrayRemove(usuaria),
+    //       likesCounter: likesCount - 1,
+    //     });
+    //   } else {
+    //     await updateDoc(postRef, {
+    //       likes: arrayUnion(usuaria),
+    //       likesCounter: likesCount + 1,
+    //     });
+    //   }
+    // };
   }
   loadPosts(idk);
 };
@@ -157,9 +198,11 @@ export const observatorIt = () => {
     if (user) {
       console.log(user.uid, user.displayName, user.emailVerified);
       window.location.hash = '#/home';
+      routes(window.location.hash);
     } else {
       console.log('no');
       window.location.hash = '#/login';
+      routes(window.location.hash);
     }
     return user;
   }

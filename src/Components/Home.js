@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable no-restricted-syntax */
 import {
   getCurrentUser, loginOutUser,
