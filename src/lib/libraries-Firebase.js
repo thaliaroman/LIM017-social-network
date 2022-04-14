@@ -10,8 +10,6 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-} from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js';
-import {
   getFirestore,
   addDoc,
   collection,
@@ -25,7 +23,7 @@ import {
   updateDoc,
   arrayUnion,
   arrayRemove,
-} from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore.js';
+} from './Firebase-Import.js';
 
 // eslint-disable-next-line no-unused-vars
 import { app } from './configurationfirebase.js';
@@ -77,10 +75,10 @@ export const toPost = async (contentPost) => {
 };
 
 // Leer el contenido de cada documento de la colección publicaciones
-export const loadPosts = async (idk) => {
-  const q = query(collection(db, 'publicaciones'), orderBy('dateTime', 'desc'));
+const q = query(collection(db, 'publicaciones'), orderBy('dateTime', 'desc'));
+export const loadPosts = async (qSnapshot) => {
   // onSnapshot para actualización de datos en timpo real
-  await onSnapshot(q, idk);
+  await onSnapshot(q, qSnapshot);
 };
 
 // Borrar documento que contiene la publicación
@@ -106,27 +104,6 @@ export const arrayU = (data) => { return arrayUnion(data); };
 export const arrayR = (data) => { return arrayRemove(data); };
 
 // Observador
-export const observator = async (userftn) => {
-  await onAuthStateChanged(auth, userftn);
+export const observator = (callback) => {
+  return onAuthStateChanged(auth, (callback));
 };
-//
-
-// export const likes = async (id, usuaria) => {
-//   const postRef = doc(db, 'publicaciones', id);
-//   const docSnap = await getDoc(postRef);
-//   const postData = docSnap.data();
-//   const likesCount = postData.likesCounter;
-
-//   if (postData.likes.includes(usuaria)) {
-//     await updateDoc(postRef, {
-//       likes: arrayRemove(usuaria),
-//       likesCounter: likesCount - 1,
-//     });
-//   } else {
-//     await updateDoc(postRef, {
-//       likes: arrayUnion(usuaria),
-//       likesCounter: likesCount + 1,
-//     });
-//   }
-// };
-

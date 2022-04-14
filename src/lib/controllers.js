@@ -57,14 +57,14 @@ export const login = () => {
 // statusOfEdition: ve el estado de la edición(actualización) y/o creción del documento de firestore
 let statusOfEdition = false;
 let id = '';
-export const printPost = () => {
-  function idk(querySnapshot) {
-    const containerPost = document.querySelector('.main__div-postPeople');
-    let html = '';
-    querySnapshot.forEach((doc) => {
-      // console.log(doc.data());
-      const dataDoc = doc.data();
-      html += `
+
+const qSnapshot = (querySnapshot) => {
+  const containerPost = document.querySelector('.main__div-postPeople');
+  let html = '';
+  querySnapshot.forEach((doc) => {
+    // console.log(doc.data());
+    const dataDoc = doc.data();
+    html += `
         <article class="main__section-postPeople" id="">
         <h3>${dataDoc.user}.</h3>
         <p id="postHour">Publicado a las: ${dataDoc.dateTime.toDate()}</p>
@@ -74,8 +74,8 @@ export const printPost = () => {
         </figure>
         <button class="likePost" data-id='${doc.id}'><i class="fa-solid fa-thumbs-up"></i></i>${dataDoc.likesNumber} Like</button>
         `;
-      if (dataDoc.uid === getCurrentUser().uid) {
-        html += `
+    if (dataDoc.uid === getCurrentUser().uid) {
+      html += `
           <button class="deletePost" data-id='${doc.id}'>Eliminar</button>
           <div hidden="" id="divConfirm">
             <p>Seguro deseas eliminar el post</p>
@@ -85,106 +85,90 @@ export const printPost = () => {
           <button class="editPost" data-id='${doc.id}'>Editar</button>
         </article>
       </div>`;
-      } else {
-        html += `
+    } else {
+      html += `
         </article>`;
+    }
+  });
+  containerPost.innerHTML = html;
+
+  // Borra documento del post
+  const buttonDelete = containerPost.querySelectorAll('.deletePost');
+  buttonDelete.forEach((abc) => {
+    abc.addEventListener('click', ({ target: { dataset } }) => {
+      // podemos usar un modal aquí :3
+      // eslint-disable-next-line no-alert
+      if (window.confirm('¿Seguro deseas eliminar tu publicación?')) {
+        deletePost(dataset.id);
       }
     });
-    containerPost.innerHTML = html;
+  });
 
-    // Borra documento del post
-    const buttonDelete = containerPost.querySelectorAll('.deletePost');
-    buttonDelete.forEach((abc) => {
-      abc.addEventListener('click', ({ target: { dataset } }) => {
-        // podemos usar un modal aquí :3
-        if (window.confirm('¿Seguro deseas eliminar tu publicación?')) {
-          deletePost(dataset.id);
-        }
-      });
+  // const buttonDelete = containerPost.querySelectorAll('.deletePost');
+  // const divConfirm = containerPost.querySelectorAll('#divConfirm');
+  // const buttonDeleteConfirm = containerPost.querySelectorAll('#confirmar');
+  // buttonDelete.forEach((btn) => {
+  //   btn.addEventListener('click', () => {
+  //     divConfirm.forEach((conf) => {
+  //       conf.removeAttribute('hidden');
+  //       buttonDeleteConfirm.forEach((abc) => {
+  //         abc.addEventListener('click', ({ target: { dataset } }) => {
+  //           deletePost(dataset.id);
+  //         });
+  //       });
+  //     });
+  //   });
+  // });
+
+  // editar post
+  const buttonEdit = containerPost.querySelectorAll('.editPost');
+  buttonEdit.forEach((btn) => {
+    btn.addEventListener('click', async (e) => {
+      const doc = await editPost(e.target.dataset.id);
+      // devuelve los datos del documento de firestore
+      const infoDocToEdit = doc.data();
+      const contentPost = document.querySelector('.post__input');
+      // consigue el valor del input y lo devuelve como dice en el documento de firestore
+      contentPost.value = infoDocToEdit.content;
+      //
+      const editInput = document.getElementById('edit-post');
+      editInput.value = infoDocToEdit.content;
+      editInput.hidden = false;
+      document.getElementById('content-p').hidden = true;
+      editInput.focus();
+      editInput.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      // cambia el estado de la edición a true
+      statusOfEdition = true;
+      id = doc.id;
     });
+  });
 
-    // const buttonDelete = containerPost.querySelectorAll('.deletePost');
-    // const divConfirm = containerPost.querySelectorAll('#divConfirm');
-    // const buttonDeleteConfirm = containerPost.querySelectorAll('#confirmar');
-    // buttonDelete.forEach((btn) => {
-    //   btn.addEventListener('click', () => {
-    //     divConfirm.forEach((conf) => {
-    //       conf.removeAttribute('hidden');
-    //       buttonDeleteConfirm.forEach((abc) => {
-    //         abc.addEventListener('click', ({ target: { dataset } }) => {
-    //           deletePost(dataset.id);
-    //         });
-    //       });
-    //     });
-    //   });
-    // });
-
-    // editar post
-    const buttonEdit = containerPost.querySelectorAll('.editPost');
-    buttonEdit.forEach((btn) => {
-      btn.addEventListener('click', async (e) => {
-        const doc = await editPost(e.target.dataset.id);
-        // devuelve los datos del documento de firestore
-        const infoDocToEdit = doc.data();
-        const contentPost = document.querySelector('.post__input');
-        // consigue el valor del input y lo devuelve como dice en el documento de firestore
-        contentPost.value = infoDocToEdit.content;
-        //
-        const editInput = document.getElementById('edit-post');
-        editInput.value = infoDocToEdit.content;
-        editInput.hidden = false;
-        document.getElementById('content-p').hidden = true;
-        editInput.focus();
-        editInput.scrollIntoView({ behavior: 'smooth', block: 'end' });
-        // cambia el estado de la edición a true
-        statusOfEdition = true;
-        id = doc.id;
-      });
+  // Dar like a la publicación
+  const buttonLike = containerPost.querySelectorAll('.likePost');
+  buttonLike.forEach((btn) => {
+    btn.addEventListener('click', async (e) => {
+      const user = getCurrentUser().uid;
+      const doc = await editPost(e.target.dataset.id);
+      id = doc.id;
+      const docData = doc.data();
+      const likesN = docData.likesNumber;
+      if (docData.likes.includes(user)) {
+        await updatePost(id, {
+          likes: arrayR(user),
+          likesNumber: likesN - 1,
+        });
+      } else {
+        await updatePost(id, {
+          likes: arrayU(user),
+          likesNumber: likesN + 1,
+        });
+      }
     });
+  });
+};
 
-    // Dar like a la publicación
-    const buttonLike = containerPost.querySelectorAll('.likePost');
-    buttonLike.forEach((btn) => {
-      btn.addEventListener('click', async (e) => {
-        const user = getCurrentUser().uid;
-        const doc = await editPost(e.target.dataset.id);
-        id = doc.id;
-        const docData = doc.data();
-        const likesN = docData.likesNumber;
-        if (docData.likes.includes(user)) {
-          await updatePost(id, {
-            likes: arrayR(user),
-            likesNumber: likesN - 1,
-          });
-        } else {
-          await updatePost(id, {
-            likes: arrayU(user),
-            likesNumber: likesN + 1,
-          });
-        }
-      });
-    });
-
-    // export const likes = async (id, usuaria) => {
-    //   const postRef = doc(db, 'publicaciones', id);
-    //   const docSnap = await getDoc(postRef);
-    //   const postData = docSnap.data();
-    //   const likesCount = postData.likesCounter;
-
-    //   if (postData.likes.includes(usuaria)) {
-    //     await updateDoc(postRef, {
-    //       likes: arrayRemove(usuaria),
-    //       likesCounter: likesCount - 1,
-    //     });
-    //   } else {
-    //     await updateDoc(postRef, {
-    //       likes: arrayUnion(usuaria),
-    //       likesCounter: likesCount + 1,
-    //     });
-    //   }
-    // };
-  }
-  loadPosts(idk);
+export const printPost = () => {
+  loadPosts(qSnapshot);
 };
 
 // Crea un documento en la coleccion de firestore
@@ -193,6 +177,7 @@ export const toPostDocument = async () => {
   const contentPost = document.querySelector('.post__input').value;
   if (!statusOfEdition) {
     const docRef = await toPost(contentPost);
+    // eslint-disable-next-line no-console
     console.log(docRef.id);
   // console.log(docRef.data().uid);
   } else {
@@ -204,11 +189,11 @@ export const toPostDocument = async () => {
 export const observatorIt = () => {
   function userftn(user) {
     if (user) {
-      console.log(user.uid, user.displayName, user.emailVerified);
+      // console.log(user.uid, user.displayName, user.emailVerified);
       window.location.hash = '#/home';
       routes(window.location.hash);
     } else {
-      console.log('no');
+      // console.log('no');
       window.location.hash = '#/login';
       routes(window.location.hash);
     }

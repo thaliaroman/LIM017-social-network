@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-cycle
-
 import { startGoogle } from '../lib/libraries-Firebase.js';
+// eslint-disable-next-line import/no-cycle
 import { login } from '../lib/controllers.js';
 
 // document.addEventListener('DOMContentLoaded', observatorIt());
