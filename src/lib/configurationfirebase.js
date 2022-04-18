@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js';
+import { initializeApp } from './Firebase-Import.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAmNjTIcjfH83WxvZ1lHi8z1mChE1Oy3N4',

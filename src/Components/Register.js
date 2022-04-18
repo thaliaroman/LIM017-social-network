@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import { register } from '../lib/controllers.js';
 
 export const Register = () => {
