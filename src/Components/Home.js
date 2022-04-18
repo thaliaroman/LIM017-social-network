@@ -11,8 +11,24 @@ export const Home = () => {
   const user = getCurrentUser();
   const userName = user.displayName.charAt(0).toUpperCase();
   printPost();
+  console.log(user.photoURL);
 
-  document.getElementById('root').innerHTML = `
+  // if (typeof (Storage) !== 'undefined') {
+  //   console.log('si es compatible');
+  // } else {
+  //   console.log('no es compatible');
+  // }
+  // localStorage.name = getCurrentUser().displayName;
+  // console.log(localStorage.name);
+
+  // función que convierte a mayusculas las primeras letras del nombre de usuario
+  const abcName = () => {
+    const userABC = user.displayName;
+    return userABC.replace(/\b\w/g, (l) => l.toUpperCase());
+  };
+  const htmlRoot = document.getElementById('root');
+  let html = '';
+  html += `
   <header class="header">
     <div class="header__logo-div">
       <img class="header__logo" src="../images/icono-header.png">
@@ -31,25 +47,31 @@ export const Home = () => {
     </div>
   </header>
   <div class="mainandaside">
-  <aside class="aside_d">
-    <button id="userName" title="${user.displayName}">${userName}</button>
-    <p>${user.displayName}</p>
-  </aside>
-  <main class="main">
-    <div class="main__div" id="post">
-      <textarea cols="5" rows="5" class="post__input" id="inputPost__edit" type="text" placeholder="Cuéntanos lo que estás pensando . . ."></textarea>
-      <div class="post__div-upPhoto">
-        <label class="elements__div-upPhoto" for="upPhoto"><i class="fa-solid fa-images"></i></label>
-        <input class="elements__div-upPhoto" type="file" hidden="" id="upPhoto"></input>
-        <p>Foto</p>
+    <aside class="aside_d">`;
+  if (user.photoURL !== null) {
+    html += `<img src='${user.photoURL}'>`;
+  } else {
+    html += `<button id="userName" title="${user.displayName}">${userName}</button>`;
+  }
+  html += `
+      <p>${abcName()}</p>
+    </aside>
+    <main class="main">
+      <div class="main__div" id="post">
+        <textarea cols="5" rows="5" class="post__input" id="inputPost__edit" type="text" placeholder="Cuéntanos lo que estás pensando . . ."></textarea>
+        <div class="post__div-upPhoto">
+          <label class="elements__div-upPhoto" for="upPhoto"><i class="fa-solid fa-images"></i></label>
+          <input class="elements__div-upPhoto" type="file" hidden="" id="upPhoto"></input>
+          <p>Foto</p>
+        </div>
+        <button class="post__button">Publicar</button>
+      </div>    
+      <div class="main__div-postPeople">
       </div>
-      <button class="post__button">Publicar</button>
-    </div>    
-    <div class="main__div-postPeople">
-    </div>
-  </main>
+    </main>
   </div>`;
 
+  htmlRoot.innerHTML = html;
   // Boton para cerrar sesión
   const loginOutButton = document.getElementById('loginOut');
   loginOutButton.addEventListener('click', () => loginOutUser());
@@ -63,3 +85,4 @@ export const Home = () => {
     }
   });
 };
+// <button id="userName" title="${user.displayName}">${userName}</button>

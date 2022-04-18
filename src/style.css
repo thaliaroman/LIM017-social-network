@@ -490,6 +490,10 @@
         align-items: center;
         /* justify-content: center; */
     }
+    .aside_d>img{
+        width: auto;
+        height:120px;
+    }
     .aside_d>p{
         /* display: inline-flex; */
         

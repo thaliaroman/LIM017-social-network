@@ -66,8 +66,9 @@ const qSnapshot = (querySnapshot) => {
     const dataDoc = doc.data();
     html += `
         <article class="main__section-postPeople" id="">
-        <h3>${dataDoc.user}.</h3>
-        <p id="postHour">Publicado a las: ${dataDoc.dateTime.toDate()}</p>
+        <div><img src="${dataDoc.photo}"></div>
+        <h3>${dataDoc.user.replace(/\b\w/g, (l) => l.toUpperCase())}.</h3>
+        <p id="postHour">Publicado ${dataDoc.dateTime.toDate().toDateString()} a las ${dataDoc.dateTime.toDate().toLocaleTimeString('es-PE')}.</p>
         <p id="content-p">${dataDoc.content}</p><input type="text" hidden="true" id="edit-post">
         <figure>
           <img class="post2Img" src="../images/foto-post.jpg">
@@ -187,17 +188,14 @@ export const toPostDocument = async () => {
 
 // // observator
 export const observatorIt = () => {
-  function userftn(user) {
+  observator((user) => {
     if (user) {
-      // console.log(user.uid, user.displayName, user.emailVerified);
-      window.location.hash = '#/home';
-      routes(window.location.hash);
+      console.log(user.uid, user.displayName, user.emailVerified);
+      routes('#/home');
     } else {
-      // console.log('no');
-      window.location.hash = '#/login';
-      routes(window.location.hash);
+      console.log('no');
+      routes('#/login');
     }
     return user;
-  }
-  observator(userftn);
+  });
 };

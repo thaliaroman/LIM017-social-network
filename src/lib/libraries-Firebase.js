@@ -52,9 +52,8 @@ export const loginUser = (email, password) => {
 };
 
 // Iniciar sesión con Google
-const Provider = new GoogleAuthProvider();
 export const startGoogle = () => {
-  return signInWithPopup(auth, Provider);
+  return signInWithPopup(auth, new GoogleAuthProvider());
 };
 
 // Funcion para obtener la información del perfil del usuario logeado
@@ -105,5 +104,5 @@ export const arrayR = (data) => { return arrayRemove(data); };
 
 // Observador
 export const observator = (callback) => {
-  return onAuthStateChanged(auth, (callback));
+  return onAuthStateChanged(auth, callback);
 };

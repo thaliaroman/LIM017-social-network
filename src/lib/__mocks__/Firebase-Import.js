@@ -1,3 +1,4 @@
+export const initializeApp = () => Promise.resolve({});
 // Autenticación
 export const getAuth = () => Promise.resolve({});
 export const createUserWithEmailAndPassword = () => Promise.resolve({});

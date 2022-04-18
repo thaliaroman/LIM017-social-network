@@ -1,4 +1,5 @@
 /* eslint-disable import/no-unresolved */
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -27,6 +28,7 @@ import {
 } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore.js';
 
 export {
+  initializeApp,
   getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
