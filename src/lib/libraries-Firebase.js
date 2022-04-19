@@ -57,7 +57,9 @@ export const startGoogle = () => {
 };
 
 // Funcion para obtener la información del perfil del usuario logeado
-export const getCurrentUser = () => auth.currentUser;
+export const getCurrentUser = () => {
+  return auth.currentUser;
+};
 
 // Crear un documento con el contenido a publicar en la colección publicaciones
 export const toPost = async (contentPost) => {

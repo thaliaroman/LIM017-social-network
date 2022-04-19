@@ -1,12 +1,13 @@
 export const initializeApp = () => Promise.resolve({});
 // Autenticación
 export const getAuth = () => Promise.resolve({});
+// { currentUser: { displayName: '' } };
 export const createUserWithEmailAndPassword = () => Promise.resolve({});
 export const updateProfile = () => Promise.resolve({});
 export const GoogleAuthProvider = () => Promise.resolve({});
 export const sendEmailVerification = () => Promise.resolve({});
 export const signInWithPopup = () => Promise.resolve({});
-export const signInWithEmailAndPassword = () => Promise.resolve({});
+export const signInWithEmailAndPassword = jest.fn(() => Promise.resolve({}));
 export const signOut = () => Promise.resolve({});
 export const onAuthStateChanged = () => Promise.resolve({});
 

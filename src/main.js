@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 console.log('afuera del evento');
 
-// window.addEventListener (onpopstate)
+// window.addEventListener(onpopstate)
 
 /*  El evento hashchange es ejecutado cuando el fragmento identificador de la URL ha cambiado. */
 window.addEventListener('hashchange', () => {
