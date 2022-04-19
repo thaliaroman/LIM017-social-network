@@ -25,6 +25,8 @@
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
+    position: relative;
+    z-index: 1;
     /* background-color: red; */
     /* justify-content: center; */  
 }
@@ -50,6 +52,7 @@
     flex-direction: row;
     margin-top: 50px;
     /* background-color: #1e73a7; */
+    position: relative;
 }
 .e-mailIcon {
     position: absolute;
@@ -183,6 +186,18 @@
 }
 .imageLogin{
     display: none;
+}
+/* errores para usuarios */
+.alertError{
+    color: rgb(255, 255, 255);
+    /* display: flex;
+    background-color: #626262;
+    width: 75%;
+    height: 20px;
+    padding: 4px;
+    position: absolute;
+    z-index: 3;
+    top: 290px; */
 }
 
 /* --------------- */

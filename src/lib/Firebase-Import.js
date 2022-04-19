@@ -52,3 +52,4 @@ export {
   arrayUnion,
   arrayRemove,
 };
+export const getCurrentUser = () => getAuth().currentUser;

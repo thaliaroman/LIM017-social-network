@@ -3,6 +3,7 @@
 import { myFunction } from './lib/index.js';
 import { routes } from './lib/routes.js';
 import { observatorIt } from './lib/controllers.js';
+import { observator } from './lib/libraries-Firebase.js';
 
 myFunction();
 
@@ -16,9 +17,21 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 console.log('afuera del evento');
 
-// window.addEventListener(onpopstate)
+// window.addEventListener('popstate', (event) => {
+//   console.log(event);
+// });
 
 /*  El evento hashchange es ejecutado cuando el fragmento identificador de la URL ha cambiado. */
 window.addEventListener('hashchange', () => {
-  routes(window.location.hash);
+  console.log('hashchange');
+  observator((user) => {
+    if (user) {
+      routes('#/home');
+    } else if (!user && window.location.hash === '#/home') {
+      routes('#/login');
+    } else {
+      routes(window.location.hash);
+    }
+  });
+  // routes(window.location.hash);
 });

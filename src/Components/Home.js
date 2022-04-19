@@ -1,14 +1,14 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-restricted-syntax */
-import {
-  getCurrentUser, loginOutUser,
-} from '../lib/libraries-Firebase.js';
+import { loginOutUser } from '../lib/libraries-Firebase.js';
+import { getCurrentUser } from '../lib/Firebase-Import.js';
 import {
   toPostDocument, printPost,
 } from '../lib/controllers.js';
 
 export const Home = () => {
   const user = getCurrentUser();
+  console.log(user);
   const userName = user.displayName.charAt(0).toUpperCase();
   printPost();
   console.log(user.photoURL);
