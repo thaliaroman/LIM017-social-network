@@ -2,9 +2,10 @@ import {
   // eslint-disable-next-line import/named
   registerUser,
   loginUser,
-  updater, sendMail, toPost, loadPosts, deletePost, getCurrentUser, editPost, observator,
+  updater, sendMail, toPost, loadPosts, deletePost, editPost, observator,
   updatePost, arrayR, arrayU,
 } from './libraries-Firebase.js';
+import { getCurrentUser } from './Firebase-Import.js';
 
 // eslint-disable-next-line import/no-cycle
 import { routes } from './routes.js';
@@ -20,7 +21,7 @@ export const register = () => {
       .then((userCredential) => {
         updater(fullName);
         sendMail();
-        routes('#/home');
+        routes('#/login');
         return userCredential.user;
       })
       .catch((error) => {
@@ -41,7 +42,7 @@ export const login = () => {
   const email = document.getElementById('e-mailLogin').value;
   const password = document.getElementById('passwordLogin').value;
   loginUser(email, password)
-    .then((userCredential) => userCredential)
+    .then((userCredential) => console.log(userCredential))
     .catch((error) => {
       if (error.code === 'auth/user-not-found') {
         document.getElementById('alertErrorEmail-Login').innerHTML = 'El usuario no ha sido encontrado';

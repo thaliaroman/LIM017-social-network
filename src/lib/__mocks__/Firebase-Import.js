@@ -3,14 +3,15 @@ export const initializeApp = () => Promise.resolve({});
 export const getAuth = () => Promise.resolve({});
 // { currentUser: { displayName: '' } };
 export const createUserWithEmailAndPassword = () => Promise.resolve({});
-export const updateProfile = () => Promise.resolve({});
+export const updateProfile = jest.fn((fullName) => ({displayName}));
 export const GoogleAuthProvider = () => Promise.resolve({});
 export const sendEmailVerification = () => Promise.resolve({});
 export const signInWithPopup = () => Promise.resolve({});
 export const signInWithEmailAndPassword = jest.fn(() => Promise.resolve({}));
 export const signOut = () => Promise.resolve({});
 export const onAuthStateChanged = () => Promise.resolve({});
-
+// getCurrentUser
+export const getCurrentUser = () => { displayName: 'user' };
 // Firestore
 export const getFirestore = () => Promise.resolve({});
 export const addDoc = () => Promise.resolve({});
