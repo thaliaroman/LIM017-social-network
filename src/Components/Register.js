@@ -15,17 +15,17 @@ export const Register = () => {
       <div class="div__Username">
         <i class="fa-solid fa-envelope e-mailIcon"></i>
         <input type="email" class="Register__input" id="e-mail" placeholder="Correo electrónico"></input>
-        <p class="alertsError" id="alertErrorEmail-Register"></p>
       </div>
-      <div class="div__Username">
+      <div class="alertError"><p id="alertErrorEmail-Register"></p></div>
+      <div class="div__Username-afterError">
         <i class="fa-solid fa-lock passwordIcon"></i>
         <input type="password" class="Register__input" id="password" placeholder="Contraseña"></input>
       </div>
       <div class="div__Username">
         <i class="fa-solid fa-lock passwordIcon"></i>
         <input type="password" class="Register__input" id="confirmPassword" placeholder="Confirmar contraseña"></input>
-        <p class="alertsError" id="alertErrorPassword-Register"></p>
       </div>
+      <div class="alertError"><p id="alertErrorPassword-Register"></p></div>
     <button class="Register__button" id="register">Registrarse</button><br>
     <i class="fa-solid fa-circle-chevron-left" id="Register__iconBack"></i>
   </div>

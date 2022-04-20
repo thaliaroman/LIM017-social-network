@@ -23,6 +23,7 @@ import {
   updateDoc,
   arrayUnion,
   arrayRemove,
+  getCurrentUser,
 } from './Firebase-Import.js';
 
 // eslint-disable-next-line no-unused-vars
