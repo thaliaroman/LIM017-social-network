@@ -3,7 +3,7 @@ import {
   registerUser,
   loginUser,
   updater, sendMail, toPost, loadPosts, deletePost, editPost, observator,
-  updatePost, arrayR, arrayU,
+  updatePost, arrayR, arrayU, loginOutUser,
 } from './libraries-Firebase.js';
 import { getCurrentUser } from './Firebase-Import.js';
 
@@ -44,16 +44,23 @@ export const login = () => {
   const email = document.getElementById('e-mailLogin').value;
   const password = document.getElementById('passwordLogin').value;
   loginUser(email, password)
-    .then((userCredential) => console.log(userCredential))
+    .then((userCredential) => userCredential)
     .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
       if (error.code === 'auth/user-not-found') {
         document.getElementById('alertErrorPassword-Login').innerHTML = '';
         document.getElementById('alertErrorEmail-Login').innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> El usuario no ha sido encontrado';
-      }
-      if (error.code === 'auth/wrong-password') {
+      } else if (error.code === 'auth/wrong-password') {
         document.getElementById('alertErrorEmail-Login').innerHTML = '';
         document.getElementById('alertErrorPassword-Login').innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Contraseña incorrecta';
+      } else if (error.code === 'auth/too-many-requests') {
+        loginOutUser();
+        document.getElementById('alertErrorEmail-Login').innerHTML = '';
+        document.getElementById('alertErrorPassword-Login').innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Cuenta bloqueada por muchos intentos, registrate con otra cuenta.';
       }
+      console.log(errorCode);
+      console.log(errorMessage);
     });
 };
 
@@ -79,7 +86,7 @@ const qSnapshot = (querySnapshot) => {
         </figure>
         <div>
         <div class="likePost__div">
-          <button class="likePost" data-id='${doc.id}'><i class="fa-solid fa-thumbs-up"></i></i> ${dataDoc.likesNumber} Likes</button>
+          <button class="likePost" data-id='${doc.id}'><i class="fa-solid fa-thumbs-up"></i></i> ${dataDoc.likesNumber} Like</button>
         </div>`;
     if (dataDoc.uid === getCurrentUser().uid) {
       html += `
