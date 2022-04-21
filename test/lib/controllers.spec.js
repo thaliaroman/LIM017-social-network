@@ -12,22 +12,24 @@ jest.mock('../../src/lib/Firebase-Import.js');
 
 // REGISTER: Testeando register y sus funciones implicadas.
 describe('register', () => {
+  beforeEach(() => createUserWithEmailAndPassword.mockClear());
   it('debería ser una función', () => {
     expect(typeof register).toBe('function');
   });
+
+  it('debería recibir email & password', () => {
+    document.body.innerHTML = '';
+    register();
+    expect(createUserWithEmailAndPassword.mock.calls[0]).toEqual([{ languageCode: 'es' }, 'front@end.la', '123456']);
+  });
+
   // RegisterUser
-  it('Debería devolder el correo de registro', () => registerUser('front@end.la', '123456', 'fullname')
+  it.only('Debería devolder el correo de registro', () => registerUser('front@end.la', '123456', 'fullname')
     .then((userCredential) => {
       expect('front@end.la').toBe(userCredential.user.email);
+      expect(createUserWithEmailAndPassword).toHaveBeenCalled();
+      expect(createUserWithEmailAndPassword.mock.calls[0]).toEqual([{ languageCode: 'es' }, 'front@end.la', '123456']);
     }));
-  it('Debería devolver las llamadas de la función', () => {
-    console.log(createUserWithEmailAndPassword.mock.calls[0][1]);
-    expect(createUserWithEmailAndPassword.mock.calls[0][1]).toEqual('front@end.la');
-  });
-  it('Debería llamar correctamente a createUserWithEmailAndPassword', () => {
-    expect(createUserWithEmailAndPassword).toHaveBeenCalled();
-  });
-  // updater
 });
 
 // iniciar sesión
@@ -35,17 +37,20 @@ describe('login', () => {
   it('debería ser una función', () => {
     expect(typeof login).toBe('function');
   });
-  it('Debería poder iniciar sesion', () => loginUser('front@end.la', '123456')
+  it.only('Debería poder iniciar sesion', () => loginUser('login@end.la', '123456')
     .then((userCredential) => {
-      expect('front@end.la').toBe(userCredential.user.email);
+      expect('login@end.la').toBe(userCredential.user.email);
+      expect(signInWithEmailAndPassword).toHaveBeenCalled();
+      console.log(signInWithEmailAndPassword.mock.calls);
+      expect(signInWithEmailAndPassword.mock.calls[0]).toEqual([{ languageCode: 'es' }, 'login@end.la', '123456']);
     }));
-  it('Debería devolver las llamadas de la función', () => {
-    console.log(signInWithEmailAndPassword.mock.calls[0][1]);
-    expect(signInWithEmailAndPassword.mock.calls[0][1]).toEqual('front@end.la');
-  });
-  it('Debería llamar correctamente a signInWithEmailAndPassword', () => {
-    expect(signInWithEmailAndPassword).toHaveBeenCalled();
-  });
+  // it('Debería devolver las llamadas de la función', () => {
+  //   console.log(signInWithEmailAndPassword.mock.calls[0][1]);
+  //   expect(signInWithEmailAndPassword.mock.calls[0][1]).toEqual('front@end.la');
+  // });
+  // it('Debería llamar correctamente a signInWithEmailAndPassword', () => {
+  //   expect(signInWithEmailAndPassword).toHaveBeenCalled();
+  // });
   // llama a la función loginUser que contiene el metodo de firebase
   // it('debería llamar a loginUser', () => {
   //   expect(loginUser()).toHaveBeenCalled();
