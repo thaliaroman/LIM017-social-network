@@ -20,6 +20,7 @@ export const register = () => {
     registerUser(email, password, fullName)
       .then((userCredential) => {
         updater(fullName);
+        console.log(updater(fullName));
         sendMail();
         routes('#/login');
         return userCredential.user;
