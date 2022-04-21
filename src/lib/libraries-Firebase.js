@@ -32,6 +32,7 @@ import { app } from './configurationfirebase.js';
 // Inicializando Auth y Firestore
 const db = getFirestore();
 const auth = getAuth();
+console.log(auth);
 
 // Actualiza la información del usuario
 export const updater = (fullName) => updateProfile(auth.currentUser, {
