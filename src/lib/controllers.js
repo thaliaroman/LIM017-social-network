@@ -17,7 +17,7 @@ export const register = () => {
   const confirmPassword = document.getElementById('confirmPassword').value;
   const fullName = document.getElementById('name').value;
   if (password === confirmPassword) {
-    registerUser(email, password, fullName)
+    return registerUser(email, password, fullName)
       .then((userCredential) => {
         updater(fullName);
         console.log(updater(fullName));
@@ -35,16 +35,15 @@ export const register = () => {
           document.getElementById('alertErrorEmail-Register').innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Cuenta de usuario en uso';
         }
       });
-  } else {
-    document.getElementById('alertErrorPassword-Register').innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> La contraseña no coincide';
   }
+  document.getElementById('alertErrorPassword-Register').innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> La contraseña no coincide';
 };
 
 // Iniciar sesión: usuarios registrados
 export const login = () => {
   const email = document.getElementById('e-mailLogin').value;
   const password = document.getElementById('passwordLogin').value;
-  loginUser(email, password)
+  return loginUser(email, password)
     .then((userCredential) => userCredential)
     .catch((error) => {
       const errorCode = error.code;
