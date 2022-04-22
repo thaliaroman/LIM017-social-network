@@ -41,7 +41,7 @@ export const Login = () => {
   //  Iniciar sesiión//
   starting.addEventListener('click', () => {
     login();
-    console.log(login());
+    // console.log(login());
   });
   const loginGoogleButton = document.getElementById('google');
   loginGoogleButton.addEventListener('click', () => {

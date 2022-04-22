@@ -3,19 +3,19 @@ export const initializeApp = () => Promise.resolve({});
 export const getAuth = () => ({});
 // { currentUser: { displayName: '' } };
 // eslint-disable-next-line max-len
-export const createUserWithEmailAndPassword = jest.fn((auth, email, password) => { console.log('holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'); return Promise.resolve({ user: { email, password } }); });
+export const createUserWithEmailAndPassword = jest.fn((auth, email, password) => { console.log('h'); return Promise.resolve({ user: { email, password } }); });
 export const updateProfile = jest.fn((fullName) => ({ displayName: fullName }));
-export const GoogleAuthProvider = () => Promise.resolve({});
+export const GoogleAuthProvider = () => ({});
 export const sendEmailVerification = () => Promise.resolve({});
-export const signInWithPopup = () => Promise.resolve({});
+export const signInWithPopup = jest.fn((auth, provider) => Promise.resolve({}));
 
 // eslint-disable-next-line max-len
 export const signInWithEmailAndPassword = jest.fn((auth, email, password) => Promise.resolve({ user: { email, password } }));
-export const signOut = () => Promise.resolve({});
+export const signOut = jest.fn(() => Promise.resolve({}));
 export const onAuthStateChanged = () => Promise.resolve({});
 
 // getCurrentUser
-export const getCurrentUser = () => Promise.resolve({ Object });
+export const getCurrentUser = jest.fn(() => ({ displayName: 'Lady Gaga' }));
 
 // Firestore
 export const getFirestore = () => Promise.resolve({});

@@ -11,15 +11,7 @@ export const Home = () => {
   console.log(user);
   const userName = user.displayName.charAt(0).toUpperCase();
   printPost();
-  console.log(user.photoURL);
-
-  // if (typeof (Storage) !== 'undefined') {
-  //   console.log('si es compatible');
-  // } else {
-  //   console.log('no es compatible');
-  // }
-  // localStorage.name = getCurrentUser().displayName;
-  // console.log(localStorage.name);
+  // console.log(user.photoURL);
 
   // función que convierte a mayusculas las primeras letras del nombre de usuario
   const abcName = () => {
@@ -86,3 +78,11 @@ export const Home = () => {
   });
 };
 // <button id="userName" title="${user.displayName}">${userName}</button>
+
+ // if (typeof (Storage) !== 'undefined') {
+  //   console.log('si es compatible');
+  // } else {
+  //   console.log('no es compatible');
+  // }
+  // localStorage.name = getCurrentUser().displayName;
+  // console.log(localStorage.name);
