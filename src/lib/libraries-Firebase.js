@@ -55,7 +55,8 @@ export const loginUser = (email, password) => {
 
 // Iniciar sesión con Google
 export const startGoogle = () => {
-  return signInWithPopup(auth, new GoogleAuthProvider());
+  const provider = new GoogleAuthProvider();
+  return signInWithPopup(auth, provider);
 };
 
 // Funcion para obtener la información del perfil del usuario logeado

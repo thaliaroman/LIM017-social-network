@@ -29,8 +29,7 @@ export const register = () => {
         if (error.code === 'auth/weak-password') {
           document.getElementById('alertErrorPassword-Register').innerHTML = '';
           document.getElementById('alertErrorPassword-Register').innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> La contraseña debe tener mínimo 6 caracteres';
-        }
-        if (error.code === 'auth/email-already-in-use') {
+        } else if (error.code === 'auth/email-already-in-use') {
           document.getElementById('alertErrorPassword-Register').innerHTML = '';
           document.getElementById('alertErrorEmail-Register').innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Cuenta de usuario en uso';
         }
@@ -80,7 +79,9 @@ const qSnapshot = (querySnapshot) => {
       <article class="main__section-postPeople" id="">
         <h3>${dataDoc.user.replace(/\b\w/g, (l) => l.toUpperCase())}.</h3>
         <p id="postHour">Publicado ${dataDoc.dateTime.toDate().toDateString()} a las ${dataDoc.dateTime.toDate().toLocaleTimeString('es-PE')} hrs.</p>
-        <p id="content-p">${dataDoc.content}</p><input type="text" hidden="true" id="edit-post">
+        <p id="content-p">${dataDoc.content}</p>
+        <input type="text" hidden="true" id="edit-post">
+        <button id="save-ButtonEdit" hidden="true">Guardar</button>
         <figure>
           <img class="post2Img" src="../images/foto-post.jpg">
         </figure>
@@ -143,13 +144,15 @@ const qSnapshot = (querySnapshot) => {
       const doc = await editPost(e.target.dataset.id);
       // devuelve los datos del documento de firestore
       const infoDocToEdit = doc.data();
-      const contentPost = document.querySelector('.post__input');
-      // consigue el valor del input y lo devuelve como dice en el documento de firestore
-      contentPost.value = infoDocToEdit.content;
+      // const contentPost = document.querySelector('.post__input');
+      // // // consigue el valor del input y lo devuelve como dice en el documento de firestore
+      // contentPost.value = infoDocToEdit.content;
       //
       const editInput = document.getElementById('edit-post');
+      const saveButton = document.getElementById('save-ButtonEdit');
       editInput.value = infoDocToEdit.content;
       editInput.hidden = false;
+      saveButton.hidden = false;
       document.getElementById('content-p').hidden = true;
       editInput.focus();
       editInput.scrollIntoView({ behavior: 'smooth', block: 'end' });

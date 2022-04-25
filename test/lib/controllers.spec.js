@@ -16,17 +16,10 @@ describe('register', () => {
   it('debería ser una función', () => {
     expect(typeof register).toBe('function');
   });
-
-  it('debería recibir email & password', () => {
-    document.body.innerHTML = '';
-    register();
-    expect(createUserWithEmailAndPassword.mock.calls[0]).toEqual([{ languageCode: 'es' }, 'front@end.la', '123456']);
-  });
-
-  // RegisterUser
-  it.only('Debería devolder el correo de registro', () => registerUser('front@end.la', '123456', 'fullname')
+  // RegisterUser llama a createUserWithEmailAndPassword
+  it('Debería devolder el correo de registro', () => registerUser('front@end.la', '123456', 'fullname')
     .then((userCredential) => {
-      expect('front@end.la').toBe(userCredential.user.email);
+      expect(userCredential.user.email).toBe('front@end.la');
       expect(createUserWithEmailAndPassword).toHaveBeenCalled();
       expect(createUserWithEmailAndPassword.mock.calls[0]).toEqual([{ languageCode: 'es' }, 'front@end.la', '123456']);
     }));
@@ -34,12 +27,14 @@ describe('register', () => {
 
 // iniciar sesión
 describe('login', () => {
+  beforeEach(() => signInWithEmailAndPassword.mockClear());
   it('debería ser una función', () => {
     expect(typeof login).toBe('function');
   });
-  it.only('Debería poder iniciar sesion', () => loginUser('login@end.la', '123456')
+  // Login User llama a createUserWithEmailAndPassword
+  it('Debería poder iniciar sesion', () => loginUser('login@end.la', '123456')
     .then((userCredential) => {
-      expect('login@end.la').toBe(userCredential.user.email);
+      expect(userCredential.user.email).toBe('login@end.la');
       expect(signInWithEmailAndPassword).toHaveBeenCalled();
       console.log(signInWithEmailAndPassword.mock.calls);
       expect(signInWithEmailAndPassword.mock.calls[0]).toEqual([{ languageCode: 'es' }, 'login@end.la', '123456']);
