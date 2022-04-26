@@ -6,6 +6,34 @@ import {
   toPostDocument, printPost,
 } from '../lib/controllers.js';
 
+// modal
+export function toShowModal() {
+  // Get the modal
+  const modal = document.getElementById('myModal');
+  // Get the <span> element that closes the modal
+  const span = document.getElementsByClassName('close')[0];
+  const userPost = document.querySelector('.post__button');
+
+  modal.style.display = 'block';
+
+  span.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+  userPost.addEventListener('click', () => {
+    if (document.getElementById('inputPost__edit').value !== '') {
+      toPostDocument();
+      document.getElementById('inputPost__edit').value = '';
+      modal.style.display = 'none';
+    }
+  });
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+      console.log(e.target);
+    }
+  });
+}
+
 export const Home = () => {
   const user = getCurrentUser();
   console.log(user);
@@ -13,10 +41,10 @@ export const Home = () => {
   printPost();
   // console.log(user.photoURL);
 
-  // función que convierte a mayusculas las primeras letras del nombre de usuario
   const abcName = () => {
     const userABC = user.displayName;
-    return userABC.replace(/\b\w/g, (l) => l.toUpperCase());
+    const result = userABC.replace(/\b\w/g, (l) => l.toUpperCase());
+    return result;
   };
   const htmlRoot = document.getElementById('root');
   let html = '';
@@ -50,14 +78,28 @@ export const Home = () => {
     </aside>
     <main class="main">
       <div class="main__div" id="post">
-        <textarea cols="5" rows="5" class="post__input" id="inputPost__edit" type="text" placeholder="Cuéntanos lo que estás pensando . . ."></textarea>
-        <div class="post__div-upPhoto">
-          <label class="elements__div-upPhoto" for="upPhoto"><i class="fa-solid fa-images"></i></label>
-          <input class="elements__div-upPhoto" type="file" hidden="" id="upPhoto"></input>
-          <p>Foto</p>
+        <input cols="5" rows="5" class="post__input__Initial" id="inputPost__editM" type="button" value="Cuéntanos lo que estás pensando . . ."></input>
+      </div> 
+      
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="div__span">
+            <span class="close">&times;</span>
+          </div>
+          <h1 id="EditChange">Crear publicación</h1>
+          <br><hr>
+          <div class="div__infoUser">
+            <h3>${abcName()}</h3>
+          </div>
+          <div class="main__div__Modal" id="post">
+            <textarea cols="5" rows="5" class="post__input" id="inputPost__edit" type="text" placeholder="Cuéntanos lo que estás pensando . . ."></textarea>
+            <button class="post__button">Publicar</button>
+          </div> 
         </div>
-        <button class="post__button">Publicar</button>
-      </div>    
+
+      </div>   
       <div class="main__div-postPeople">
       </div>
     </main>
@@ -67,22 +109,34 @@ export const Home = () => {
   // Boton para cerrar sesión
   const loginOutButton = document.getElementById('loginOut');
   loginOutButton.addEventListener('click', () => loginOutUser());
-
-  // Botón para publicar post
-  const userPost = document.querySelector('.post__button');
-  userPost.addEventListener('click', () => {
-    if (document.querySelector('.post__input').value !== '') {
-      toPostDocument();
-      document.querySelector('.post__input').value = '';
-    }
+  // // Botón para publicar post
+  // const userPost = document.querySelector('.post__button');
+  // userPost.addEventListener('click', () => {
+  //   if (document.querySelector('.post__input').value !== '') {
+  //     toPostDocument();
+  //     document.querySelector('.post__input').value = '';
+  //   }
+  // });
+  // modal
+  // click al input boton
+  const getInput = document.getElementById('inputPost__editM');
+  getInput.addEventListener('click', () => {
+    console.log('sí funciona el evento');
+    toShowModal();
   });
 };
 // <button id="userName" title="${user.displayName}">${userName}</button>
 
- // if (typeof (Storage) !== 'undefined') {
-  //   console.log('si es compatible');
-  // } else {
-  //   console.log('no es compatible');
-  // }
-  // localStorage.name = getCurrentUser().displayName;
-  // console.log(localStorage.name);
+// if (typeof (Storage) !== 'undefined') {
+//   console.log('si es compatible');
+// } else {
+//   console.log('no es compatible');
+// }
+// localStorage.name = getCurrentUser().displayName;
+// console.log(localStorage.name);
+
+/* <div class="post__div-upPhoto">
+<label class="elements__div-upPhoto" for="upPhoto"><i class="fa-solid fa-images"></i></label>
+<input class="elements__div-upPhoto" type="file" hidden="" id="upPhoto"></input>
+<p>Foto</p>
+</div> */

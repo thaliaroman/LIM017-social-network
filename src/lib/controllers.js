@@ -6,11 +6,14 @@ import {
   updatePost, arrayR, arrayU, loginOutUser,
 } from './libraries-Firebase.js';
 import { getCurrentUser } from './Firebase-Import.js';
+// eslint-disable-next-line import/no-cycle
+import { toShowModal } from '../Components/Home.js';
 
 // eslint-disable-next-line import/no-cycle
 import { routes } from './routes.js';
 
 // Registra nuevos usuarios
+// eslint-disable-next-line consistent-return
 export const register = () => {
   const email = document.getElementById('e-mail').value;
   const password = document.getElementById('password').value;
@@ -116,27 +119,6 @@ const qSnapshot = (querySnapshot) => {
     });
   });
 
-  // const buttonDelete = containerPost.querySelectorAll('.deletePost');
-  // const divConfirm = containerPost.querySelectorAll('#divConfirm');
-  // const buttonDeleteConfirm = containerPost.querySelectorAll('#confirmar');
-  // buttonDelete.forEach((btn) => {
-  //   btn.addEventListener('click', () => {
-  //     divConfirm.forEach((conf) => {
-  //       conf.removeAttribute('hidden');
-  //       buttonDeleteConfirm.forEach((abc) => {
-  //         abc.addEventListener('click', ({ target: { dataset } }) => {
-  //           deletePost(dataset.id);
-  //         });
-  //       });
-  //     });
-  //   });
-  // });
-  // <div hidden="" id="divConfirm">
-  //   <p>Seguro deseas eliminar el post</p>
-  //   <button id="confirmar">Eliminar</button>
-  //   <button id="cancelar">Cancelar</button>
-  // </div>
-
   // editar post
   const buttonEdit = containerPost.querySelectorAll('.editPost');
   buttonEdit.forEach((btn) => {
@@ -144,18 +126,19 @@ const qSnapshot = (querySnapshot) => {
       const doc = await editPost(e.target.dataset.id);
       // devuelve los datos del documento de firestore
       const infoDocToEdit = doc.data();
-      // const contentPost = document.querySelector('.post__input');
+      const contentPost = document.getElementById('inputPost__edit');
       // // // consigue el valor del input y lo devuelve como dice en el documento de firestore
-      // contentPost.value = infoDocToEdit.content;
+      contentPost.value = infoDocToEdit.content;
+      toShowModal();
       //
-      const editInput = document.getElementById('edit-post');
-      const saveButton = document.getElementById('save-ButtonEdit');
-      editInput.value = infoDocToEdit.content;
-      editInput.hidden = false;
-      saveButton.hidden = false;
-      document.getElementById('content-p').hidden = true;
-      editInput.focus();
-      editInput.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      // const editInput = document.getElementById('edit-post');
+      // const saveButton = document.getElementById('save-ButtonEdit');
+      // editInput.value = infoDocToEdit.content;
+      // editInput.hidden = false;
+      // saveButton.hidden = false;
+      // document.getElementById('content-p').hidden = true;
+      // editInput.focus();
+      // editInput.scrollIntoView({ behavior: 'smooth', block: 'end' });
       // cambia el estado de la edición a true
       statusOfEdition = true;
       id = doc.id;
@@ -193,7 +176,7 @@ export const printPost = () => {
 // Crea un documento en la coleccion de firestore
 export const toPostDocument = async () => {
   // const user = auth.currentUser;
-  const contentPost = document.querySelector('.post__input').value;
+  const contentPost = document.getElementById('inputPost__edit').value;
   if (!statusOfEdition) {
     const docRef = await toPost(contentPost);
     // eslint-disable-next-line no-console
@@ -217,3 +200,24 @@ export const observatorIt = () => {
     return user;
   });
 };
+
+// const buttonDelete = containerPost.querySelectorAll('.deletePost');
+  // const divConfirm = containerPost.querySelectorAll('#divConfirm');
+  // const buttonDeleteConfirm = containerPost.querySelectorAll('#confirmar');
+  // buttonDelete.forEach((btn) => {
+  //   btn.addEventListener('click', () => {
+  //     divConfirm.forEach((conf) => {
+  //       conf.removeAttribute('hidden');
+  //       buttonDeleteConfirm.forEach((abc) => {
+  //         abc.addEventListener('click', ({ target: { dataset } }) => {
+  //           deletePost(dataset.id);
+  //         });
+  //       });
+  //     });
+  //   });
+  // });
+  // <div hidden="" id="divConfirm">
+  //   <p>Seguro deseas eliminar el post</p>
+  //   <button id="confirmar">Eliminar</button>
+  //   <button id="cancelar">Cancelar</button>
+  // </div>

@@ -298,6 +298,126 @@
 
 }
 
+/* modal */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 600px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    color: #393838;
+    /* align-items: flex-start; */
+  }
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .div__span{
+      /* background-color: #780e86; */
+      width: 100%;
+      text-align: right;
+  }
+  .modal-content>h1{
+      /* margin-top: 15px; */
+      font-size: 20px;
+      /* background-color: #888; */
+      text-align: center;
+  }
+  .div__infoUser{
+      /* background-color: #c34273; */
+      width: 100%;
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+  }
+  .div__infoUser>img{
+      width: 35px;
+      height: 35px;
+  }
+  .div__infoUser>h3{
+      /* margin-left: 10px; */
+      margin-top: 20px;
+  }
+  .main__div__Modal{
+    
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    /* background-color: #f800d7; */
+}
+.post__input{
+    margin-top: 20px;
+    width: 100%;
+    height: 130px;
+    text-align: left;
+    outline: none;
+    align-self: center;
+    border-radius: 6px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #7a4a86;
+}
+::placeholder{
+    margin-left:auto;
+    color: rgb(121, 121, 121);
+   }
+.post__button{
+    
+    width: 100%;
+    height: 35px;
+    background: linear-gradient(180deg, #8b42c3 18.48%, #7d3cb6 36.31%, #621ea7 58.39%, #420e86 100%);
+    border: none;
+    /* align-self: flex-end; */
+    /* margin-inline-end: 10%; */
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+    margin-top: 15px;
+    cursor: pointer;
+    /* font-weight: 600; */
+}
+.post__div-upPhoto{
+    width: 100%;
+    height:22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #dadada;
+    /* margin-left: 10%; */
+    border-radius: 4px;
+    margin-top: 15px;
+    
+}
+
 /* main */
 .main{
     background-color: white;
@@ -320,46 +440,21 @@
     /* background-color: #f800d7; */
     
 }
-.post__input{
+.post__input__Initial{
     margin-top: 20px;
     width: 80%;
-    height: 100px;
+    height: 60px;
     text-align: left;
     outline: none;
     align-self: center;
-    border-radius: 6px;
+    border-radius: 8px;
     border-style: solid;
     border-width: 1px;
     border-color: #7a4a86;
-}
-::placeholder{
-    margin-left:auto;
-    color: rgb(121, 121, 121);
-   }
-.post__button{
-    width: 90px;
-    height: 24px;
-    background: linear-gradient(180deg, #8b42c3 18.48%, #7d3cb6 36.31%, #621ea7 58.39%, #420e86 100%);
-    border: none;
-    align-self: flex-end;
-    margin-inline-end: 10%;
-    border-radius: 8px;
-    color: white;
-    font-weight: 500;
-    margin-top: -24px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: white;
+    /* background: linear-gradient(180deg, #ffffff 18.48%, #e7e2ecac 36.31%, #d1b9e8ac 58.39%, #af98cdc6 100%); */
     cursor: pointer;
-}
-.post__div-upPhoto{
-    width: 90px;
-    height:22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #dadada;
-    margin-left: 10%;
-    border-radius: 4px;
-    margin-top: 6px;
-    
 }
 .elements__div-upPhoto{
 }
@@ -406,6 +501,7 @@
     text-align: left;
     margin-top: 5px;
     color: #2f2f2f;
+    text-align: justify;
 }
 .section-postPeople__photoUser{
     width: 25px;
@@ -576,7 +672,9 @@
     }
     .aside_d>img{
         width: auto;
-        height:120px;
+        height:130px;
+        border-radius: 50%;
+        /* border: 1px solid rgb(195, 112, 218); */
     }
     .aside_d>p{
         /* display: inline-flex; */
