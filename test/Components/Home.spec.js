@@ -19,7 +19,6 @@ describe('Home', () => {
     const userPost = document.querySelector('.post__button');
     document.querySelector('.post__input').value = 'abc';
     userPost.dispatchEvent(new Event('click'));
-    // console.log(addDoc.mock.calls);
     expect(addDoc).toHaveBeenCalledTimes(1);
   });
 });

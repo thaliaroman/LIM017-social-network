@@ -5,7 +5,9 @@ import {
   updater, sendMail, toPost, loadPosts, deletePost, editPost, observator,
   updatePost, arrayR, arrayU, loginOutUser,
 } from './libraries-Firebase.js';
+
 import { getCurrentUser } from './Firebase-Import.js';
+
 // eslint-disable-next-line import/no-cycle
 import { toShowModal } from '../Components/Home.js';
 
@@ -66,18 +68,18 @@ export const login = () => {
     });
 };
 
-// publica el post
+
 // statusOfEdition: ve el estado de la edición(actualización) y/o creción del documento de firestore
 let statusOfEdition = false;
 let id = '';
 
+// arrow function que ser pasada como callback para imprimir los post
 const qSnapshot = (querySnapshot) => {
   const containerPost = document.querySelector('.main__div-postPeople');
   let html = '';
   querySnapshot.forEach((doc) => {
     // console.log(doc.data());
     const dataDoc = doc.data();
-    // dataDoc.photo
     html += `
       <article class="main__section-postPeople" id="">
         <h3>${dataDoc.user.replace(/\b\w/g, (l) => l.toUpperCase())}.</h3>
@@ -109,7 +111,6 @@ const qSnapshot = (querySnapshot) => {
   const buttonDelete = containerPost.querySelectorAll('.deletePost');
   buttonDelete.forEach((abc) => {
     abc.addEventListener('click', ({ target: { dataset } }) => {
-      // podemos usar un modal aquí :3
       // eslint-disable-next-line no-alert
       if (window.confirm('¿Seguro deseas eliminar tu publicación?')) {
         deletePost(dataset.id);
@@ -181,13 +182,13 @@ const qSnapshot = (querySnapshot) => {
   });
 };
 
+// imprime-publica el post
 export const printPost = () => {
   loadPosts(qSnapshot);
 };
 
 // Crea un documento en la coleccion de firestore
 export const toPostDocument = async () => {
-  // const user = auth.currentUser;
   const contentPost = document.getElementById('inputPost__edit').value;
   if (!statusOfEdition) {
     const docRef = await toPost(contentPost);
@@ -211,24 +212,3 @@ export const observatorIt = () => {
     return user;
   });
 };
-
-// const buttonDelete = containerPost.querySelectorAll('.deletePost');
-// const divConfirm = containerPost.querySelectorAll('#divConfirm');
-// const buttonDeleteConfirm = containerPost.querySelectorAll('#confirmar');
-// buttonDelete.forEach((btn) => {
-//   btn.addEventListener('click', () => {
-//     divConfirm.forEach((conf) => {
-//       conf.removeAttribute('hidden');
-//       buttonDeleteConfirm.forEach((abc) => {
-//         abc.addEventListener('click', ({ target: { dataset } }) => {
-//           deletePost(dataset.id);
-//         });
-//       });
-//     });
-//   });
-// });
-// <div hidden="" id="divConfirm">
-//   <p>Seguro deseas eliminar el post</p>
-//   <button id="confirmar">Eliminar</button>
-//   <button id="cancelar">Cancelar</button>
-// </div>

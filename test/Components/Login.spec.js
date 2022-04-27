@@ -1,6 +1,5 @@
 import { Login } from '../../src/Components/Login.js';
-import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from '../../src/lib/Firebase-Import.js';
-import { loginUser, startGoogle } from '../../src/lib/libraries-Firebase.js';
+import { signInWithEmailAndPassword, signInWithPopup } from '../../src/lib/Firebase-Import.js';
 
 jest.mock('../../src/lib/Firebase-Import.js');
 

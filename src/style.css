@@ -26,7 +26,6 @@
     position: relative;
     z-index: 1;
     /* background-color: red; */
-    /* justify-content: center; */  
 }
 
 #divLogo{
@@ -34,9 +33,9 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    /* margin-top: 0px; */
     /* background-color: #9f0097;     */
 }
+
 .logo{
     margin-top: 15px;
     width:200px;
@@ -52,14 +51,15 @@
     /* background-color: #1e73a7; */
     position: relative;
 }
+
 .e-mailIcon {
     position: absolute;
     align-self: center;
     pointer-events: none;
     margin-left:20px;
     color:white;
-   
-  }
+}
+
 .input__Login {
     background-color:rgba(20, 20, 20, 0.178);
     color:white;
@@ -73,7 +73,7 @@
 .input__Login::placeholder{
      margin-left:auto;
      color: rgba(255, 255, 255, 0.787);
-    }
+}
 
 .writePassword{
     width: 70%;
@@ -83,16 +83,16 @@
     /* margin-top: 20px; */
     /* background-color: #00259f; */
 }
+
 .passwordIcon {
     position: absolute;
     align-self: center;
     pointer-events: none;
     margin-left:20px;
     color:white;
-  }
+}
 
 #iniciar{
-    /* margin-top: 20px; */
     background-color:rgb(224, 69, 224);
     color:white;
     font-size: medium;
@@ -118,9 +118,11 @@
     justify-content: center;
     cursor: pointer;
 }
+
 #google>p{
     font-size: 14px;
 }
+
 .imageGoogle{
     width: 20px;
     height: 20px;
@@ -141,21 +143,16 @@
 
 /* VISTA DE REGISTRO */
 .div__Username{
-    /* width: 70%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 20px; */
     width: 70%;
     display: flex;
     justify-content: left;
     margin-top: 20px;
 }
+
 .div__Username-afterError{
     width: 70%;
     display: flex;
     justify-content: left;
-    /* margin-top: 20px; */
 }
 
 .Register__input{
@@ -168,7 +165,10 @@
     border-style: solid;
     border-color: rgb(255, 255, 255) ;
 }
-.Register__input::placeholder { color: rgba(255, 255, 255, 0.568); }
+.Register__input::placeholder { 
+    color: rgba(255, 255, 255, 0.568); 
+}
+
 .Register__button{
     margin-top: 30px;
     background-color:rgb(224, 69, 224);
@@ -180,21 +180,22 @@
     border: none;
     cursor: pointer;
 }
+
 #Register__iconBack{
     color:rgba(255, 255, 255, 0.493) ;
     font-size: 35px;
     height: auto;
     margin-top: 40px;
     cursor: pointer;
-
 }
+
 .imageLogin{
     display: none;
 }
+
 /* errores para usuarios */
 .alertError{
     color: rgb(233, 201, 201);
-    /* float: right; */
     /* background-color: red; */
     height: 20px;
     display: flex;
@@ -202,15 +203,17 @@
     flex-direction: row;
     justify-content: flex-end;
 }
+
 .alertError>p{
     padding: 2px;
-    font-size: 12px;
-    
+    font-size: 12px; 
 }
+
 .alertError>p>i{
     color: rgb(180, 4, 4);
     font-size: 11px;
 }
+
 /* --------------- */
 /* VISTA DEL HOME */
 /* ------------- */
@@ -224,22 +227,22 @@
     align-items: flex-end;
     position: fixed;
 }
+
 .header__logo-div{
     width: 40%;
     height: 60px;
     display: flex;
     align-items: center;
-    /* justify-content: center;     */
     /* background-color: red; */
-    /* padding: 3%; */
-    
 }
+
 .header__logo{
     width: 150px;
     height: 40px; 
     margin-left: 5%;
     /* background-color: aqua;  */
 }
+
 .header__nav-div{
     width: 50%;
     height: 60px;
@@ -255,19 +258,21 @@
     flex-direction: row;
     align-items: center;
     justify-content: end; 
-    /* margin-inline-end: 2%; */
     /* background-color: #482744; */
 }
+
 .header__nav-ul-li{
     list-style: none;
     display: inline-flex;
 }
+
 .icon__header{
     font-size: 22px;
     color: rgb(238, 237, 237);
     margin: 10px;
     cursor: pointer;
 }
+
 .header__user-div{
     width: 10%;
     height: 60px;
@@ -275,8 +280,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
 }
+
 #userName{
     width:45px;
     height: 45px;
@@ -286,20 +291,15 @@
     background-color: #f800d7;
     border-radius: 50% 50%;
     border: none;
-    /* margin-bottom: 10px; */
-    /* margin-left: 27px;
-    margin-bottom: 3px; */
     cursor: pointer;
-    }
+}
 
 /* Aside */
 .aside_d{
     display: none; 
-
 }
 
 /* modal */
-/* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -312,10 +312,10 @@
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
+}
   
-  /* Modal Content */
-  .modal-content {
+/* Modal Content */
+.modal-content {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
@@ -325,57 +325,62 @@
     display: flex;
     flex-direction: column;
     color: #393838;
-    /* align-items: flex-start; */
-  }
-  /* The Close Button */
-  .close {
+}
+
+/* The Close Button */
+.close {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
-  .close:hover,
-  .close:focus {
+}
+
+.close:hover,
+.close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
-  }
-  .div__span{
-      /* background-color: #780e86; */
-      width: 100%;
-      text-align: right;
-  }
-  .modal-content>h1{
-      /* margin-top: 15px; */
-      font-size: 20px;
-      /* background-color: #888; */
-      text-align: center;
-      color: #6e6e6e;
-  }
-  .div__infoUser{
-      /* background-color: #c34273; */
-      width: 100%;
-      display: flex;
-      align-items: center;
-      margin-top: 10px;
-      /* justify-content: center; */
-  }
-  .div__infoUser>img{
-      width: 35px;
-      height: 35px;
-  }
-  .div__infoUser>h3{
-      margin-top:20px;
-      font-size: 16px;
-  }
-  .main__div__Modal{
-    
+}
+
+.div__span{
+    /* background-color: #780e86; */
+    width: 100%;
+    text-align: right;
+}
+
+.modal-content>h1{
+    font-size: 20px;
+    /* background-color: #888; */
+    text-align: center;
+    color: #6e6e6e;
+}
+
+.div__infoUser{
+    /* background-color: #c34273; */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.div__infoUser>img{
+    width: 35px;
+    height: 35px;
+}
+
+.div__infoUser>h3{
+    margin-top:20px;
+    font-size: 16px;
+}
+
+.main__div__Modal{
     width: 100%;
     height: auto;
     display: flex;
     flex-direction: column;
     /* background-color: #f800d7; */
 }
+
 .post__input{
     margin-top: 20px;
     width: 100%;
@@ -392,25 +397,24 @@
     margin-left:auto;
     color: rgb(121, 121, 121);
    }
+
 .post__button{
-    
     width: 100%;
     height: 35px;
     background: linear-gradient(180deg, #8b42c3 18.48%, #7d3cb6 36.31%, #621ea7 58.39%, #420e86 100%);
     border: none;
-    /* align-self: flex-end; */
-    /* margin-inline-end: 10%; */
     border-radius: 8px;
     color: white;
     font-weight: 500;
     margin-top: 15px;
     cursor: pointer;
-    /* font-weight: 600; */
 }
+
 .cancelEdit{
     background: linear-gradient(180deg, #5e4174 18.48%, #634d77 36.31%, #4d3a60 58.39%, #7a6c8c 100%);
     width: 50%;
 }
+
 .post__div-upPhoto{
     width: 100%;
     height:22px;
@@ -418,10 +422,8 @@
     align-items: center;
     justify-content: center;
     background-color: #dadada;
-    /* margin-left: 10%; */
     border-radius: 4px;
     margin-top: 15px;
-    
 }
 
 /* main */
@@ -431,21 +433,18 @@
     width: 100vw;
     display: flex;
     flex-direction: column;
-    /* position: inherit; */
     align-items: center;
-    /* justify-content: center; */
 }
+
 .main__div{
     margin-top: 70px;
-    /* margin: auto; */
-    /* margin-left: 5%; */
     width: 90%;
     height: auto;
     display: flex;
     flex-direction: column;
     /* background-color: #f800d7; */
-    
 }
+
 .post__input__Initial{
     margin-top: 20px;
     width: 80%;
@@ -453,26 +452,18 @@
     text-align: left;
     outline: none;
     align-self: center;
-    border-radius: 8px;
+    border: none;
+    border-radius: 25px;
     border-style: solid;
     border-width: 1px;
-    border-color: #7a4a86;
+    border-color: #7a4a8638;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    background-color: white;
-    /* background: linear-gradient(180deg, #ffffff 18.48%, #e7e2ecac 36.31%, #d1b9e8ac 58.39%, #af98cdc6 100%); */
+    background-color: rgba(255, 255, 255, 0.399);
     cursor: pointer;
+    padding: 20px;
+    font-size: 16px;
 }
-.elements__div-upPhoto{
-}
-.elements__div-upPhoto>i{
-    color: #9f0097;
-    font-size: medium;
-    cursor: pointer;
-}
-.post__div-upPhoto>p{
-    display: inline-flex;
-    margin-left: 6px;
-}
+
 .main__div-postPeople{
     width: 90%;
     height: 100%;
@@ -483,6 +474,7 @@
     align-items: center;
     padding: 20px;
 }
+
 .main__section-postPeople{
     width: 85%;
     height: auto;
@@ -492,16 +484,19 @@
     padding: 20px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+
 .main__section-postPeople>h3{
     /* background-color: #8d07b6; */
     display: inline;
 }
+
 #postHour{
     background-color: azure;
     display: inline-flex;
     color: rgb(100, 100, 100);
     font-size: 12px;
 }
+
 .main__section-postPeople>p{
     /* background-color: #a45bbb; */
     text-align: left;
@@ -509,10 +504,12 @@
     color: #2f2f2f;
     text-align: justify;
 }
+
 .section-postPeople__photoUser{
     width: 25px;
     height: 25px;
 }
+
 .main__section-postPeople>figure{
     width: 100%;
     height: 350px;
@@ -520,18 +517,21 @@
     display: flex;
     margin-top: 10px;
 }
+
 .post2Img{
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: top;
 }
+
 /* botones de eliminar o editar */
 .main__section-postPeople>div{
     display: flex;
     width: 100%;
     /* background-color: chartreuse */
 }
+
 .likePost__div{
     /* background-color: red; */
     width: 30%;
@@ -540,6 +540,7 @@
     justify-content: flex-start;
     padding: 5px;
 }
+
 .likePost{
     margin-top: 10px;
     background: linear-gradient(180deg, #8b42c3 18.48%, #7d3cb6 36.31%, #621ea7 58.39%, #420e86 100%);
@@ -551,15 +552,16 @@
     height: 22px;
     cursor: pointer;
 }
+
 .likePost>i{
     font-size: 15px;
 }
+
 .likePost:hover{
     background: linear-gradient(180deg, #d94bf2 18.48%, #b63c9a 36.31%, #a71e9e 58.39%, #780e86 100%);
-    /* font-size: 16px; */
-    font-size: 15.5px;
-    
+    font-size: 15.5px; 
 }
+
 .bottonPostUser__div{
     /* background-color: #c503bb; */
     display: flex;
@@ -567,8 +569,8 @@
     width: 70%;
     justify-content: flex-end;
     padding: 5px;
-
 }
+
 .bottonPostUser{
     margin-top: 10px;
     margin-left: 10px;
@@ -584,75 +586,87 @@
 .bottonPostUser:hover{
     background-color: #420e86;
 }
+
 @media screen and (max-height: 750px){
     *{
         font-size: 14px;
     }
+
     #root{
         height: 100%;
-        width: 100vw;}
+        width: 100vw;
+    }
+
     #iniciar{
         font-size: 14px;
     }
-    /* #google{
-        margin-top: 10%;} */
-    #google>p{
-            font-size: 12px;
-        }
-        .imageGooglep{
-            width: 18px;
-            height: 18px;
-            margin: 6px;
-        }
-        #registro{
-            margin-top: 5px;
-            margin-bottom: 20px;
 
-        }
+    #google>p{
+        font-size: 12px;
+    }
+
+    .imageGooglep{
+        width: 18px;
+        height: 18px;
+        margin: 6px;
+    }
+
+    #registro{
+        margin-top: 5px;
+        margin-bottom: 20px;
+
+    }
 }
+
 @media screen and (min-width: 540px){
     #google{
         text-align: center;
         margin-top: 10%;
     }
 }
+
 @media screen and (min-width: 900px){
     #root{
         flex-direction: row;
         height: 100vh;
-        /* background: linear-gradient(180deg, #ffffff 18.48%, #ffffff 36.31%, #ffffff 58.39%, #ffffff 100%); */
     }
+
     #divIngresar{
         width: 50%;      
     }
+
     .div__imageLogin{
         width: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
-        
     }
+
     .imageLogin{
         display: block;
         opacity: 0.94;
         height: 80vh;
         width: auto;
         margin-left: 50px;
-        /* padding: 10px; */
     }
+
     #google{
         text-align: center;
         margin-top: 10%;
     }
+
     #Register__iconBack{
         margin-top: 30px;
     }
+
     .header__nav-div{
         width: 60%;
     }
+
     .header__nav{
         margin-inline-end: 5%; 
     }
+
     .mainandaside{
         width: 100vw;
         height: 100vh;
@@ -661,12 +675,12 @@
         flex-direction: row;
         justify-content: center;
     }
+
     .aside_d{
         display: flex;
         background: linear-gradient(180deg, #ffffff 18.48%, #d7bde9ac 36.31%, #b67cf0ac 58.39%, #632ea7c6 100%);
         width: 15%;
         height: 300px;
-        /* margin-left: 2.5%; */
         margin-top: 85px;
         border-radius: 10px;
         text-align: left;
@@ -674,34 +688,34 @@
         box-shadow: rgba(0, 0, 0, 0.24) 3px 3px 8px;
         flex-direction: column;
         align-items: center;
-        /* justify-content: center; */
     }
+
     .aside_d>img{
         width: auto;
         height:130px;
         border-radius: 50%;
-        /* border: 1px solid rgb(195, 112, 218); */
     }
+
     .aside_d>p{
-        /* display: inline-flex; */
-        
         margin-top: 30px;
         font-size: 22px;
         color: #626262;
     }
+
     #userName{
         width:110px;
         height: 110px;
         font-size: 50px;
         background-color: #c503bb;
-        }
+    }
+
     .main{
         /* background-color: rgb(195, 28, 28); */
         height: 100vh;
         width: 65%;
         margin-left: 1%;
-        
     }
+
     .main__div, .main__div-postPeople{
         width: 85%;
     }
@@ -712,45 +726,44 @@
         
     .header__user-div{
         display: none;
-    }
-            
+    }       
 }
-        
-
-
 
 @media screen and (max-width: 450px){
-    .header{}
 
     /* botones de eliminar o editar */
-.main__section-postPeople>div{
-    flex-direction: column;
-}
-.likePost__div{
-    width: 100%;
-    justify-content: center;
-}
-.likePost{
-    margin-top: 5px;
-    font-size: 12px;
-    width: 100px;
-}
-.likePost>i{
-    font-size: 14px;
-}
-.bottonPostUser__div{
-    width: 100%;
-    justify-content: center;
+    .main__section-postPeople>div{
+        flex-direction: column;
+    }
 
+    .likePost__div{
+        width: 100%;
+        justify-content: center;
+    }
+
+    .likePost{
+        margin-top: 5px;
+        font-size: 12px;
+        width: 100px;
+    }
+
+    .likePost>i{
+        font-size: 14px;
+    }
+
+    .bottonPostUser__div{
+        width: 100%;
+        justify-content: center;
+    }
+
+    .bottonPostUser{
+        margin-top: 0px;
+        font-size: 12px;
+    }
 }
-.bottonPostUser{
-    margin-top: 0px;
-    font-size: 12px;
-}
-}
+
 @media screen and (max-width: 899px){
-.aside_d{
-    display: none;
-
-}
+    .aside_d{
+        display: none;
+    }
 }

@@ -1,7 +1,6 @@
 export const initializeApp = () => Promise.resolve({});
 // Autenticación
 export const getAuth = () => ({});
-// { currentUser: { displayName: '' } };
 // eslint-disable-next-line max-len
 export const createUserWithEmailAndPassword = jest.fn((auth, email, password) => { console.log('h'); return Promise.resolve({ user: { email, password } }); });
 export const updateProfile = jest.fn((fullName) => ({ displayName: fullName }));

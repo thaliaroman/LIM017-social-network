@@ -29,8 +29,6 @@ export const Home = () => {
   console.log(user);
   const userName = user.displayName.charAt(0).toUpperCase();
   printPost();
-  // console.log(user.photoURL);
-
   const abcName = () => {
     const userABC = user.displayName;
     const result = userABC.replace(/\b\w/g, (l) => l.toUpperCase());
@@ -56,17 +54,19 @@ export const Home = () => {
   </header>
   <div class="mainandaside">
     <aside class="aside_d">`;
+
   if (user.photoURL !== null) {
     html += `<img src='${user.photoURL}'>`;
   } else {
     html += `<button id="userName" title="${user.displayName}">${userName}</button>`;
   }
+
   html += `
       <p>${abcName()}</p>
     </aside>
     <main class="main">
       <div class="main__div" id="post">
-        <input cols="5" rows="5" class="post__input__Initial" id="inputPost__editM" type="button" value="Cuéntanos lo que estás pensando . . ."></input>
+        <input cols="5" rows="5" class="post__input__Initial" id="inputPost__editM" type="button" value="Haz una publicación . . ."></input>
       </div> 
       
       <!-- The Modal -->
@@ -115,20 +115,3 @@ export const Home = () => {
     toShowModal();
   });
 };
-
-// if (typeof (Storage) !== 'undefined') {
-//   console.log('si es compatible');
-// } else {
-//   console.log('no es compatible');
-// }
-// localStorage.name = getCurrentUser().displayName;
-// console.log(localStorage.name);
-
-/* <div class="post__div-upPhoto">
-<label class="elements__div-upPhoto" for="upPhoto"><i class="fa-solid fa-images"></i></label>
-<input class="elements__div-upPhoto" type="file" hidden="" id="upPhoto"></input>
-<p>Foto</p>
-</div> */
-
-// <li class="header__nav-ul-li" id="house"><i class="fa-solid fa-house-chimney icon__header"></i></li>
-// <li class="header__nav-ul-li" id="friends"><i class="fa-solid fa-users icon__header"></i></li>
