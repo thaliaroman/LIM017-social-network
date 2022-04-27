@@ -32,7 +32,6 @@ import { app } from './configurationfirebase.js';
 // Inicializando Auth y Firestore
 const db = getFirestore();
 const auth = getAuth();
-// console.log(auth);
 
 // Actualiza la información del usuario
 export const updater = (fullName) => updateProfile(auth.currentUser, {
@@ -58,11 +57,6 @@ export const startGoogle = () => {
   const provider = new GoogleAuthProvider();
   return signInWithPopup(auth, provider);
 };
-
-// Funcion para obtener la información del perfil del usuario logeado
-// export const getCurrentUser = () => {
-//   return auth.currentUser;
-// };
 
 // Crear un documento con el contenido a publicar en la colección publicaciones
 export const toPost = async (contentPost) => {

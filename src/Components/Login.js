@@ -3,7 +3,6 @@ import { startGoogle } from '../lib/libraries-Firebase.js';
 // eslint-disable-next-line import/no-cycle
 import { login } from '../lib/controllers.js';
 
-// document.addEventListener('DOMContentLoaded', observatorIt());
 export const Login = () => {
   document.getElementById('root').innerHTML = `
   <div class="div__imageLogin">
@@ -18,12 +17,16 @@ export const Login = () => {
       <i class="fa-solid fa-envelope e-mailIcon"></i>
       <input type="email" class="input__Login" id="e-mailLogin" placeholder="Correo electrónico"></input><br><br>
     </div>
-    <div class="alertError"><p id="alertErrorEmail-Login"></p></div>
+    <div class="alertError">
+      <p id="alertErrorEmail-Login"></p>
+    </div>
     <div class="writePassword">
       <i class="fa-solid fa-lock passwordIcon"></i>
       <input type=password class="input__Login" id="passwordLogin" placeholder="Contraseña"></input><br><br>
     </div>
-    <div class="alertError"><p id="alertErrorPassword-Login"></p></div>
+    <div class="alertError">
+      <p id="alertErrorPassword-Login"></p>
+    </div>
     <button id="iniciar">Iniciar sesión</button>
     <button id="google"><img src="images/google-img.png" class="imageGoogle"/><p>Continuar con Google</p></button>
     <p id="oLogin">ó</p><br>
@@ -41,7 +44,6 @@ export const Login = () => {
   //  Iniciar sesiión//
   starting.addEventListener('click', () => {
     login();
-    // console.log(login());
   });
   const loginGoogleButton = document.getElementById('google');
   loginGoogleButton.addEventListener('click', () => {

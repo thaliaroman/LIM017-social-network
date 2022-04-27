@@ -5,7 +5,6 @@ import { Home } from '../Components/Home.js';
 
 export const routes = (hash) => {
   const containerRoot = document.getElementById('root');
-  // containerRoot.innerHTML = ''; // Reiniciando el Div a vacio;
   switch (hash) {
     case '#/login':
       window.location.hash = '#/login';
@@ -22,7 +21,7 @@ export const routes = (hash) => {
       Home();
       break;
 
-    // En caso que el url no sea correcto, nos redigire a la página de "No esta disponible".
+    // Si el url es incorrecto, nos redigire a la página de "Esta página no esta disponible".
     default:
       containerRoot.innerHTML = 'Esta página no esta disponible';
   }

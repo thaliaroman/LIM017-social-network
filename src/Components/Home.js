@@ -12,19 +12,9 @@ export function toShowModal() {
   const modal = document.getElementById('myModal');
   // Get the <span> element that closes the modal
   const span = document.getElementsByClassName('close')[0];
-  const userPost = document.querySelector('.post__button');
-
   modal.style.display = 'block';
-
   span.addEventListener('click', () => {
     modal.style.display = 'none';
-  });
-  userPost.addEventListener('click', () => {
-    if (document.getElementById('inputPost__edit').value !== '') {
-      toPostDocument();
-      document.getElementById('inputPost__edit').value = '';
-      modal.style.display = 'none';
-    }
   });
   window.addEventListener('click', (e) => {
     if (e.target === modal) {
@@ -39,8 +29,6 @@ export const Home = () => {
   console.log(user);
   const userName = user.displayName.charAt(0).toUpperCase();
   printPost();
-  // console.log(user.photoURL);
-
   const abcName = () => {
     const userABC = user.displayName;
     const result = userABC.replace(/\b\w/g, (l) => l.toUpperCase());
@@ -56,8 +44,6 @@ export const Home = () => {
     <div class="header__nav-div">
       <nav class="header__nav">
         <ul class="header__nav-ul>
-          <li class="header__nav-ul-li" id="house"><i class="fa-solid fa-house-chimney icon__header"></i></li>
-          <li class="header__nav-ul-li" id="friends"><i class="fa-solid fa-users icon__header"></i></li>
           <li class="header__nav-ul-li" id="loginOut"><i class="fa-solid fa-power-off out icon__header"></i></li> 
         </ul>
       </nav>
@@ -68,17 +54,19 @@ export const Home = () => {
   </header>
   <div class="mainandaside">
     <aside class="aside_d">`;
+
   if (user.photoURL !== null) {
     html += `<img src='${user.photoURL}'>`;
   } else {
     html += `<button id="userName" title="${user.displayName}">${userName}</button>`;
   }
+
   html += `
       <p>${abcName()}</p>
     </aside>
     <main class="main">
       <div class="main__div" id="post">
-        <input cols="5" rows="5" class="post__input__Initial" id="inputPost__editM" type="button" value="Cuéntanos lo que estás pensando . . ."></input>
+        <input cols="5" rows="5" class="post__input__Initial" id="inputPost__editM" type="button" value="Haz una publicación . . ."></input>
       </div> 
       
       <!-- The Modal -->
@@ -110,13 +98,15 @@ export const Home = () => {
   const loginOutButton = document.getElementById('loginOut');
   loginOutButton.addEventListener('click', () => loginOutUser());
   // // Botón para publicar post
-  // const userPost = document.querySelector('.post__button');
-  // userPost.addEventListener('click', () => {
-  //   if (document.querySelector('.post__input').value !== '') {
-  //     toPostDocument();
-  //     document.querySelector('.post__input').value = '';
-  //   }
-  // });
+  const userPost = document.querySelector('.post__button');
+  userPost.addEventListener('click', () => {
+    if (document.querySelector('.post__input').value !== '') {
+      toPostDocument();
+      document.querySelector('.post__input').value = '';
+      const modal = document.getElementById('myModal');
+      modal.style.display = 'none';
+    }
+  });
   // modal
   // click al input boton
   const getInput = document.getElementById('inputPost__editM');
@@ -125,18 +115,3 @@ export const Home = () => {
     toShowModal();
   });
 };
-// <button id="userName" title="${user.displayName}">${userName}</button>
-
-// if (typeof (Storage) !== 'undefined') {
-//   console.log('si es compatible');
-// } else {
-//   console.log('no es compatible');
-// }
-// localStorage.name = getCurrentUser().displayName;
-// console.log(localStorage.name);
-
-/* <div class="post__div-upPhoto">
-<label class="elements__div-upPhoto" for="upPhoto"><i class="fa-solid fa-images"></i></label>
-<input class="elements__div-upPhoto" type="file" hidden="" id="upPhoto"></input>
-<p>Foto</p>
-</div> */

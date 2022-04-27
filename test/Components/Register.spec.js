@@ -24,8 +24,3 @@ describe('Register', () => {
     expect(window.location.hash).toEqual('#/login');
   });
 });
-// boton.dispatchEvent(new Event('click', () => register().then(() => { expect(createUserWithEmailAndPassword.mock.calls[0]).toEqual([{ languageCode: 'es' }, 'gaga@gmail.com', 'gaga123']); })));
-
-// btn = document.getElementById()
-// btn.dispatchEvent(new Event('click'));
-// document.getElemenetById('e-mail').value = 'front@end..la';
