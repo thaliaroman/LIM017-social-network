@@ -12,19 +12,9 @@ export function toShowModal() {
   const modal = document.getElementById('myModal');
   // Get the <span> element that closes the modal
   const span = document.getElementsByClassName('close')[0];
-  const userPost = document.querySelector('.post__button');
-
   modal.style.display = 'block';
-
   span.addEventListener('click', () => {
     modal.style.display = 'none';
-  });
-  userPost.addEventListener('click', () => {
-    if (document.getElementById('inputPost__edit').value !== '') {
-      toPostDocument();
-      document.getElementById('inputPost__edit').value = '';
-      modal.style.display = 'none';
-    }
   });
   window.addEventListener('click', (e) => {
     if (e.target === modal) {
@@ -56,8 +46,6 @@ export const Home = () => {
     <div class="header__nav-div">
       <nav class="header__nav">
         <ul class="header__nav-ul>
-          <li class="header__nav-ul-li" id="house"><i class="fa-solid fa-house-chimney icon__header"></i></li>
-          <li class="header__nav-ul-li" id="friends"><i class="fa-solid fa-users icon__header"></i></li>
           <li class="header__nav-ul-li" id="loginOut"><i class="fa-solid fa-power-off out icon__header"></i></li> 
         </ul>
       </nav>
@@ -110,13 +98,15 @@ export const Home = () => {
   const loginOutButton = document.getElementById('loginOut');
   loginOutButton.addEventListener('click', () => loginOutUser());
   // // Botón para publicar post
-  // const userPost = document.querySelector('.post__button');
-  // userPost.addEventListener('click', () => {
-  //   if (document.querySelector('.post__input').value !== '') {
-  //     toPostDocument();
-  //     document.querySelector('.post__input').value = '';
-  //   }
-  // });
+  const userPost = document.querySelector('.post__button');
+  userPost.addEventListener('click', () => {
+    if (document.querySelector('.post__input').value !== '') {
+      toPostDocument();
+      document.querySelector('.post__input').value = '';
+      const modal = document.getElementById('myModal');
+      modal.style.display = 'none';
+    }
+  });
   // modal
   // click al input boton
   const getInput = document.getElementById('inputPost__editM');
@@ -125,7 +115,6 @@ export const Home = () => {
     toShowModal();
   });
 };
-// <button id="userName" title="${user.displayName}">${userName}</button>
 
 // if (typeof (Storage) !== 'undefined') {
 //   console.log('si es compatible');
@@ -140,3 +129,6 @@ export const Home = () => {
 <input class="elements__div-upPhoto" type="file" hidden="" id="upPhoto"></input>
 <p>Foto</p>
 </div> */
+
+// <li class="header__nav-ul-li" id="house"><i class="fa-solid fa-house-chimney icon__header"></i></li>
+// <li class="header__nav-ul-li" id="friends"><i class="fa-solid fa-users icon__header"></i></li>
