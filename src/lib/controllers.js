@@ -32,7 +32,7 @@ export const register = () => {
       })
       .catch((error) => {
         if (error.code === 'auth/weak-password') {
-          document.getElementById('alertErrorPassword-Register').innerHTML = '';
+          document.getElementById('alertErrorEmail-Register').innerHTML = '';
           document.getElementById('alertErrorPassword-Register').innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> La contraseña debe tener mínimo 6 caracteres';
         } else if (error.code === 'auth/email-already-in-use') {
           document.getElementById('alertErrorPassword-Register').innerHTML = '';
