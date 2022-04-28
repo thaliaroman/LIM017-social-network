@@ -1,3 +1,4 @@
+/* eslint-disable eol-last */
 /**
  * @jest-environment jsdom
  */
@@ -17,9 +18,14 @@ describe('routes', () => {
     routes('#/register');
     expect(document.body.querySelector('#name')).not.toBeNull();
   });
-  // it('debe mostrar la vista: home', () => {
-  //   routes('#/home');
-  //   console.log(getCurrentUser());
-  //   expect(document.body.querySelector('.header__nav-div')).not.toBeNull();
-  // });
+  it('debe mostrar la vista: home', () => {
+    routes('#/home');
+    // console.log(getCurrentUser());
+    expect(document.body.querySelector('.header__nav-div')).not.toBeNull();
+  });
+  it('debe mostrar página no disponible', () => {
+    routes('#/othername');
+    // console.log(getCurrentUser());
+    expect(document.body.querySelector('#root').textContent).toBe('Esta página no esta disponible');
+  });
 });
