@@ -31,7 +31,9 @@ export const register = () => {
         return userCredential.user;
       })
       .catch((error) => {
+        console.log(error.code);
         if (error.code === 'auth/weak-password') {
+          console.log('dentro del if');
           document.getElementById('alertErrorEmail-Register').innerHTML = '';
           document.getElementById('alertErrorPassword-Register').innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> La contraseña debe tener mínimo 6 caracteres';
         } else if (error.code === 'auth/email-already-in-use') {
@@ -67,7 +69,6 @@ export const login = () => {
       console.log(errorMessage);
     });
 };
-
 
 // statusOfEdition: ve el estado de la edición(actualización) y/o creción del documento de firestore
 let statusOfEdition = false;

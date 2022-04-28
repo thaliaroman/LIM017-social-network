@@ -5,7 +5,7 @@ import {
   register, login, printPost, observatorIt,
 } from '../../src/lib/controllers.js';
 
-import { loginUser, observator, registerUser } from '../../src/lib/libraries-Firebase.js';
+import { loginUser, registerUser } from '../../src/lib/libraries-Firebase.js';
 import {
   createUserWithEmailAndPassword, signInWithEmailAndPassword,
   onAuthStateChanged, onSnapshot,
@@ -26,13 +26,6 @@ describe('register', () => {
       expect(createUserWithEmailAndPassword).toHaveBeenCalled();
       expect(createUserWithEmailAndPassword.mock.calls[0]).toEqual([{ languageCode: 'es' }, 'front@end.la', '123456']);
     }));
-  // Debería devolder error de firebase
-  it('Debería devolder error de firebase', () => {
-    document.body.innerHTML = '<div id="alertErrorPassword-Register"></div>';
-    registerUser('front@end.la', '1234', 'fullname');
-    createUserWithEmailAndPassword.mockRejectedValue({ error: { code: 'auth/weak-password' } });
-    expect(document.getElementById('alertErrorPassword-Register').innerHTML).toEqual('La contraseña debe tener mínimo 6 caracteres');
-  });
 });
 
 // iniciar sesión
