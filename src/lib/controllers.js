@@ -79,7 +79,7 @@ const qSnapshot = (querySnapshot) => {
   const containerPost = document.querySelector('.main__div-postPeople');
   let html = '';
   querySnapshot.forEach((doc) => {
-    // console.log(doc.data());
+    console.log(doc.data());
     const dataDoc = doc.data();
     html += `
       <article class="main__section-postPeople" id="">

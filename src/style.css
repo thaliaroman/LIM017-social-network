@@ -320,7 +320,7 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 600px;
+    width: 550px;
     height: 400px;
     display: flex;
     flex-direction: column;
@@ -459,7 +459,7 @@
     border-color: #7a4a8638;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     background-color: rgba(255, 255, 255, 0.399);
-    cursor: pointer;
+    cursor: text;
     padding: 20px;
     font-size: 16px;
 }
@@ -729,8 +729,11 @@
     }       
 }
 
-@media screen and (max-width: 450px){
+@media screen and (max-width: 550px){
 
+    .modal-content{
+        width: 90%;
+    }
     /* botones de eliminar o editar */
     .main__section-postPeople>div{
         flex-direction: column;

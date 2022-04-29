@@ -1,4 +1,3 @@
-import { async } from 'regenerator-runtime';
 import { Register } from '../../src/Components/Register.js';
 import { createUserWithEmailAndPassword } from '../../src/lib/Firebase-Import.js';
 
