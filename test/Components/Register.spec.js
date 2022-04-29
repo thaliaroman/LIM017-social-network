@@ -1,5 +1,4 @@
 import { Register } from '../../src/Components/Register.js';
-import { registerUser } from '../../src/lib/libraries-Firebase.js';
 import { createUserWithEmailAndPassword } from '../../src/lib/Firebase-Import.js';
 
 jest.mock('../../src/lib/Firebase-Import.js');
@@ -36,16 +35,19 @@ describe('Register', () => {
     botonRegister.dispatchEvent(new Event('click'));
     expect(createUserWithEmailAndPassword).toHaveBeenCalled();
   });
-  // it.only('Debería devolder error de firebase', () => {
-  //   document.body.innerHTML = '<div id="root"></div>';
-  //   Register();
-  //   document.getElementById('name').value = 'Lady Gaga';
-  //   document.getElementById('e-mail').value = 'gaga123@gmail.com';
-  //   document.getElementById('password').value = 'gaga';
-  //   document.getElementById('confirmPassword').value = 'gaga';
-  //   const botonRegister = document.getElementById('register');
-  //   botonRegister.dispatchEvent(new Event('click'));
-  //   createUserWithEmailAndPassword.mockRejectedValue({ error: { code: 'auth/weak-password' } });
-  //   expect(document.getElementById('alertErrorPassword-Register').innerHTML).toEqual('La contraseña debe tener mínimo 6 caracteres');
-  // });
+  it('devuelve un error de firebase', (done) => {
+    createUserWithEmailAndPassword.mockRejectedValue({ code: 'auth/weak-password' });
+    document.body.innerHTML = '<div id="root"></div>';
+    Register();
+    document.getElementById('name').value = 'Lady Gaga';
+    document.getElementById('e-mail').value = 'gaga@gmail.com';
+    document.getElementById('password').value = 'gaga';
+    document.getElementById('confirmPassword').value = 'gaga';
+    const botonRegister = document.getElementById('register');
+    botonRegister.dispatchEvent(new Event('click'));
+    setTimeout(() => {
+      expect(document.getElementById('alertErrorPassword-Register').textContent).toEqual(' La contraseña debe tener mínimo 6 caracteres');
+      done();
+    });
+  });
 });

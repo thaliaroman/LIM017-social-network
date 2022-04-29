@@ -1,6 +1,7 @@
 import { Home } from '../../src/Components/Home.js';
-import { addDoc, getCurrentUser, signOut } from '../../src/lib/Firebase-Import.js';
-import { printPost, toPostDocument } from '../../src/lib/controllers.js';
+import {
+  addDoc, getCurrentUser, signOut, onSnapshot,
+} from '../../src/lib/Firebase-Import.js';
 
 jest.mock('../../src/lib/Firebase-Import.js');
 
@@ -20,12 +21,6 @@ describe('Home', () => {
     document.querySelector('.post__input').value = 'abc';
     userPost.dispatchEvent(new Event('click'));
     expect(addDoc).toHaveBeenCalledTimes(1);
+    expect(onSnapshot).toHaveBeenCalledTimes(1);
   });
-  // it.only('debería llamar a eliminar post', () => {
-  //   document.body.innerHTML = '<div id="root"></div>';
-  //   Home();
-  //   // const buttonDelete = containerPost.querySelectorAll('.deletePost');
-  //   // eslint-disable-next-line no-unused-expressions
-  //   expect(document.body.querySelector('.deletePost')).not.toBeNull();
-  // });
 });

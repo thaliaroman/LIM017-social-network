@@ -31,7 +31,9 @@ export const register = () => {
         return userCredential.user;
       })
       .catch((error) => {
+        console.log(error.code);
         if (error.code === 'auth/weak-password') {
+          console.log('dentro del if');
           document.getElementById('alertErrorEmail-Register').innerHTML = '';
           document.getElementById('alertErrorPassword-Register').innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> La contraseña debe tener mínimo 6 caracteres';
         } else if (error.code === 'auth/email-already-in-use') {
@@ -68,7 +70,6 @@ export const login = () => {
     });
 };
 
-
 // statusOfEdition: ve el estado de la edición(actualización) y/o creción del documento de firestore
 let statusOfEdition = false;
 let id = '';
@@ -78,7 +79,7 @@ const qSnapshot = (querySnapshot) => {
   const containerPost = document.querySelector('.main__div-postPeople');
   let html = '';
   querySnapshot.forEach((doc) => {
-    // console.log(doc.data());
+    console.log(doc.data());
     const dataDoc = doc.data();
     html += `
       <article class="main__section-postPeople" id="">
