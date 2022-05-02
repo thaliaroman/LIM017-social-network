@@ -36,48 +36,47 @@ en la que podamos **leer y escribir datos**.
 
 En el proyecto se han marcado distintos objetivos de aprendizaje los cuales se detallan a continuación:
 ### HTML
--  [:marca_de_verificación_gruesa:] **Uso de HTML semántico**
+-  [✓] **Uso de HTML semántico**
 ### CSS
-- [:marca_de_verificación_gruesa:] **Uso de selectores de CSS**
-- [:marca_de_verificación_gruesa:] **Uso de flexbox en CSS**
-- [:marca_de_verificación_gruesa:] **Uso de CSS Grid Layout**
+- [✓] **Uso de selectores de CSS**
+- [✓] **Uso de flexbox en CSS**
+- [✓] **Uso de CSS Grid Layout**
 ### Web APIs
-- [:marca_de_verificación_gruesa:] **Uso de selectores del DOM**
-- [:marca_de_verificación_gruesa:] **Manejo de eventos del DOM (listeners, propagación, delegación)**
-- [:marca_de_verificación_gruesa:] **Manipulación dinámica del DOM**
-- [:marca_de_verificación_gruesa:] **Ruteado (History API, evento hashchange, window.location)**
+- [✓] **Uso de selectores del DOM**
+- [✓] **Manejo de eventos del DOM (listeners, propagación, delegación)**
+- [✓] **Manipulación dinámica del DOM**
+- [✓] **Ruteado (History API, evento hashchange, window.location)**
 ### JavaScript
-- [:marca_de_verificación_gruesa:] **Arrays (arreglos)**
-- [:marca_de_verificación_gruesa:] **Objetos (key, value)**
-- [:marca_de_verificación_gruesa:] **Uso de condicionales (if-else, switch, operador ternario, lógica booleana)**
-- [:marca_de_verificación_gruesa:] **Uso de bucles/ciclos (while, for, for..of)**
-- [:marca_de_verificación_gruesa:] **Funciones (params, args, return)**
-- [:marca_de_verificación_gruesa:] **Pruebas unitarias (unit tests)**
-- [:marca_de_verificación_gruesa:] **Pruebas asíncronas**
-- [:marca_de_verificación_gruesa:] **Uso de mocks y espías**
-- [:marca_de_verificación_gruesa:] **Módulos de ECMAScript (ES Modules)**
-- [:marca_de_verificación_gruesa:] **Uso de linter (ESLINT)**
-- [:marca_de_verificación_gruesa:] **Uso de identificadores descriptivos (Nomenclatura y Semántica)**
-- [:marca_de_verificación_gruesa:] **Diferenciar entre expresiones (expressions) y sentencias (statements)**
-- [:marca_de_verificación_gruesa:] **Callbacks**
->
-- [:marca_de_verificación_gruesa:] **Promesas**
+- [✓] **Arrays (arreglos)**
+- [✓] **Objetos (key, value)**
+- [✓] **Uso de condicionales (if-else, switch, operador ternario, lógica booleana)**
+- [✓] **Uso de bucles/ciclos (while, for, for..of)**
+- [✓] **Funciones (params, args, return)**
+- [✓] **Pruebas unitarias (unit tests)**
+- [✓] **Pruebas asíncronas**
+- [✓] **Uso de mocks y espías**
+- [✓] **Módulos de ECMAScript (ES Modules)**
+- [✓] **Uso de linter (ESLINT)**
+- [✓] **Uso de identificadores descriptivos (Nomenclatura y Semántica)**
+- [✓] **Diferenciar entre expresiones (expressions) y sentencias (statements)**
+- [✓] **Callbacks**
+- [✓] **Promesas**
 ### Control de Versiones (Git y GitHub)
-- [:marca_de_verificación_gruesa:] **Git: Instalación y configuración**
-- [:marca_de_verificación_gruesa:] **Git: Control de versiones con git (init, clone, add, commit, status, push, pull, remote)**
-- [:marca_de_verificación_gruesa:] **Git: Integración de cambios entre ramas (branch, checkout, fetch, merge, reset, rebase, tag)**
-- [:marca_de_verificación_gruesa:] **GitHub: Creación de cuenta y repos, configuración de llaves SSH**
-- [:marca_de_verificación_gruesa:] **GitHub: Despliegue con GitHub Pages**
-- [:marca_de_verificación_gruesa:] **GitHub: Colaboración en Github (branches | forks | pull requests | code review | tags)**
-- [:marca_de_verificación_gruesa:] **GitHub: Organización en Github (projects | issues | labels | milestones | releases)**
+- [✓] **Git: Instalación y configuración**
+- [✓] **Git: Control de versiones con git (init, clone, add, commit, status, push, pull, remote)**
+- [✓] **Git: Integración de cambios entre ramas (branch, checkout, fetch, merge, reset, rebase, tag)**
+- [✓] **GitHub: Creación de cuenta y repos, configuración de llaves SSH**
+- [✓] **GitHub: Despliegue con GitHub Pages**
+- [✓] **GitHub: Colaboración en Github (branches | forks | pull requests | code review | tags)**
+- [✓] **GitHub: Organización en Github (projects | issues | labels | milestones | releases)**
 ### UX (User eXperience)
-- [:marca_de_verificación_gruesa:] **Diseñar la aplicación pensando en y entendiendo al usuario**
-- [:marca_de_verificación_gruesa:] **Crear prototipos para obtener feedback e iterar**
-- [:marca_de_verificación_gruesa:] **Aplicar los principios de diseño visual (contraste, alineación, jerarquía)**
-- [:marca_de_verificación_gruesa:] **Planear y ejecutar tests de usabilidad**
+- [✓] **Diseñar la aplicación pensando en y entendiendo al usuario**
+- [✓] **Crear prototipos para obtener feedback e iterar**
+- [✓] **Aplicar los principios de diseño visual (contraste, alineación, jerarquía)**
+- [✓] **Planear y ejecutar tests de usabilidad**
 ### Firebase
-- [:marca_de_verificación_gruesa:.png] **Firebase Auth**
-- [:marca_de_verificación_gruesa:.png] **Firestore**
+- [✓] **Firebase Auth**
+- [✓] **Firestore**
 
 ### HTML
 
