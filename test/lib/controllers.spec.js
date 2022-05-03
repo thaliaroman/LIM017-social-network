@@ -22,9 +22,9 @@ describe('register', () => {
   // RegisterUser llama a createUserWithEmailAndPassword
   it('Debería devolder el correo de registro', () => registerUser('front@end.la', '123456', 'fullname')
     .then((userCredential) => {
-      expect(userCredential.user.email).toBe('front@end.la');
       expect(createUserWithEmailAndPassword).toHaveBeenCalled();
       expect(createUserWithEmailAndPassword.mock.calls[0]).toEqual([{ languageCode: 'es' }, 'front@end.la', '123456']);
+      expect(userCredential.user.email).toBe('front@end.la');
     }));
 });
 

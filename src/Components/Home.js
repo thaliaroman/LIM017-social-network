@@ -111,7 +111,6 @@ export const Home = () => {
   // click al input boton
   const getInput = document.getElementById('inputPost__editM');
   getInput.addEventListener('click', () => {
-    console.log('sí funciona el evento');
     toShowModal();
   });
 };

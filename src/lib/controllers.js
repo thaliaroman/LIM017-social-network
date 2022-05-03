@@ -25,16 +25,14 @@ export const register = () => {
     return registerUser(email, password, fullName)
       .then((userCredential) => {
         updater(fullName);
-        console.log(updater(fullName));
+
         sendMail();
         loginOutUser();
         routes('#/login');
         return userCredential.user;
       })
       .catch((error) => {
-        console.log(error.code);
         if (error.code === 'auth/weak-password') {
-          console.log('dentro del if');
           document.getElementById('alertErrorEmail-Register').innerHTML = '';
           document.getElementById('alertErrorPassword-Register').innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> La contraseña debe tener mínimo 6 caracteres';
         } else if (error.code === 'auth/email-already-in-use') {
@@ -111,8 +109,8 @@ const qSnapshot = (querySnapshot) => {
 
   // Borra documento del post
   const buttonDelete = containerPost.querySelectorAll('.deletePost');
-  buttonDelete.forEach((abc) => {
-    abc.addEventListener('click', ({ target: { dataset } }) => {
+  buttonDelete.forEach((eachBtnDelete) => {
+    eachBtnDelete.addEventListener('click', ({ target: { dataset } }) => {
       // eslint-disable-next-line no-alert
       if (window.confirm('¿Seguro deseas eliminar tu publicación?')) {
         deletePost(dataset.id);
