@@ -96,11 +96,19 @@ El prototipo que se penso en un inicio, detalla cada una de las expectativas que
 ### 4.4 Responsive
 El proyecto se diseño tanto para dispositivos de pantallas grandes
 (computadoras/es, laptops, etc.) y pequeñas (_tablets_, celulares, etc.). Se siguió la técnica de _`mobile first`.
-Para tener la idea final del proyecto se diseñó el  PROTOTIPO DE ALTA FIDELIDAD:
+Para tener la idea final del proyecto se diseñó el  PROTOTIPO DE ALTA FIDELIDAD
+
+#### 4.4.1 Desktop
+
 ![logindesktop](https://github.com/thaliaroman/LIM017-social-network/blob/main/src/images/logindesktop.png?raw=true)
+
 ![registerdesktop](https://github.com/thaliaroman/LIM017-social-network/blob/main/src/images/registerdesktop.png?raw=true)
+
 ![homedesktop](https://github.com/thaliaroman/LIM017-social-network/blob/main/src/images/homedesktop.png?raw=true)
+#### 4.4.2 Mobile
+
 ![loginmovil](https://github.com/thaliaroman/LIM017-social-network/blob/main/src/images/loginmovil.png?raw=true)
+
 ![homemovil](https://github.com/thaliaroman/LIM017-social-network/blob/main/src/images/homemovil.png?raw=true)
 ### 4.5 Consideraciones del comportamiento de la interfaz de usuario (UI)
 Estas consideraciones te ayudarán a escribir las Definiciones de Terminado de
