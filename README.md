@@ -329,7 +329,7 @@ Tomando estas necesidades creamos a aplicación para que las mujeres tengan un e
 ### 4.2 Historias de usuario
 Una vez definidas las necesidades se crearon historias de usuarios que puedan solucionar las mismas.
 ![historia1](historia1.png)
-![historia2](historia2.png)
+![historia2](https://github.com/thaliaroman/LIM017-social-network/blob/main/src/images/historia2.png?raw=true)
 ![historia3](historia3.png)
 ### 4.3 Diseño de la Interfaz de Usuario (prototipo de baja fidelidad)
 El prototipo que se penso en un inicio, detalla cada una de las expectativas que se tendrá al diseñar una interfaz amigable para las usuarias.
